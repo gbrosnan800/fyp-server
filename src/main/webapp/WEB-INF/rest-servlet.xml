@@ -10,7 +10,7 @@ xsi:schemaLocation="
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-<context:component-scan base-package="com.gbrosnan" />
+<context:component-scan base-package="com.gbrosnan.fyp" />
 <mvc:annotation-driven />
 
 <bean id="multipartResolver"
@@ -34,7 +34,7 @@ xsi:schemaLocation="
     <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
      
-    <bean id="excelCreater" class="com.gbrosnan.restinterface.ExcelCreater"></bean>
+    <!-- <bean id="excelCreater" class="com.gbrosnan.restinterface.ExcelCreater"></bean> -->
 
 
 </beans>
