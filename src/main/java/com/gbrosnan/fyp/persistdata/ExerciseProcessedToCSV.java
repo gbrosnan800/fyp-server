@@ -18,8 +18,19 @@ public class ExerciseProcessedToCSV {
 			
 			int max = getMaxSize(normalizedReps);
 			int amountOfReps = normalizedReps.size();
-			String value = "";
+			String rowOfValues = "";
 			
+			
+			for(Rep rep : normalizedReps) {
+				rowOfValues = "";
+				for(double value : rep.getSamples()) {
+					rowOfValues += value + ",";
+				}
+				rowOfValues += "1\n";
+				writer.append(rowOfValues);
+			}
+			
+			/*
 			for(int i = 0 ; i < max ; i ++) {
 				for(int j = 0 ; j < amountOfReps ; j++) {				
 					if(normalizedReps.get(j).getSamples().size() > i) {
@@ -32,6 +43,7 @@ public class ExerciseProcessedToCSV {
 				}
 				writer.append("\n");
 			}
+			*/
 			
 			writer.flush();
 			writer.close();
