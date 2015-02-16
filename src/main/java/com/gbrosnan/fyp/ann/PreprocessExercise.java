@@ -26,6 +26,7 @@ public class PreprocessExercise {
 		filterPeaks();
 		extractReps();
 		normalizeReps();
+		normalizeRepArraySizeTo200();
 		
 		processedExercise.setExtractedReps(extractedReps);
 		processedExercise.setNormalisedReps(normalizedReps);
@@ -191,7 +192,7 @@ public class PreprocessExercise {
 
 	}
 	
-	private  double getMaxVal(ArrayList<Double> samples) {
+	private double getMaxVal(ArrayList<Double> samples) {
 		
 		double max = 0;
 		for( double sample : samples) {
@@ -212,5 +213,64 @@ public class PreprocessExercise {
 		}	
 		return min;
 	}
+	
+	private void normalizeRepArraySizeTo200() {
+		
+		for(int repNum = 0 ; repNum < normalizedReps.size() ; repNum ++) {
+			
+			ArrayList<Double> samples = normalizedReps.get(repNum).getSamples();
+			
+			if(samples.size() > 200) {
+				samples = adjustDownTo200(samples);
+			}
+			if(samples.size() < 200) {
+				samples = adjustUpTo200(samples);
+			}
+			
+			normalizedReps.get(repNum).setSamples(samples);
+		}
+
+
+	}
+	
+	private ArrayList<Double> adjustDownTo200(ArrayList<Double> samples) {
+		
+		int size = samples.size();
+		int adjustment = size - 200;
+		int frequency = size/adjustment;
+	    int frequencyNext = samples.size() - 1;
+		
+		while(samples.size() > 201) {
+			frequencyNext -= frequency;
+			if(frequencyNext > 0) {
+				samples.remove(frequencyNext);					
+			}			
+		}
+		if(samples.size() > 200) {
+			samples.remove(199);
+		}
+		return samples;
+	}
+	
+	private ArrayList<Double> adjustUpTo200(ArrayList<Double> samples) {
+		
+		int size = samples.size();
+		int adjustment = 200 - size;
+		int frequency = 200/adjustment;
+		int frequencyNext = 0;
+		double value = 0;
+
+		while(samples.size() < 200) {
+			frequencyNext += frequency;
+			if(frequencyNext >= samples.size()) {
+				frequencyNext = samples.size() - 1;
+			}	
+			value = (samples.get(frequencyNext - 1) + samples.get(frequencyNext)) / 2; 
+			samples.add(frequencyNext, value);
+		}
+		return samples;
+	}
+	
 		
 }
+;
