@@ -11,6 +11,7 @@ import com.gbrosnan.fyp.ann.PreprocessExercise;
 import com.gbrosnan.fyp.objects.ExerciseProcessed;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedRepository;
+import com.gbrosnan.fyp.persistdata.ExerciseProcessedToExcel;
 
 
 @RestController
@@ -22,6 +23,9 @@ public class RestAPI {
 	
 	@Autowired
 	PreprocessExercise preprocessedExercise;
+	
+	@Autowired
+	ExerciseProcessedToExcel exerciseProcessedToExcel;
 	
 	@RequestMapping(value = "/1", method = RequestMethod.GET)
     public String hello1() {
@@ -41,11 +45,11 @@ public class RestAPI {
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
         	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
-        	ExerciseProcessed exercisedProcessed = preprocessedExercise.preProcess(exerciseRaw);
-        	exercisedProcessed.setExerciseDetected("not_sent_to_ann");
+        	ExerciseProcessed exerciseProcessed = preprocessedExercise.preProcess(exerciseRaw);
+        	exerciseProcessed.setExerciseDetected("not_sent_to_ann");
         	
-        	exerciseProcessedRepository.insert(exercisedProcessed);
-        	//excelCreater.createExcelFile(exercise);
+        	exerciseProcessedRepository.insert(exerciseProcessed);
+        	exerciseProcessedToExcel.createExcelFile(exerciseProcessed);
         	
         	return "Server successfully saved Exercise";
         }
