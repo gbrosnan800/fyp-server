@@ -11,6 +11,7 @@ import com.gbrosnan.fyp.ann.PreprocessExercise;
 import com.gbrosnan.fyp.objects.ExerciseProcessed;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedRepository;
+import com.gbrosnan.fyp.persistdata.ExerciseProcessedToCSV;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedToExcel;
 
 
@@ -26,6 +27,9 @@ public class RestAPI {
 	
 	@Autowired
 	ExerciseProcessedToExcel exerciseProcessedToExcel;
+	
+	@Autowired
+	ExerciseProcessedToCSV exerciseProcessedToCSV;
 	
 	@RequestMapping(value = "/1", method = RequestMethod.GET)
     public String hello1() {
@@ -50,6 +54,7 @@ public class RestAPI {
         	
         	exerciseProcessedRepository.insert(exerciseProcessed);
         	exerciseProcessedToExcel.createExcelFile(exerciseProcessed);
+        	exerciseProcessedToCSV.createCSVFile(exerciseProcessed.getNormalisedReps(), exerciseProcessed.getId(), exerciseProcessed.getExerciseName());
         	
         	return "Server successfully saved Exercise";
         }
