@@ -26,7 +26,7 @@ public class ExerciseProcessedToCSV {
 				for(double value : rep.getSamples()) {
 					rowOfValues += value + ",";
 				}
-				rowOfValues += "1\n";
+				rowOfValues += "0\n";
 				writer.append(rowOfValues);
 			}
 			
