@@ -21,6 +21,7 @@ public class ExerciseRawRepository {
 	public void dropCollection() {
 		if (mongoTemplate.collectionExists(ExerciseRaw.class)) {
 			mongoTemplate.dropCollection(ExerciseRaw.class);
+			System.out.println("collection dropped");
 		}
 	}
 	
