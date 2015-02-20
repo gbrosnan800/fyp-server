@@ -29,6 +29,31 @@ private RepCreator() {}
 		return reps;
 	}
 	
+	public static List<Rep> normalizeReps(List<Rep> reps) {
+		
+		List<Rep> normalizedReps = new ArrayList<Rep>();
+		List<Double> samples, normalizedSamples;
+		Rep normalizedRep;
+		double high, low;
+		
+		
+		for(Rep rep : reps) {
+			
+			samples = rep.getSamples();		
+			normalizedSamples = new ArrayList<Double>();
+			double[] highAndLowValues = getHighAndLowValues(samples);
+			high = highAndLowValues[0];
+			low = highAndLowValues[1];
+			for(double sample : samples) {
+				double normalized = (sample - low) / (high - low);
+				normalizedSamples.add(normalized);
+			}		
+			normalizedRep = new Rep(rep.getId(), rep.getStartPointIndex(), rep.getStartPointValue(), rep.getEndPointIndex(), rep.getEndPointValue(), normalizedSamples);
+			normalizedReps.add(normalizedRep);
+		}	
+		return normalizedReps;
+	}
+		
 	private static Rep createRep(List<Double> values, int[] maximas, int id) {
 		
 		List<Double> repValues = new ArrayList<Double>();
@@ -50,6 +75,22 @@ private RepCreator() {}
 			}
 		}
 		return lowestPoint;
+	}
+	
+	private static double[] getHighAndLowValues(List<Double> values) {
+
+		double highest = -10000000;
+		double lowest = 10000000;
+				
+		for(double value : values) {
+			if(value > highest){
+				highest = value;
+			}
+			if(value < lowest){
+				lowest = value;
+			}		
+		}		
+		return new double[] {highest, lowest};
 	}
 	
 }

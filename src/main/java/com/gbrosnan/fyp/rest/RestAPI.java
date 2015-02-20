@@ -53,7 +53,6 @@ public class RestAPI {
         	
         	
         	ProcessedExercise processedExercise = preprocessingHandler.preprocessRawExerciseForANN(exerciseRaw);
-        	processedExercise.setExerciseDetected("not_sent_to_ann");
         	
         	exerciseProcessedRepository.insert(processedExercise);
         	exerciseProcessedToExcel.createExcelFile(processedExercise);
