@@ -21,7 +21,7 @@ public class PreprocessExercise {
 		processedExercise = new ExerciseProcessed(rawExerciseData.getUsername(), rawExerciseData.getExerciseName(),
 				rawExerciseData.getDate(), rawExerciseData.getSensorSampleList());
 		
-		setAverages(processedExercise.getRawSensorSamples());
+		setAverages(processedExercise.getRawSensorSamples());	
 		detectPeaks();
 		filterPeaks();
 		extractReps();
@@ -62,8 +62,8 @@ public class PreprocessExercise {
 			max = true;
 			min = true;
 			currentValue = processedExercise.getAverages().get(point);
-			high = getHigh(point, avrSize, 40);
-			low = getLow(point, 40);
+			high = getHigh(point, avrSize, 60);
+			low = getLow(point, 60);
 			
 			checkForMax(point, currentValue, low, high, max);
 			checkForMin(point, currentValue, low, high, min);
@@ -96,6 +96,7 @@ public class PreprocessExercise {
 			if(!max)break;
 		}		
 		if(max) {
+			System.out.println("Max: P=" + point + "   Val=" + currentValue);
 			maximas.add(currentValue);
 			peaks.add(new Peak("maxima", point, currentValue));
 		}		
@@ -109,6 +110,7 @@ public class PreprocessExercise {
 			if(!min)break;
 		}		
 		if(min) {
+			System.out.println("Min: P=" + point + "   Val=" + currentValue);
 			minimas.add(currentValue);
 			peaks.add(new Peak("minima", point, currentValue));
 		}
@@ -116,8 +118,57 @@ public class PreprocessExercise {
 	
 	public void filterPeaks() {
 		
+		System.out.println("Unfiltered peaks = " + peaks.size());
 		double averageMinimaValue = getAverageMinimaValue();
+		
+		//removeMinimasLackingTwoCorrespondingMaximas();
+		
 		removeOutOfBoundsMinimas(averageMinimaValue);	
+		System.out.println("Size after filter = " + peaks.size());
+	}
+	
+	private void removeMinimasLackingTwoCorrespondingMaximas() {
+		
+		ArrayList<Peak> peaksTemp = new ArrayList<Peak>();
+		int before;
+		int after;
+		
+		for(int peak =  0 ; peak < peaks.size()  ; peak ++) {
+			
+			before = peak - 1;
+			after = peak + 1;
+			
+			if(peak == 0) {
+				before = 0;
+			}
+			
+			if(peak == peaks.size() - 1) {
+				after = peaks.size() - 1;
+			}
+			
+
+			
+			//for(forpeak1 : peaks) {
+				System.out.println("TEST - " + peaks.get(peak).getIndex() + " - " + peaks.get(peak).getType() + "(" + peak + ")" +
+						"   BEFORE(" + before + ") = " + peaks.get(before).getType() + "    AFTER(" + after + ") = " + peaks.get(after).getType());
+			//s}
+			
+			if(peaks.get(peak).getType().equals("maxima") || (peaks.get(peak).getType().equals("minima") && 
+					peaks.get(before).getType().equals("maxima") && peaks.get(after).getType().equals("maxima"))) {
+			
+				System.out.println("true - " + peaks.get(peak).getIndex() + " - " + peaks.get(peak).getType());
+				peaksTemp.add(peaks.get(peak));
+			}	
+			else {
+				System.out.println("false - " + peaks.get(peak).getIndex() + " - " + peaks.get(peak).getType());
+			}
+		}
+		
+		for(Peak peakT : peaksTemp) {
+			System.out.println(peakT.getType() +  "\tP="  + peakT.getIndex() + "\tVal= " + peakT.getValue());
+		}
+		
+		peaks = peaksTemp;
 	}
 	
 	private double getAverageMinimaValue() {
@@ -136,6 +187,7 @@ public class PreprocessExercise {
 		
 		for(int peak = 0 ; peak < peaks.size() ; peak ++) {			
 			if(peaks.get(peak).getType().equals("minima") && peaks.get(peak).getValue() > averageMinimaValue ) {
+				System.out.println("Remove peak num: " + peak + "  type: " + peaks.get(peak).getType() + "   val: " + peaks.get(peak).getValue());
 				peaks.remove(peak);
 			}			
 		}
