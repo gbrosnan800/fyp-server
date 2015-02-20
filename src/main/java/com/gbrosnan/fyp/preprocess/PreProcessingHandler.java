@@ -18,17 +18,28 @@ public class PreProcessingHandler {
 		System.out.println("averages size = " + averages.size());
 		List<Integer> maximas = PeakDetect.discoverMaximas(averages, 25, 100);
 		System.out.println("maximas1 size = " + maximas.size());
-		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 50, 0.25);
+
+		
+		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 60, 0.25);
 		System.out.println("maximas2 size = " + maximas.size());
-		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, 0.25);
+		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, 0.35);
 		System.out.println("maximas3 size = " + maximas.size());
+		for(int maxima : maximas) {
+			System.out.println("maxima" + maxima);
+		}
 		List<Rep> reps = RepCreator.createRepList(averages, maximas);
 		System.out.println("reps size = " + reps.size());
+
+		List<Rep> normalizedReps = RepCreator.normalizeReps(reps);	
 		
-		List<Rep> normalizedReps = RepCreator.normalizeReps(reps);
+		for(Rep rep : normalizedReps) {	
+			List<Double> adjustedSize = AdjustArraySize.adjustTo(200, rep.getSamples());
+			rep.setSamples(adjustedSize);	
+		}
+		
 		System.out.println("holaaa");
-		System.out.println("n size = " + normalizedReps.size());
-		System.out.println("norm = " + normalizedReps.get(5).getSamples().size());
+		//System.out.println("n size = " + normalizedReps.size());
+		//System.out.println("norm = " + normalizedReps.get(5).getSamples().size());
 		
 		
 		

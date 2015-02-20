@@ -45,24 +45,29 @@ public class RestAPI {
     @RequestMapping(value = "/exercise", method = RequestMethod.POST)
     public String handleFileUpload(HttpEntity<byte[]> requestEntity) {
     		
+    	ExerciseRaw exerciseRaw = null;
+    	
         try {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
-        	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
         	System.out.println(exerciseRaw.getExerciseName());
+
         	
-        	ProcessedExercise processedExercise = preprocessingHandler.preprocessRawExerciseForANN(exerciseRaw);
-        	
-        	exerciseProcessedRepository.insert(processedExercise);
-        	exerciseProcessedToExcel.createExcelFile(processedExercise);
-        	exerciseProcessedToCSV.createCSVFile(processedExercise.getNormalisedReps(), processedExercise.getId(), processedExercise.getExerciseName());
-        	
-        	return "Server successfully saved Exercise";
+        	//return "Server successfully saved Exercise";
         }
         catch(Exception ex) {
-        	return "Server error: " + ex.toString();
+        	//return "Server error: " + ex.toString();
         }
+        
+    	
+    	ProcessedExercise processedExercise = preprocessingHandler.preprocessRawExerciseForANN(exerciseRaw);
+    	
+    	exerciseProcessedRepository.insert(processedExercise);
+    	exerciseProcessedToExcel.createExcelFile(processedExercise);
+    	exerciseProcessedToCSV.createCSVFile(processedExercise.getNormalisedReps(), processedExercise.getId(), processedExercise.getExerciseName());
+    	return "done";
     }
 
 }
