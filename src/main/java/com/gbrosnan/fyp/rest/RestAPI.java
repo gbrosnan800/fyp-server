@@ -51,12 +51,12 @@ public class RestAPI {
         	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
         	
         	
-        	ProcessedExercise exerciseProcessed = preprocessedExercise.preProcess(exerciseRaw);
-        	exerciseProcessed.setExerciseDetected("not_sent_to_ann");
+        	ProcessedExercise processedExercise = preprocessedExercise.preProcess(exerciseRaw);
+        	processedExercise.setExerciseDetected("not_sent_to_ann");
         	
-        	exerciseProcessedRepository.insert(exerciseProcessed);
-        	exerciseProcessedToExcel.createExcelFile(exerciseProcessed);
-        	exerciseProcessedToCSV.createCSVFile(exerciseProcessed.getNormalisedReps(), exerciseProcessed.getId(), exerciseProcessed.getExerciseName());
+        	exerciseProcessedRepository.insert(processedExercise);
+        	exerciseProcessedToExcel.createExcelFile(processedExercise);
+        	exerciseProcessedToCSV.createCSVFile(processedExercise.getNormalisedReps(), processedExercise.getId(), processedExercise.getExerciseName());
         	
         	return "Server successfully saved Exercise";
         }
