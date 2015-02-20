@@ -1,6 +1,5 @@
 package com.gbrosnan.fyp.objects;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class Rep {
 
@@ -9,9 +8,9 @@ public class Rep {
 	private double startPointValue;
 	private int endPointIndex;
 	private double endPointValue;
-	private ArrayList<Double> samples;
+	private List<Double> samples;
 		
-	public Rep (int id, int startPointIndex, double startPointValue, int endPointIndex, double endPointValue, ArrayList<Double> samples) {
+	public Rep (int id, int startPointIndex, double startPointValue, int endPointIndex, double endPointValue, List<Double> samples) {
 		setId(id);
 		setStartPointIndex(startPointIndex);
 		setStartPointValue(startPointValue);
@@ -60,11 +59,11 @@ public class Rep {
 		this.endPointValue = endPointValue;
 	}
 
-	public ArrayList<Double> getSamples() {
+	public List<Double> getSamples() {
 		return samples;
 	}
 
-	public void setSamples(ArrayList<Double> samples) {
+	public void setSamples(List<Double> samples) {
 		this.samples = samples;
 	}
 	

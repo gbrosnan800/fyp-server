@@ -1,5 +1,6 @@
 package com.gbrosnan.fyp.ann;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +9,11 @@ import com.gbrosnan.fyp.objects.*;
 public class PreprocessExercise {
 
 	private ExerciseProcessed processedExercise;
-	private ArrayList<Peak> peaks;
-	private ArrayList<Double> maximas;
-	private ArrayList<Double> minimas;
-	private ArrayList<Rep> extractedReps; 
-	private ArrayList<Rep> normalizedReps; 
+	private List<Peak> peaks;
+	private List<Double> maximas;
+	private List<Double> minimas;
+	private List<Rep> extractedReps; 
+	private List<Rep> normalizedReps; 
 	
 	public PreprocessExercise() {}
 	
@@ -226,8 +227,8 @@ public class PreprocessExercise {
 		for(int point = 0; point < extractedReps.size() ; point ++) {
 			
 			Rep thisRep = extractedReps.get(point);
-			ArrayList<Double> samples = thisRep.getSamples();
-			ArrayList<Double> normedSamples = new ArrayList<Double>();
+			List<Double> samples = thisRep.getSamples();
+			List<Double> normedSamples = new ArrayList<Double>();
 			
 			double maxVal = getMaxVal(thisRep.getSamples());
 			double minVal = getMinVal(thisRep.getSamples());
@@ -244,7 +245,7 @@ public class PreprocessExercise {
 
 	}
 	
-	private double getMaxVal(ArrayList<Double> samples) {
+	private double getMaxVal(List<Double> samples) {
 		
 		double max = 0;
 		for( double sample : samples) {
@@ -255,7 +256,7 @@ public class PreprocessExercise {
 		return max;
 	}
 	
-	private  double getMinVal(ArrayList<Double> samples) {
+	private  double getMinVal(List<Double> samples) {
 		
 		double min = 100000000;
 		for( double sample : samples) {
@@ -270,7 +271,7 @@ public class PreprocessExercise {
 		
 		for(int repNum = 0 ; repNum < normalizedReps.size() ; repNum ++) {
 			
-			ArrayList<Double> samples = normalizedReps.get(repNum).getSamples();
+			List<Double> samples = normalizedReps.get(repNum).getSamples();
 			
 			if(samples.size() > 200) {
 				samples = adjustDownTo200(samples);
@@ -285,7 +286,7 @@ public class PreprocessExercise {
 
 	}
 	
-	private ArrayList<Double> adjustDownTo200(ArrayList<Double> samples) {
+	private List<Double> adjustDownTo200(List<Double> samples) {
 		
 		int size = samples.size();
 		int adjustment = size - 200;
@@ -304,7 +305,7 @@ public class PreprocessExercise {
 		return samples;
 	}
 	
-	private ArrayList<Double> adjustUpTo200(ArrayList<Double> samples) {
+	private List<Double> adjustUpTo200(List<Double> samples) {
 		
 		int size = samples.size();
 		int adjustment = 200 - size;

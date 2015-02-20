@@ -95,7 +95,7 @@ public class ExerciseProcessedToExcel {
 		int rowNum = 0;			
 		for(int repNum = 0; repNum < repList.size() ; repNum ++) {
 			
-			ArrayList<Double> repSamples = repList.get(repNum).getSamples();
+			List<Double> repSamples = repList.get(repNum).getSamples();
 			for(int r = 0 ; r < repSamples.size() ; r ++) {
 				rowNum = 0;
 				cell = rows.get(r).createCell(repNum);
