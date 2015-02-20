@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.gbrosnan.fyp.ann.PreprocessExercise;
-import com.gbrosnan.fyp.objects.ExerciseProcessed;
+import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedRepository;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedToCSV;
@@ -49,7 +49,9 @@ public class RestAPI {
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
         	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
-        	ExerciseProcessed exerciseProcessed = preprocessedExercise.preProcess(exerciseRaw);
+        	
+        	
+        	ProcessedExercise exerciseProcessed = preprocessedExercise.preProcess(exerciseRaw);
         	exerciseProcessed.setExerciseDetected("not_sent_to_ann");
         	
         	exerciseProcessedRepository.insert(exerciseProcessed);

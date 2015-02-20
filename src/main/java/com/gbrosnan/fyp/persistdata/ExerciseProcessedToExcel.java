@@ -16,13 +16,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.gbrosnan.fyp.objects.ExerciseProcessed;
+import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.Rep;
 import com.gbrosnan.fyp.objects.SensorSample;
 
 public class ExerciseProcessedToExcel {
 
-	public void createExcelFile(ExerciseProcessed exerciseProcessed) {
+	public void createExcelFile(ProcessedExercise exerciseProcessed) {
 		
 		try {	
 			String filePath = getFilePath(exerciseProcessed.getId(), exerciseProcessed.getExerciseName());

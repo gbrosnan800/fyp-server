@@ -8,7 +8,7 @@ import com.gbrosnan.fyp.objects.*;
 
 public class PreprocessExercise {
 
-	private ExerciseProcessed processedExercise;
+	private ProcessedExercise processedExercise;
 	private List<Peak> peaks;
 	private List<Double> maximas;
 	private List<Double> minimas;
@@ -17,9 +17,9 @@ public class PreprocessExercise {
 	
 	public PreprocessExercise() {}
 	
-	public ExerciseProcessed preProcess(ExerciseRaw rawExerciseData) {
+	public ProcessedExercise preProcess(ExerciseRaw rawExerciseData) {
 		
-		processedExercise = new ExerciseProcessed(rawExerciseData.getUsername(), rawExerciseData.getExerciseName(),
+		processedExercise = new ProcessedExercise(rawExerciseData.getUsername(), rawExerciseData.getExerciseName(),
 				rawExerciseData.getDate(), rawExerciseData.getSensorSampleList());
 		
 		setAverages(processedExercise.getRawSensorSamples());	

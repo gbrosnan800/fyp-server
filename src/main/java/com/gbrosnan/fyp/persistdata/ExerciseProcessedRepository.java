@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.gbrosnan.fyp.objects.ExerciseProcessed;
+import com.gbrosnan.fyp.objects.ProcessedExercise;
 
 @Repository
 public class ExerciseProcessedRepository {
@@ -13,14 +13,14 @@ public class ExerciseProcessedRepository {
 	MongoTemplate mongoTemplate;
 	
 	public void createCollection() {
-		if (!mongoTemplate.collectionExists(ExerciseProcessed.class)) {
-	      mongoTemplate.createCollection(ExerciseProcessed.class);
+		if (!mongoTemplate.collectionExists(ProcessedExercise.class)) {
+	      mongoTemplate.createCollection(ProcessedExercise.class);
 	    }
     }
 	
 	public void dropCollection() {
-		if (mongoTemplate.collectionExists(ExerciseProcessed.class)) {
-			mongoTemplate.dropCollection(ExerciseProcessed.class);
+		if (mongoTemplate.collectionExists(ProcessedExercise.class)) {
+			mongoTemplate.dropCollection(ProcessedExercise.class);
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class ExerciseProcessedRepository {
 		return (int)mongoTemplate.getCollection("exercises").getCount();		
 	}
 	
-	public void insert(ExerciseProcessed exercise) {
+	public void insert(ProcessedExercise exercise) {
 		
 		exercise.setId(getCollectionSize() + 1);
 		mongoTemplate.insert(exercise, "exercises");

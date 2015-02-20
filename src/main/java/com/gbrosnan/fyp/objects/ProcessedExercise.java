@@ -3,7 +3,7 @@ package com.gbrosnan.fyp.objects;
 import java.util.Date;
 import java.util.List;
 
-public class ExerciseProcessed {
+public class ProcessedExercise {
 	
 	private int id;
 	private String username;
@@ -15,11 +15,11 @@ public class ExerciseProcessed {
 	private List<Rep> normalisedReps;
 	private String exerciseDetected;
 	
-	public ExerciseProcessed() {
+	public ProcessedExercise() {
 		
 	}
 	
-	public ExerciseProcessed(String username, String exerciseName, Date date, List<SensorSample> rawSensorSamples) {
+	public ProcessedExercise(String username, String exerciseName, Date date, List<SensorSample> rawSensorSamples) {
 		
 		setUsername(username);
 		setExerciseName(exerciseName);
