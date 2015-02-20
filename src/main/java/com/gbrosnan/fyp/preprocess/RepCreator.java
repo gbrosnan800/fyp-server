@@ -17,13 +17,13 @@ private RepCreator() {}
 		for(int maxima = 0 ; maxima < maximas.size() ; maxima ++) {
 			
 			if(maxima == 0) {
-				reps.add(createRep(values, new int[] {0 , maxima, maxima + 1}, id++ ));
+				reps.add(createRep(values, new int[] {0 , maximas.get(maxima), maximas.get(maxima + 1)}, ++id ));
 			}
 			else if(maxima == maximas.size() - 1) {
-				reps.add(createRep(values, new int[] {maxima -1 , maxima, maximas.size()}, id++ ));
+				reps.add(createRep(values, new int[] {maximas.get(maxima - 1) , maximas.get(maxima), values.size() - 1}, ++id ));
 			}
 			else {
-				reps.add(createRep(values, new int[] {maxima -1 , maxima, maxima + 1}, id++ ));
+				reps.add(createRep(values, new int[] {maximas.get(maxima - 1) , maximas.get(maxima), maximas.get(maxima + 1)}, ++id ));
 			}
 		}
 		return reps;
@@ -53,8 +53,11 @@ private RepCreator() {}
 		}	
 		return normalizedReps;
 	}
-		
+	
+	
 	private static Rep createRep(List<Double> values, int[] maximas, int id) {
+		
+		System.out.println("valuesgive-size= " + values.size() + "   int[]= " + maximas[0] + " " + maximas[1] + " " + maximas[2] + "   id= " + id);
 		
 		List<Double> repValues = new ArrayList<Double>();
 		int startPoint = discoverLowestPoint(values, maximas[0], maximas[1]);
@@ -63,14 +66,17 @@ private RepCreator() {}
 		for(int point = startPoint ; point <= endPoint ; point ++) {
 			repValues.add(values.get(point));		
 		}
+		System.out.println("repvalues--- = " + repValues.size());
 		return new Rep(id, startPoint, values.get(startPoint),endPoint,  values.get(endPoint), repValues);
 	}
 	
 	private static int discoverLowestPoint(List<Double> values, int start, int end) {
 		
-		int lowestPoint = 10000000;
-		for(int point = start ; point < values.size() ; point ++) {
-			if(values.get(point) < lowestPoint) {
+		int lowestPoint = 0;
+		double lowestValue = 1000000;
+		for(int point = start ; point < end ; point ++) {
+			if(values.get(point) < lowestValue) {
+				lowestValue = values.get(point);
 				lowestPoint = point;
 			}
 		}
@@ -92,5 +98,7 @@ private RepCreator() {}
 		}		
 		return new double[] {highest, lowest};
 	}
+	
+	
 	
 }

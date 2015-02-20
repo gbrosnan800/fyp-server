@@ -14,20 +14,27 @@ public class PreProcessingHandler {
 	
 	public ProcessedExercise preprocessRawExerciseForANN(ExerciseRaw exerciseRaw) {
 		
-		ProcessedExercise processedExercise = new ProcessedExercise();
 		List<Double> averages = setAverages(exerciseRaw.getSensorSampleList());
-		
+		System.out.println("averages size = " + averages.size());
 		List<Integer> maximas = PeakDetect.discoverMaximas(averages, 25, 100);
-		maximas = PeakDetect.filterOutFlatPeaks(processedExercise.getAverages(), maximas, 50, 0.25);
-		maximas = PeakDetect.filterOuterRangePeaks(processedExercise.getAverages(), maximas, 0.25);	
-		List<Rep> reps = RepCreator.createRepList(processedExercise.getAverages(), maximas);
+		System.out.println("maximas1 size = " + maximas.size());
+		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 50, 0.25);
+		System.out.println("maximas2 size = " + maximas.size());
+		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, 0.25);
+		System.out.println("maximas3 size = " + maximas.size());
+		List<Rep> reps = RepCreator.createRepList(averages, maximas);
+		System.out.println("reps size = " + reps.size());
+		
 		List<Rep> normalizedReps = RepCreator.normalizeReps(reps);
+		System.out.println("holaaa");
+		System.out.println("n size = " + normalizedReps.size());
+		System.out.println("norm = " + normalizedReps.get(5).getSamples().size());
 		
-		processedExercise.setAverages(averages);
-		processedExercise.setExtractedReps(reps);
-		processedExercise.setNormalisedReps(normalizedReps);
-		processedExercise.setExerciseDetected("not_sent_to_ann");
 		
+		
+		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
+				averages, reps, normalizedReps, "not_sent_to_ann");
+
 		return processedExercise;
 	}
 	

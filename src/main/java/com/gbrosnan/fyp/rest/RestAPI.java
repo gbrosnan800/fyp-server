@@ -44,13 +44,13 @@ public class RestAPI {
     
     @RequestMapping(value = "/exercise", method = RequestMethod.POST)
     public String handleFileUpload(HttpEntity<byte[]> requestEntity) {
-       
+    		
         try {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
         	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
-        	
+        	System.out.println(exerciseRaw.getExerciseName());
         	
         	ProcessedExercise processedExercise = preprocessingHandler.preprocessRawExerciseForANN(exerciseRaw);
         	

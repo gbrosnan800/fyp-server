@@ -26,6 +26,19 @@ public class ProcessedExercise {
 		setDate(date);
 		setRawSensorSamples(rawSensorSamples);
 	}	
+	
+	public ProcessedExercise(String username, String exerciseName, Date date, List<SensorSample> rawSensorSamples, List<Double> averages, List<Rep> extractedReps, List<Rep> normalisedReps, String exerciseDetected) {
+		
+		setUsername(username);
+		setExerciseName(exerciseName);
+		setDate(date);
+		setRawSensorSamples(rawSensorSamples);
+		setAverages(averages);
+		setExtractedReps(extractedReps);
+		setNormalisedReps(normalisedReps);
+		setExerciseDetected(exerciseDetected);
+	}	
+	
 
 	public int getId() {
 		return id;
