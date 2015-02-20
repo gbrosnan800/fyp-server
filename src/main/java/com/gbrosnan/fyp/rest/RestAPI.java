@@ -13,6 +13,7 @@ import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedRepository;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedToCSV;
 import com.gbrosnan.fyp.persistdata.ExerciseProcessedToExcel;
+import com.gbrosnan.fyp.preprocess.PreProcessingHandler;
 
 
 @RestController
@@ -23,7 +24,7 @@ public class RestAPI {
 	ExerciseProcessedRepository exerciseProcessedRepository;
 	
 	@Autowired
-	PreprocessExercise preprocessedExercise;
+	PreProcessingHandler preprocessingHandler;
 	
 	@Autowired
 	ExerciseProcessedToExcel exerciseProcessedToExcel;
@@ -51,7 +52,7 @@ public class RestAPI {
         	ExerciseRaw exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
         	
         	
-        	ProcessedExercise processedExercise = preprocessedExercise.preProcess(exerciseRaw);
+        	ProcessedExercise processedExercise = preprocessingHandler.preprocessRawExerciseForANN(exerciseRaw);
         	processedExercise.setExerciseDetected("not_sent_to_ann");
         	
         	exerciseProcessedRepository.insert(processedExercise);
