@@ -1,5 +1,6 @@
 package com.gbrosnan.fyp.preprocess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class AdjustArraySize {
@@ -44,12 +45,22 @@ public final class AdjustArraySize {
 	
 	private static List<Double> adjustUpwardsTo(int size, List<Double> originalList) {
 		
+		
+		List<Double> adjustedList = new ArrayList<Double>();
 		int originalSize = originalList.size();
 		int adjustment = size - originalSize;
 		int frequency = originalSize/adjustment;
+		if(frequency == 0) {
+			return originalList;
+		}
 		int frequencyNext = 0;
 		double value = 0;
-
+		if(originalSize == 59) { 
+			System.out.println("upwards");
+			System.out.println("adjustment == " + adjustment + "  freq= " + frequency);
+		}
+		
+		
 		while(originalList.size() < size) {
 			frequencyNext += frequency;
 			if(frequencyNext >= originalList.size()) {

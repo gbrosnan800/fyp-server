@@ -20,9 +20,9 @@ public class PreProcessingHandler {
 		System.out.println("maximas1 size = " + maximas.size());
 
 		
-		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 60, 0.25);
+		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 35, 0.30);
 		System.out.println("maximas2 size = " + maximas.size());
-		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, 0.35);
+		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, 0.30);
 		System.out.println("maximas3 size = " + maximas.size());
 		for(int maxima : maximas) {
 			System.out.println("maxima" + maxima);
