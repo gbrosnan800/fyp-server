@@ -69,5 +69,54 @@ public class RestAPI {
     	exerciseProcessedToCSV.createCSVFile(processedExercise.getNormalisedReps(), processedExercise.getId(), processedExercise.getExerciseName());
     	return "done";
     }
+    
+    @RequestMapping(value = "/datasetitem", method = RequestMethod.POST)
+    public String uploadDataSetItem(HttpEntity<byte[]> requestEntity) {
+    		
+    	ExerciseRaw exerciseRaw = null;
+    	
+        try {
+        	byte[] jsonStringBytes = requestEntity.getBody();
+        	String jsonString = new String(jsonStringBytes);
+        	Gson gson = new Gson();
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
+        	System.out.println(exerciseRaw.getType());
+        	System.out.println(exerciseRaw.getExerciseName());
+        	System.out.println(exerciseRaw.getRepCount());
+        	System.out.println(exerciseRaw.getWeight());
+        	System.out.println(exerciseRaw.getDate());
+        	System.out.println(exerciseRaw.getSensorSampleList().size());
+        	
+        	return "Server successfully received exercise object";
+        }
+        catch(Exception ex) {
+        	return "Server error: " + ex.toString();
+        }
+    }
+    
+    @RequestMapping(value = "/detect", method = RequestMethod.POST)
+    public String detectExercise(HttpEntity<byte[]> requestEntity) {
+    		
+    	ExerciseRaw exerciseRaw = null;
+    	
+        try {
+        	byte[] jsonStringBytes = requestEntity.getBody();
+        	String jsonString = new String(jsonStringBytes);
+        	Gson gson = new Gson();
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
+        	System.out.println(exerciseRaw.getType());
+        	System.out.println(exerciseRaw.getExerciseName());
+        	System.out.println(exerciseRaw.getRepCount());
+        	System.out.println(exerciseRaw.getWeight());
+        	System.out.println(exerciseRaw.getDate());
+        	System.out.println(exerciseRaw.getSensorSampleList().size());
+        	
+        	return "{\"status\":\"ok\",\"exercise\":\"no detection\",\"reps\":0}";
+        }
+        catch(Exception ex) {
+        	return "Server error: " + ex.toString();
+        }
+    }
+    
 
 }
