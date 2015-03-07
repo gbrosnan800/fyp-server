@@ -41,6 +41,7 @@ xsi:schemaLocation="
     <!-- Beans for Autowiring -->
     <bean id="preprocessExercise" class="com.gbrosnan.fyp.ann.PreprocessExercise"></bean>
     <bean id="preprocessingHandler" class="com.gbrosnan.fyp.preprocess.PreProcessingHandler"></bean>
+    <bean id="datasetRepository" class="com.gbrosnan.fyp.persistdata.DatasetRepository"></bean>
     <bean id="processedExerciseToExcel" class="com.gbrosnan.fyp.persistdata.ExerciseProcessedToExcel"></bean>
     <bean id="processedExerciseToCSV" class="com.gbrosnan.fyp.persistdata.ExerciseProcessedToCSV"></bean>    
     <!-- <bean id="excelCreater" class="com.gbrosnan.restinterface.ExcelCreater"></bean> -->

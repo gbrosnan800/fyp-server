@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.gbrosnan.fyp.ann.PreprocessExercise;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
-import com.gbrosnan.fyp.persistdata.ExerciseProcessedRepository;
-import com.gbrosnan.fyp.persistdata.ExerciseProcessedToCSV;
-import com.gbrosnan.fyp.persistdata.ExerciseProcessedToExcel;
+import com.gbrosnan.fyp.persistdata.*;
 import com.gbrosnan.fyp.preprocess.PreProcessingHandler;
 
 
 @RestController
 @RequestMapping("/rest")
 public class RestAPI {	
+	
+	@Autowired
+	DatasetRepository datasetRepository;
 	
 	@Autowired
 	ExerciseProcessedRepository exerciseProcessedRepository;
@@ -73,21 +73,15 @@ public class RestAPI {
     @RequestMapping(value = "/datasetitem", method = RequestMethod.POST)
     public String uploadDataSetItem(HttpEntity<byte[]> requestEntity) {
     		
-    	ExerciseRaw exerciseRaw = null;
-    	
+    	ExerciseRaw exerciseRaw = null;    	
         try {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
-        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
-        	System.out.println(exerciseRaw.getType());
-        	System.out.println(exerciseRaw.getExerciseName());
-        	System.out.println(exerciseRaw.getRepCount());
-        	System.out.println(exerciseRaw.getWeight());
-        	System.out.println(exerciseRaw.getDate());
-        	System.out.println(exerciseRaw.getSensorSampleList().size());
-        	
-        	return "Server successfully received exercise object";
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);       	
+        	datasetRepository.createCollection();
+        	datasetRepository.insert(exerciseRaw);       
+        	return "Exercise received by server and added to database";
         }
         catch(Exception ex) {
         	return "Server error: " + ex.toString();
@@ -103,7 +97,7 @@ public class RestAPI {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
-        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);       
         	System.out.println(exerciseRaw.getType());
         	System.out.println(exerciseRaw.getExerciseName());
         	System.out.println(exerciseRaw.getRepCount());
