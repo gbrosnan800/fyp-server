@@ -1,0 +1,138 @@
+/* main.css - fyp */
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    height: 100%;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    color:#ffffff;
+    background: #2f2f2f;
+    position:relative;
+}
+
+#menu {
+    position: absolute;
+    top:10px;left:0;
+    width:100%;
+    background: #00a651;
+}
+
+#logo {
+    float:left;
+    padding-left: 50px;
+}
+
+#menu a {
+    float:right;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 20px 40px;
+    position: relative;
+
+
+}
+
+#menu a img {
+    position: absolute;
+    left: 12px;
+    top:18px;
+}
+
+#menu a:hover {
+    background: #000;
+}
+
+#last_menu_item {
+    margin-right: 50px;
+}
+
+
+.menu_item {
+    float:right;
+    padding: 20px;
+}
+
+#graph_area {
+    height: 100%;
+    background: #b0b0b0;
+}
+
+/****** CONTROL PANEL  *****/
+
+#control_panel_button {
+    position: absolute;
+    top:80px;right:80px;
+    border:solid 1px #fff;
+    border-radius: 3px;
+    background: #898989;
+    width: 200px;
+    cursor: pointer;
+}
+
+#control_panel_button_img {
+    float:left;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+#control_panel_button_txt {
+    float:right;
+    margin-right: 35px;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+#control_panel {
+    position: absolute;
+    width: 500px;
+    height:800px;
+    right:00px;top: 65px;
+    background: #2E3740;
+    font-size: 0.9em;
+}
+
+#control_panel_header {
+    padding: 20px 0;
+    border-bottom: solid 1px lightgray;
+    text-align: center;
+    position: relative;
+}
+
+#control_panel_header img {
+    position: absolute;
+    top:10px;right:25px;
+    cursor: pointer;
+}
+
+#control_panel_inner {
+    margin: 0 20px;
+    height: 743px;
+}
+
+#control_panel_col_l {
+    float: left;
+    width: 140px;
+    height: 100%;
+    border-right: solid 1px grey;
+    padding-top: 50px;
+}
+
+#control_panel_col_r {
+    float: left;
+    width: 180px;
+    height: 100%;
+    border-right: solid 1px grey;
+}
+
+.control_panel_menu_item {
+    padding:20px 10px 10px 0;
+    text-align: right;
+    border-bottom: solid 1px grey;
+    cursor: pointer;
+}
+
