@@ -1,7 +1,10 @@
 package com.gbrosnan.fyp.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -93,6 +96,7 @@ public class RestAPI {
     		
     	ExerciseRaw exerciseRaw = null;
     	
+    	
         try {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
@@ -112,5 +116,15 @@ public class RestAPI {
         }
     }
     
+    
+    @RequestMapping(value = "/query/{exercise}", method = RequestMethod.GET)
+    public String testQ(@PathVariable String exercise) {
+    		
+    	List<ExerciseRaw> exercises = datasetRepository.getExerciseList(exercise);
+    	
+    	//int size = datasetRepository.getCollectionSize();
+    	
+    	return "Exercise: " + exercise + "    size: " + exercises.size(); 
+    }
 
 }
