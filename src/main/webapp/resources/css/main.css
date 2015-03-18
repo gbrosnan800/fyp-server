@@ -110,8 +110,8 @@ body {
 }
 
 #control_panel_inner {
-    margin: 0 20px;
-    height: 743px;
+    width:100%;
+    height: 693px;
 }
 
 #control_panel_col_l {
@@ -120,13 +120,15 @@ body {
     height: 100%;
     border-right: solid 1px grey;
     padding-top: 50px;
+    margin-left:20px;
 }
 
 #control_panel_col_r {
     float: left;
-    width: 180px;
+    width: 300px;
     height: 100%;
-    border-right: solid 1px grey;
+    text-align:center;
+    margin:20px 15px 0 15px;
 }
 
 .control_panel_menu_item {
@@ -135,4 +137,76 @@ body {
     border-bottom: solid 1px grey;
     cursor: pointer;
 }
+
+#control_panel_col_r_header {
+	font-size:1.2em;
+	text-decoration:underline;
+	margin-bottom:50px;
+}
+
+.control_panel_col_r_col_item {
+	padding: 15px 0 7px 0;
+	border-bottom:dotted 1px grey; 
+	cursor:pointer
+}
+
+.control_panel_col_r_col_item:hover {
+	border-bottom:solid 1px #fff;
+}
+
+#collect_set_list_header {
+	width:100%;
+	overflow:auto;
+	font-size:0.8em;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
+#collect_set_list_header div {
+	float:left;
+	text-align:center;
+}
+
+#collect_set_list_header_id {
+	width:20%;
+}
+
+#collect_set_list_header_name {
+	width:60%;
+}
+
+#collect_set_list_header_reps {
+	width:20%;	
+}
+
+.collect_set_list_item {
+	width:100%;
+	overflow:auto;
+	font-style:italic;
+	padding: 15px 0 7px 0;
+	border-bottom:dotted 1px grey; 
+	cursor:pointer
+}
+
+.collect_set_list_item:hover {
+	border-bottom:solid 1px #fff;
+}
+
+.collect_set_list_item div {
+	float:left;
+	text-align:center;
+}
+
+.collect_set_list_item_id { 
+	width:20%;
+}
+
+.collect_set_list_item_name {
+	width:60%;
+}
+
+.collect_set_list_item_reps {
+	width:20%;
+}
+
 

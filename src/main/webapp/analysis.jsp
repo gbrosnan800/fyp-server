@@ -22,11 +22,28 @@
         <div id="control_panel_header">CONTROL PANEL<img src="resources/images/close.png"></div>
         <div id="control_panel_inner">
             <div id="control_panel_col_l">
-                <div class="control_panel_menu_item">COLLECTIONS</div>
+                <div class="control_panel_menu_item" id="choose_collection">COLLECTIONS</div>
                 <div class="control_panel_menu_item">CHOOSE SET</div>
             </div>
-            <div class="control_panel_col_r">
-                <div id="conrol_panel_col_r_header"></div>
+            <div id="control_panel_col_r">
+                <div id="control_panel_col_r_header">Choose Collection</div>
+                <div id="collection_list"></div>
+                <!-- <div class="control_panel_col_r_col_item">TestData</div> -->
+				
+				<!-- 
+					<div id="collect_set_list">
+						<div id="collect_set_list_header">
+							<div id="collect_set_list_header_id">ID</div>
+							<div id="collect_set_list_header_name">NAME</div>
+							<div id="collect_set_list_header_reps">REPS</div>
+						</div>
+						<div class="collect_set_list_item">
+							<div class="collect_set_list_item_id">1</div>
+							<div class="collect_set_list_item_name">bicep_curl</div>
+							<div class="collect_set_list_item_reps">20</div>
+						</div>		
+					</div>
+                -->
             </div>
         </div>
     </div>
