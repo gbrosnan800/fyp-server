@@ -123,7 +123,7 @@
 					lineWidth: 1
 				},
 				grid: {
-					gridLineColor:'grey',
+					gridLineColor:'darkgrey',
 					background:'#000000'
 				},
 				animate: true,

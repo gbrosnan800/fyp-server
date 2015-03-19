@@ -54,7 +54,7 @@
     </div>
     <div id="graph_area" style="padding-top:200px;padding-left:100px">
 
-		<div id="chartdiv" style="height:500px;width:1000px"></div>
+		<div id="chartdiv" style="height:300px;width:1200px"></div>
 
     </div>
 
