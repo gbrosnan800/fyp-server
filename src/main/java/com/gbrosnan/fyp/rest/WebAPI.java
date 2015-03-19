@@ -33,5 +33,11 @@ public class WebAPI {
     public List<String> getCollectionsNames() {
     	return mainMongoRepository.getCollectionsNames();
     }
+    
+    @RequestMapping(value = "/{collectionName}/sets", method = RequestMethod.GET)
+    public List<ExerciseRaw> getSetsFromCollection(@PathVariable String collectionName) {
+    	return mainMongoRepository.getSetsFromCollection(collectionName);
+    }    
 	
+    
 }

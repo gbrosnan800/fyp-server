@@ -21,6 +21,10 @@ public class MainMongoRepository {
 		return new ArrayList<String>(mongoTemplate.getCollectionNames());
 	}
 	
+	public List<ExerciseRaw> getSetsFromCollection(String collectionName) {	
+		return new ArrayList<ExerciseRaw>(mongoTemplate.findAll(ExerciseRaw.class, collectionName));
+	}	
+	
 	
 	
 }
