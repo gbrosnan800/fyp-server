@@ -50,7 +50,8 @@
 	}
 	
 	function displayCollectionList(collectionList) {
-
+		
+		$('#collect_set_list div').remove();
 		var htmlString = '';
 		for(var item in collectionList) {
 			htmlString += '<div class="control_panel_col_r_col_item">' + collectionList[item]+ '</div>';
@@ -61,9 +62,11 @@
 	
 	function assignClicksToCollectionList() {
 
-	    $('.control_panel_col_r_col_item').click(function(e){	    	
+	    $('.control_panel_col_r_col_item').click(function(e){	
+	    	$('.control_panel_col_r_col_item').remove();
 	    	var collectionname = $(this).text();
-	        $.ajax({
+	        
+	    	$.ajax({
 	            url: 'rest/data/' + collectionname + '/sets',
 	            type: 'GET',
 	            success: function(sets) {
@@ -78,12 +81,25 @@
 	    });		
 	}
 	 
-	function displaySetList(sets) {
+	function displaySetList(setsList) {
 		
-		$('.control_panel_col_r_col_item').remove();
-		$()
-		console.log(sets[0].exerciseName);
+		var htmlString = '';
+		htmlString += '' +				
+		'<div id="collect_set_list_header">' +
+			'<div id="collect_set_list_header_id">ID</div>' +
+			'<div id="collect_set_list_header_name">NAME</div>' +
+			'<div id="collect_set_list_header_reps">REPS</div>' +
+		'</div>';
 		
+		for(var item in setsList) {
+			htmlString += 
+				'<div class="collect_set_list_item">' +
+					'<div class="collect_set_list_item_id">' + setsList[item].id + '</div>' +
+					'<div class="collect_set_list_item_name">' + setsList[item].exerciseName + '</div>' +
+					'<div class="collect_set_list_item_reps">' + setsList[item].repCount + '</div>' +
+				'</div>';
+		}
+		$('#collect_set_list').html(htmlString);	
 	}
 	 
 

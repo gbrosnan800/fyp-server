@@ -129,6 +129,7 @@ body {
     height: 100%;
     text-align:center;
     margin:20px 15px 0 15px;
+    overflow-y:auto;
 }
 
 .control_panel_menu_item {
@@ -177,6 +178,10 @@ body {
 
 #collect_set_list_header_reps {
 	width:20%;	
+}
+
+#collect_set_list {
+	
 }
 
 .collect_set_list_item {

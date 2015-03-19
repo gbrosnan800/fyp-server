@@ -28,6 +28,8 @@
             <div id="control_panel_col_r">
                 <div id="control_panel_col_r_header">Choose Collection</div>
                 <div id="collection_list"></div>
+                	
+                	<div id="collect_set_list"></div>
                 <!-- <div class="control_panel_col_r_col_item">TestData</div> -->
 				
 				<!-- 
