@@ -5,9 +5,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
-    <script type="text/javascript" src="resources/js/jqueryFile.js"></script>
+    <script type="text/javascript" src="resources/js/jqueryFile.js"></script>    
+    <script type="text/javascript" src="resources/js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="resources/js/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="resources/js/jqplot.categoryAxisRenderer.min.js"></script>
     <script type="text/javascript" src="resources/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 </head>
 <body>
     <div id="menu">
@@ -49,7 +52,9 @@
             </div>
         </div>
     </div>
-    <div id="graph_area">
+    <div id="graph_area" style="padding-top:200px;padding-left:100px">
+
+		<div id="chartdiv" style="height:500px;width:1000px"></div>
 
     </div>
 

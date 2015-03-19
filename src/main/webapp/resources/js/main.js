@@ -3,22 +3,7 @@
     
  $(document).ready(function() {
 
-   //  function getTestData2(player_data) {
-/*
-         $.ajax({
-             url: 'rest/data/collectionnames',
-             type: 'GET',
-             success: function(data) {
-                 alert('data is ' + data);
-             },
-             error: function(xhr, status, error) {
-                 var err = eval("(" + xhr.responseText + ")");
-                 alert(err.Message);
-             }
-         });
-  */
-  //   }
-	 //test change
+	 var setsList;
 	 
 	
 	assignInitialClicks();
@@ -70,7 +55,8 @@
 	            url: 'rest/data/' + collectionname + '/sets',
 	            type: 'GET',
 	            success: function(sets) {
-	            	displaySetList(sets);
+	            	setsList = sets;
+	            	displaySetList();
 	            },
 	            error: function(xhr, status, error) {
 	                var err = eval("(" + xhr.responseText + ")");
@@ -81,7 +67,7 @@
 	    });		
 	}
 	 
-	function displaySetList(setsList) {
+	function displaySetList() {
 		
 		var htmlString = '';
 		htmlString += '' +				
@@ -99,9 +85,52 @@
 					'<div class="collect_set_list_item_reps">' + setsList[item].repCount + '</div>' +
 				'</div>';
 		}
-		$('#collect_set_list').html(htmlString);	
+		$('#collect_set_list').html(htmlString);
+		assignClicksToSets();
 	}
-	 
+	
+	function assignClicksToSets() {
+		$('.collect_set_list_item').click(function(e){	
+	    	var arrayNum = $(this).find('.collect_set_list_item_id').html();
+	    	arrayNum--;
+	    	plotGraph2(setsList[arrayNum]);		
+		});
+	}
+	
+	function plotGraph2(exericse) {
+		
+		var sampleList = exericse.sensorSampleList;
+		var averages = [];
+		var x = [];
+		var y = [];
+		var z = [];
+		var average = 0;
+			
+		
+		for(var sample in sampleList) {			
+			average = (sampleList[sample].x + sampleList[sample].y + sampleList[sample].z) / 3;					
+			averages[sample] = average;
+			x[sample] = sampleList[sample].x;
+			y[sample] = sampleList[sample].y;
+			z[sample] = sampleList[sample].z;
+		}
+		
+		$.jqplot('chartdiv',  [x, y, z], 
+			{ 
+				title: 'test chart',	
+				seriesDefaults: {
+					smooth:true,
+					lineWidth: 1
+				},
+				grid: {
+					gridLineColor:'grey',
+					background:'#000000'
+				},
+				animate: true,
+				series: [{color:'#00a651'}]		
+			});
+	}
+	
 
 
 
