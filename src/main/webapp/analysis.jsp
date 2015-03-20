@@ -24,7 +24,7 @@
         <a href="analysis.jsp"><img src="resources/images/analysis.png" height="26">DATA ANALYSIS</a>
         <a href="index.jsp"><img src="resources/images/home.png" height="26">HOME</a>
     </div>
-    <div id="control_panel_button"><div id="control_panel_button_img"><img src="resources/images/button.png"></div><div id="control_panel_button_txt">CONTROL PANEL</div></div>
+    <div id="control_panel_button"><div id="control_panel_button_img"><img src="resources/images/button-green.png"></div><div id="control_panel_button_txt">CONTROL PANEL</div></div>
     <div id="control_panel">
         <div id="control_panel_header">CONTROL PANEL<img src="resources/images/close.png"></div>
         <div id="control_panel_inner">
@@ -70,9 +70,32 @@
 				<div class="graph_area_chart" id="graph_area_average_chart"></div>
 				<div class="graphs_area_section_menu" id="graphs_area_section_average">
 					<div class="graph_menu_label">AVERAGE DATA</div>
-					<div class="graph_menu_item" id="view_maximas">VIEW MAXIMAS</div>	
-					<div class="graph_menu_item">VIEW MINIMAS</div>
-					<div class="graph_menu_item">EXTRACT REPS</div>
+					<div class="graph_menu_item" id="average_data_menu">
+						<div id="average_data_menu_img"><img src="resources/images/button-green.png"></div>
+						<div id="average_data_menu_text" id="peak_detection_button">PEAK DETECTION</div>
+					</div>	
+					<div id="peak_detection_menu">
+						<div class="peak_detection_menu_item" style="border-top:dotted grey 1px">
+							<div class="peak_detection_menu_item_label">DISCOVER MAXIMAS</div>
+							<div class="peak_detection_menu_item_info">START<input value="25"></div>
+							<div class="peak_detection_menu_item_info">RANGE<input value="100"></div>
+						</div>
+						<div class="peak_detection_menu_item">
+							<div class="peak_detection_menu_item_label">FILTER FLAT PEAKS</div>
+							<div class="peak_detection_menu_item_info">HEIGHT<input value="30">%</div>
+							<div class="peak_detection_menu_item_info">RANGE<input value="100"></div>
+						</div>
+						<div class="peak_detection_menu_item">
+							<div class="peak_detection_menu_item_label">FILTER OUTER-RANGE</div>
+							<div class="peak_detection_menu_item_info">HEIGHT<input value="30">%</div>
+						</div>
+						<div class="peak_detection_menu_item">
+							<div class="peak_detection_menu_item_label">DISCOVER MINIMAS</div>
+						</div>
+						<div class="peak_detection_menu_item">
+							<div class="peak_detection_menu_item_label">EXTRACT REPS</div>
+						</div>						
+					</div>
 				</div>
 			</div>
 			<div class="graphs_area_section" id="graphs_area_reps"></div>
