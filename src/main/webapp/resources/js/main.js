@@ -9,14 +9,21 @@
 	assignInitialClicks();
 	
 	function assignInitialClicks() {
-	    $('#choose_collection').click(function(e){
+	    $('#control_panel_button').click(function(e){	    	
+	    	$('#control_panel').animate({
+	    		right:'0'
+	    	});
 	    	
-	    	var collectionList = getCollectionList();
-
-	    	
-	
 	    });
-	
+	    $('#control_panel_header img').click(function(e){	    		
+	    	$('#control_panel').animate({
+	    		right:'-500'
+	    	});	    	
+	    });
+	    
+	    $('#choose_collection').click(function(e){	    	
+	    	getCollectionList();
+	    });
 	}
 	
 	function getCollectionList() {
@@ -29,7 +36,6 @@
             error: function(xhr, status, error) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message);
-                return null;
             }
         });
 	}
@@ -86,50 +92,127 @@
 				'</div>';
 		}
 		$('#collect_set_list').html(htmlString);
+		
 		assignClicksToSets();
 	}
 	
 	function assignClicksToSets() {
 		$('.collect_set_list_item').click(function(e){	
+	    
 	    	var arrayNum = $(this).find('.collect_set_list_item_id').html();
 	    	arrayNum--;
-	    	plotGraph2(setsList[arrayNum]);		
+			$('#control_panel').animate({
+	    		right:'-500',
+	    	});	
+	    	plotGraph_RawData(setsList[arrayNum]);
+	    	assignClickToRawGraphMenu(setsList[arrayNum]);
 		});
 	}
 	
-	function plotGraph2(exericse) {
+	function assignClickToRawGraphMenu(exericse) {
+		$('#view_averages').click(function(e){	
+			plotGraph_AverageData(exericse);
+	    	
+		});
+	}
+	
+	function plotGraph_RawData(exericse) {
 		
 		var sampleList = exericse.sensorSampleList;
-		var averages = [];
-		var x = [];
-		var y = [];
-		var z = [];
-		var average = 0;
+		var x = [], y = [], z = [];
 			
-		
 		for(var sample in sampleList) {			
-			average = (sampleList[sample].x + sampleList[sample].y + sampleList[sample].z) / 3;					
-			averages[sample] = average;
 			x[sample] = sampleList[sample].x;
 			y[sample] = sampleList[sample].y;
 			z[sample] = sampleList[sample].z;
 		}
 		
-		$.jqplot('chartdiv',  [x, y, z], 
-			{ 
-				title: 'test chart',	
-				seriesDefaults: {
-					smooth:true,
-					lineWidth: 1
+		$('#graph_area_raw_chart').html('');
+	
+		$.jqplot('graph_area_raw_chart',  [x,y,z], { 	
+			
+			title: false,
+			animate: true,
+			series: [{color:'#00a651'}]	,
+			seriesDefaults: {
+				smooth:true,
+				lineWidth: 4,
+				showMarker:false,
+			},
+			axes: {
+				xaxis: {
+					tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+					tickOptions: {
+						angle:-45,
+						fontSize:'10pt',
+						textColor: '#ffffff'
+					},
+					pad:0
 				},
-				grid: {
-					gridLineColor:'darkgrey',
-					background:'#000000'
-				},
-				animate: true,
-				series: [{color:'#00a651'}]		
-			});
+				yaxis: {
+					pad:0,
+					showTicks:false
+				}
+			},
+			grid: {
+				gridLineColor:'#333333',
+				background:'#000'
+			}
+		});
 	}
+	
+
+	function plotGraph_AverageData(exericse) {
+		var sampleList = exericse.sensorSampleList;
+		var averages = [];
+		var average = 0;
+			
+		for(var sample in sampleList) {			
+			average = (sampleList[sample].x + sampleList[sample].y + sampleList[sample].z) / 3;					
+			averages[sample] = average;
+		}
+		
+		$('#graph_area_average_chart').html('');
+	
+		$.jqplot('graph_area_average_chart',  [averages], { 	
+			
+			title: false,
+			animate: true,
+			series: [{color:'#00a651'}]	,
+			seriesDefaults: {
+				smooth:true,
+				lineWidth: 4,
+				showMarker:false,
+				/*pointLabels: {
+					show: true,
+					labels: points
+				},*/
+			},
+			axes: {
+				xaxis: {
+					tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+					tickOptions: {
+						angle:-45,
+						fontSize:'10pt',
+						textColor: '#ffffff'
+					},
+					pad:0
+				},
+				yaxis: {
+					pad:0,
+					showTicks:false
+				}
+			},
+			grid: {
+				gridLineColor:'#333333',
+				background:'#000'
+			}
+		});
+				  
+	}
+	
+	
+	
 	
 
 

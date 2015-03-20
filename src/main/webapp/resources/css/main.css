@@ -12,6 +12,14 @@ body {
     color:#ffffff;
     background: #2f2f2f;
     position:relative;
+    overflow-x:hidden;
+}
+
+#main_page_area {
+    height: 100%;
+    background: #b0b0b0;
+    background-image: url('../images/DB_9998.jpg');
+    overflow:auto;
 }
 
 #menu {
@@ -57,11 +65,7 @@ body {
     padding: 20px;
 }
 
-#graph_area {
-    height: 100%;
-    background: #b0b0b0;
-    background-image: url('../images/DB_9998.jpg');
-}
+
 
 /****** CONTROL PANEL  *****/
 
@@ -92,9 +96,10 @@ body {
     position: absolute;
     width: 500px;
     height:800px;
-    right:00px;top: 65px;
+    right:-500px;top: 65px;
     background: #2E3740;
     font-size: 0.9em;
+    z-index:99;
 }
 
 #control_panel_header {
@@ -216,3 +221,62 @@ body {
 }
 
 
+/***  MAIN PAGE AREA  ***/
+
+#graphs_area {
+	margin: 135px 50px 0 50px;	
+	/*border:dotted white 1px;*/
+}
+
+.graphs_area_section {
+	border-bottom:solid #00a651 2px;
+	width:100%;
+	margin-bottom:15px;
+	height:185px;	
+}
+
+.graphs_area_section_menu {
+	margin-top:8px;
+	font-size:0.6em;
+	font-weight:bold;
+	text-align:center;
+}
+
+.graphs_area_section_menu div {
+	float:left;	
+	padding:8px;
+}
+
+.graph_menu_label {
+	background:#00a651;
+	color:#fff;
+	margin-right:25px
+}
+
+.graph_menu_item {
+	background:#fff;
+	color:#00a651;
+	cursor:pointer;
+	border-right:solid 1px #000;
+}
+
+#graphs_area_norm {
+	margin-bottom:0;
+}
+
+.graph_menu_item:hover {
+	background:#000;
+}
+
+
+
+#graph_area_raw_chart, #graph_area_average_chart {
+	height:150px;
+	max-width:1500px;
+	margin:auto;
+}
+
+.jqplot-point-label {
+	color:#fff;
+	font-weight:bold
+}

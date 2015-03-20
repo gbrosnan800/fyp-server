@@ -7,9 +7,13 @@
 
     <script type="text/javascript" src="resources/js/jqueryFile.js"></script>    
     <script type="text/javascript" src="resources/js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="resources/js/jqplot.barRenderer.min.js"></script>
     <script type="text/javascript" src="resources/js/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="resources/js/jqplot.canvasAxisTickRenderer.min.js"></script>
     <script type="text/javascript" src="resources/js/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="resources/js/jqplot.pointLabels.min.js"></script>
     <script type="text/javascript" src="resources/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/jquery.jqplot.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 </head>
 <body>
@@ -52,10 +56,28 @@
             </div>
         </div>
     </div>
-    <div id="graph_area" style="padding-top:200px;padding-left:100px">
-
-		<div id="chartdiv" style="height:300px;width:1200px"></div>
-
+    
+    <div id="main_page_area">		
+		<div id="graphs_area">
+			<div class="graphs_area_section" id="graphs_area_raw">				
+				<div id="graph_area_raw_chart"></div>
+				<div class="graphs_area_section_menu">
+					<div class="graph_menu_label">RAW DATA: bicep_curl (10)</div>
+					<div class="graph_menu_item" id="view_averages">VIEW AVERAGES</div>	
+				</div>
+			</div>
+			<div class="graphs_area_section" id="graphs_area_average">				
+				<div id="graph_area_average_chart"></div>
+				<div class="graphs_area_section_menu">
+					<div class="graph_menu_label">RAW DATA: bicep_curl (10)</div>
+					<div class="graph_menu_item">VIEW MAXIMAS</div>	
+					<div class="graph_menu_item">VIEW MINIMAS</div>
+					<div class="graph_menu_item">EXTRACT REPS</div>
+				</div>
+			</div>
+			<div class="graphs_area_section" id="graphs_area_reps"></div>
+			<div class="graphs_area_section" id="graphs_area_norm"></div>
+		</div>
     </div>
 
 
