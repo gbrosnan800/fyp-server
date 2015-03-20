@@ -60,17 +60,17 @@
     <div id="main_page_area">		
 		<div id="graphs_area">
 			<div class="graphs_area_section" id="graphs_area_raw">				
-				<div id="graph_area_raw_chart"></div>
-				<div class="graphs_area_section_menu">
-					<div class="graph_menu_label">RAW DATA: bicep_curl (10)</div>
+				<div class="graph_area_chart" id="graph_area_raw_chart"></div>
+				<div class="graphs_area_section_menu" id="graphs_area_section_menu_raw">
+					<div class="graph_menu_label">RAW DATA</div>
 					<div class="graph_menu_item" id="view_averages">VIEW AVERAGES</div>	
 				</div>
 			</div>
 			<div class="graphs_area_section" id="graphs_area_average">				
-				<div id="graph_area_average_chart"></div>
-				<div class="graphs_area_section_menu">
-					<div class="graph_menu_label">RAW DATA: bicep_curl (10)</div>
-					<div class="graph_menu_item">VIEW MAXIMAS</div>	
+				<div class="graph_area_chart" id="graph_area_average_chart"></div>
+				<div class="graphs_area_section_menu" id="graphs_area_section_average">
+					<div class="graph_menu_label">AVERAGE DATA</div>
+					<div class="graph_menu_item" id="view_maximas">VIEW MAXIMAS</div>	
 					<div class="graph_menu_item">VIEW MINIMAS</div>
 					<div class="graph_menu_item">EXTRACT REPS</div>
 				</div>

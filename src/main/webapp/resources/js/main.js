@@ -4,6 +4,7 @@
  $(document).ready(function() {
 
 	 var setsList;
+	 var average_graph;
 	 
 	
 	assignInitialClicks();
@@ -21,7 +22,8 @@
 	    	});	    	
 	    });
 	    
-	    $('#choose_collection').click(function(e){	    	
+	    $('#choose_collection').click(function(e){	
+	    	$('#control_panel_col_r_header').text('Choose Collection');
 	    	getCollectionList();
 	    });
 	}
@@ -44,8 +46,10 @@
 		
 		$('#collect_set_list div').remove();
 		var htmlString = '';
-		for(var item in collectionList) {
-			htmlString += '<div class="control_panel_col_r_col_item">' + collectionList[item]+ '</div>';
+		for(var item in collectionList) {			
+			if(!(collectionList[item] == 'exercises' || collectionList[item] == 'system.indexes')) {
+				htmlString += '<div class="control_panel_col_r_col_item">' + collectionList[item]+ '</div>';
+			}
 		}
 		$('#collection_list').html(htmlString);
 		assignClicksToCollectionList();
@@ -56,6 +60,7 @@
 	    $('.control_panel_col_r_col_item').click(function(e){	
 	    	$('.control_panel_col_r_col_item').remove();
 	    	var collectionname = $(this).text();
+	    	$('#control_panel_col_r_header').text('Collection: ' + collectionname);
 	        
 	    	$.ajax({
 	            url: 'rest/data/' + collectionname + '/sets',
@@ -98,21 +103,27 @@
 	
 	function assignClicksToSets() {
 		$('.collect_set_list_item').click(function(e){	
-	    
+			
+			$('.graph_area_chart').html('');
+			$('#graphs_area_section_menu').fadeOut();
+
 	    	var arrayNum = $(this).find('.collect_set_list_item_id').html();
 	    	arrayNum--;
 			$('#control_panel').animate({
 	    		right:'-500',
 	    	});	
+			$('#graphs_area_section_menu_raw').fadeIn();
 	    	plotGraph_RawData(setsList[arrayNum]);
 	    	assignClickToRawGraphMenu(setsList[arrayNum]);
 		});
 	}
 	
 	function assignClickToRawGraphMenu(exericse) {
-		$('#view_averages').click(function(e){	
-			plotGraph_AverageData(exericse);
-	    	
+		$('#view_averages').click(function(e){			
+			$('#graphs_area_section_average').show();
+			var maximas = [];
+			plotGraph_AverageData(exericse, maximas);
+			assignClickToViewMaximas(exericse);
 		});
 	}
 	
@@ -161,16 +172,33 @@
 		});
 	}
 	
-
-	function plotGraph_AverageData(exericse) {
+	function assignClickToViewMaximas(exercise) {
+		$('#view_maximas').click(function(e){			
+			var maximas = [100,200,300,405,602];
+			plotGraph_AverageData(exercise, maximas);	    	
+		});
+	}
+	
+	function plotGraph_AverageData(exericse, maximas) {
 		var sampleList = exericse.sensorSampleList;
 		var averages = [];
 		var average = 0;
-			
-		for(var sample in sampleList) {			
-			average = (sampleList[sample].x + sampleList[sample].y + sampleList[sample].z) / 3;					
-			averages[sample] = average;
+		var labelPoints = [];
+
+		for(var point = 0 ; point < sampleList.length ; point++ ) {
+			average = (sampleList[point].x + sampleList[point].y + sampleList[point].z) / 3;					
+			averages[point] = average;
+			if(maximas.indexOf(point) > -1) {
+				labelPoints[point] = 'MAX';
+			}
+			else {
+				labelPoints[point] = null;
+			}
 		}
+		plotGraphWithLabelPoints(averages, labelPoints);
+	}
+
+	function plotGraphWithLabelPoints(averages, labelPoints) {
 		
 		$('#graph_area_average_chart').html('');
 	
@@ -178,16 +206,17 @@
 			
 			title: false,
 			animate: true,
-			series: [{color:'#00a651'}]	,
-			seriesDefaults: {
+			/*series: [{color:'#00a651'}]	,*/
+			series: [{
 				smooth:true,
 				lineWidth: 4,
+				color: '#00a651',
 				showMarker:false,
-				/*pointLabels: {
-					show: true,
-					labels: points
-				},*/
-			},
+				pointLabels: {
+					show: true,		
+					labels: labelPoints
+				},
+			}],
 			axes: {
 				xaxis: {
 					tickRenderer: $.jqplot.CanvasAxisTickRenderer,
@@ -210,6 +239,10 @@
 		});
 				  
 	}
+	
+
+	
+	
 	
 	
 	
