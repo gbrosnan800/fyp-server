@@ -239,7 +239,7 @@ body {
 	font-size:0.6em;
 	font-weight:bold;
 	text-align:center;
-	/*display:none;*/
+	display:none;
 }
 
 .graph_menu_label, .graph_menu_item  {
@@ -294,6 +294,7 @@ body {
 	padding:10px 0;
 	cursor:auto;
 	border:solid #fff 1px;
+	display:none;
 }
 
 .peak_detection_menu_item {
@@ -334,6 +335,15 @@ body {
 	border-bottom:solid 1px #fff;
 	width:30px;
 	text-align:center;
+}
+
+#peak_detection_menu_item_maximas {
+	border-top:dotted grey 1px;
+	opacity:1;
+}
+
+#peak_detection_menu_item_maximas .peak_detection_menu_item_label {
+	cursor:pointer
 }
 
 

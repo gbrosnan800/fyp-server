@@ -20,12 +20,14 @@
 	    	$('#control_panel').animate({
 	    		right:'-500'
 	    	});	    	
-	    });
-	    
+	    });	    
 	    $('#choose_collection').click(function(e){	
 	    	$('#control_panel_col_r_header').text('Choose Collection');
 	    	getCollectionList();
 	    });
+	    $('#average_data_menu').click(function(e){	
+	    	$('#peak_detection_menu').toggle();
+	    });	    
 	}
 	
 	function getCollectionList() {
@@ -105,7 +107,7 @@
 		$('.collect_set_list_item').click(function(e){	
 			
 			$('.graph_area_chart').html('');
-			$('#graphs_area_section_menu').fadeOut();
+			$('.graphs_area_section_menu').fadeOut();
 
 	    	var arrayNum = $(this).find('.collect_set_list_item_id').html();
 	    	arrayNum--;
@@ -123,7 +125,6 @@
 			$('#graphs_area_section_average').show();
 			var maximas = [];
 			plotGraph_AverageData(exericse, maximas);
-			assignClickToViewMaximas(exericse);
 		});
 	}
 	
@@ -172,13 +173,6 @@
 		});
 	}
 	
-	function assignClickToViewMaximas(exercise) {
-		$('#view_maximas').click(function(e){			
-			var maximas = [100,200,300,405,602];
-			plotGraph_AverageData(exercise, maximas);	    	
-		});
-	}
-	
 	function plotGraph_AverageData(exericse, maximas) {
 		var sampleList = exericse.sensorSampleList;
 		var averages = [];
@@ -196,10 +190,11 @@
 			}
 		}
 		plotGraphWithLabelPoints(averages, labelPoints);
+		assignClickToDiscoverMaxiams(averages);
 	}
 
 	function plotGraphWithLabelPoints(averages, labelPoints) {
-		
+				
 		$('#graph_area_average_chart').html('');
 	
 		$.jqplot('graph_area_average_chart',  [averages], { 	
@@ -225,10 +220,10 @@
 						fontSize:'10pt',
 						textColor: '#ffffff'
 					},
-					pad:0
+					pad:0,
 				},
 				yaxis: {
-					pad:0,
+					pad:1.5,
 					showTicks:false
 				}
 			},
@@ -241,7 +236,56 @@
 	}
 	
 
-	
+	function assignClickToDiscoverMaxiams(averages) {
+			
+		$('#discover_maximas_btn').click(function(e){			
+			
+			
+			var start = 25;
+			var range = 100;
+			
+			var averageList = {
+					"averages" : averages,
+					"start" : start,
+					"range" : range,
+			}
+			
+			
+	        $.ajax({
+	            url: 'rest/data/maximas',
+	            type: 'POST',
+	            contentType : 'application/json; charset=utf-8',
+	            dataType : 'json',
+	            data: JSON.stringify(averageList),
+	            success: function(maximas) {	
+	            	console.log(maximas.length)
+	            	var labelPoints = [];
+	            	for(var point = 0 ; point < averages.length ; point ++) {
+	        			if(maximas.indexOf(point) > -1) {
+	        				labelPoints[point] = 'MAX';
+	        			}
+	        			else {
+	        				labelPoints[point] = null;
+	        			}
+	            	}
+	            	
+	            	
+	            	plotGraphWithLabelPoints(averages, labelPoints);
+	            },
+	            error: function(xhr, status, error) {
+	                var err = eval("(" + xhr.responseText + ")");
+	                alert(err.Message);
+	            }
+	        });
+
+			
+			
+		});
+		
+		
+		
+		//plotGraphWithLabelPoints(averages, labelPoints);
+	}
 	
 	
 	
