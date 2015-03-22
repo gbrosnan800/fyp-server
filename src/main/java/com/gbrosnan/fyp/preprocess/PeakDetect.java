@@ -14,14 +14,12 @@ public class PeakDetect {
 		values = valuesProvided;
 		List<Integer> maximas = new ArrayList<Integer>();
 		int startPoint = 0, endPoint = 0, valueListSize = values.size();
-		int count = 0;	
 		
 		for(int currentPoint = start ; currentPoint < valueListSize ; currentPoint ++) {
 			startPoint = getStartPoint(currentPoint, range/2);
 			endPoint = getEndPoint(currentPoint, range/2, valueListSize);
 			if(isMaxima(currentPoint, startPoint, endPoint, maximas)) {
 				maximas.add(currentPoint);
-				count ++;
 			}
 		}
 		return maximas;
