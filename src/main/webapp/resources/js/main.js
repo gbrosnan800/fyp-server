@@ -8,33 +8,40 @@
 	assignInitialClicks();
 	
 	function assignInitialClicks() {
-	    $('#control_panel_button').click(function(e){	    	
+	    $('#control_panel_button').click(function(e){	
+	    	e.stopPropagation();
+	    	$('#peak_detection_menu').hide();
 	    	$('#control_panel').animate({
 	    		right:'0'
 	    	});
 	    	
 	    });
-	    $('#control_panel_header img').click(function(e){	    		
+	    $('#control_panel_header img').click(function(e){	 
+	    	e.stopPropagation();
 	    	$('#control_panel').animate({
 	    		right:'-500'
 	    	});	    	
 	    });	    
 	    $('#choose_collection').click(function(e){	
+	    	e.stopPropagation();
 	    	$('#control_panel_col_r_header').text('Choose Collection');
 	    	getCollectionList();
 	    });
-/*
+
 	    $(document).click(function(e){	
 	    	$('#peak_detection_menu').hide();
-	    });	*/
+	    	$('#control_panel').animate({
+	    		right:'-500'
+	    	});	
+	    });	
 
 	    $('#average_data_menu').click(function(e){	
-	//    	e.stopPropagation();
+	    	e.stopPropagation();
 	    	$('#peak_detection_menu').toggle();
 	    });	 
 	    
 	    $('#peak_detection_menu div').click(function(e){	
-	    //	e.stopPropagation();
+	    	e.stopPropagation();
 	    });	
 	}
 	
@@ -68,6 +75,7 @@
 	function assignClicksToCollectionList() {
 
 	    $('.control_panel_col_r_col_item').click(function(e){	
+	    	e.stopPropagation();
 	    	$('.control_panel_col_r_col_item').remove();
 	    	var collectionname = $(this).text();
 	    	$('#control_panel_col_r_header').text('Collection: ' + collectionname);
@@ -113,6 +121,7 @@
 	
 	function assignClicksToSets() {
 		$('.collect_set_list_item').click(function(e){	
+			e.stopPropagation();
 			
 			$('.graph_area_chart').html('');
 			$('.graphs_area_section_menu').fadeOut();
