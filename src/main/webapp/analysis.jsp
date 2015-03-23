@@ -80,19 +80,19 @@
 							<div class="peak_detection_menu_item_info">START<input id="discover_maximas_start" value="25"></div>
 							<div class="peak_detection_menu_item_info">RANGE<input id="discover_maximas_range" value="100"></div>
 						</div>
-						<div class="peak_detection_menu_item">
+						<div class="peak_detection_menu_item" id="peak_detection_menu_item_filterflat">
 							<div class="peak_detection_menu_item_label" id="filter_flat_peaks_btn">FILTER FLAT PEAKS</div>
 							<div class="peak_detection_menu_item_info">HEIGHT<input id="filter_flat_peaks_height" value="30">%</div>
 							<div class="peak_detection_menu_item_info">RANGE<input id="filter_flat_peaks_range" value="100"></div>
 						</div>
-						<div class="peak_detection_menu_item">
+						<div class="peak_detection_menu_item" id="peak_detection_menu_item_filterout">
 							<div class="peak_detection_menu_item_label" id="filter_outer_range_btn">FILTER OUTER-RANGE</div>
 							<div class="peak_detection_menu_item_info">HEIGHT<input id="filter_outer_range_height" value="30">%</div>
 						</div>
-						<div class="peak_detection_menu_item">
+						<div class="peak_detection_menu_item" id="peak_detection_menu_item_minimas">
 							<div class="peak_detection_menu_item_label" id="discover_minimas_btn">DISCOVER MINIMAS</div>
 						</div>
-						<div class="peak_detection_menu_item">
+						<div class="peak_detection_menu_item" id="peak_detection_menu_item_reps">
 							<div class="peak_detection_menu_item_label" id="extract_reps_btn">EXTRACT REPS</div>
 						</div>						
 					</div>

@@ -3,10 +3,8 @@
     
  $(document).ready(function() {
 
-	 var setsList;
-	 var average_graph;
+	var setsList;
 	 
-	
 	assignInitialClicks();
 	
 	function assignInitialClicks() {
@@ -25,18 +23,18 @@
 	    	$('#control_panel_col_r_header').text('Choose Collection');
 	    	getCollectionList();
 	    });
-
+/*
 	    $(document).click(function(e){	
 	    	$('#peak_detection_menu').hide();
-	    });	
+	    });	*/
 
 	    $('#average_data_menu').click(function(e){	
-	    	e.stopPropagation();
+	//    	e.stopPropagation();
 	    	$('#peak_detection_menu').toggle();
 	    });	 
 	    
 	    $('#peak_detection_menu div').click(function(e){	
-	    	e.stopPropagation();
+	    //	e.stopPropagation();
 	    });	
 	}
 	
@@ -260,6 +258,8 @@
 			
 		$('#discover_maximas_btn').click(function(e){				
 			
+			assignClicksToFiltersAndMinimas()
+			
 			var start = $('#discover_maximas_start').val();
 			var range = $('#discover_maximas_range').val();			
 			var averageList = {
@@ -274,8 +274,7 @@
 	            contentType : 'application/json; charset=utf-8',
 	            dataType : 'json',
 	            data: JSON.stringify(averageList),
-	            success: function(maximas) {	
-	            	console.log(maximas.length)
+	            success: function(maximas) {		            	
 	            	var labelPoints = [];
 	            	for(var point = 0 ; point < averages.length ; point ++) {
 	        			if(maximas.indexOf(point) > -1) {
@@ -302,7 +301,53 @@
 	}
 	
 	
-	
+	function assignClicksToFiltersAndMinimas() {			
+		
+		$('#peak_detection_menu_item_filterflat').css('opacity',"1");
+		$('#peak_detection_menu_item_filterout').css('opacity',"1");
+		$('#peak_detection_menu_item_minimas').css('opacity',"1");		
+		$('#filter_flat_peaks_btn').css('cursor','pointer');
+		$('#filter_outer_range_btn').css('cursor','pointer');
+		$('#filter_outer_range_btn').css('cursor','pointer');
+		$('#discover_minimas_btn').css('cursor','pointer');
+		
+		$('#extract_reps_btn').unbind('click'); 
+		$('#extract_reps_btn').css('cursor','auto'); 
+		$('#peak_detection_menu_item_reps').css('opacity',"0.2");
+		
+		
+		$('#filter_flat_peaks_btn').click(function(e){ 
+			
+			//console.log()
+			
+		});
+		$('#filter_outer_range_btn').click(function(e){ 
+			
+			
+			
+		});		
+		$('#filter_outer_range_btn').click(function(e){ 
+			
+			
+			
+		});
+		$('#discover_minimas_btn').click(function(e){ 
+			
+			$('#peak_detection_menu_item_reps').css('opacity',"1");
+			$('#extract_reps_btn').css('cursor','pointer'); 
+			$('#extract_reps_btn').click(function(e){ 
+				
+				
+
+			});	
+			
+			
+			
+		});		
+		
+		
+		
+	}
 	
 	
 

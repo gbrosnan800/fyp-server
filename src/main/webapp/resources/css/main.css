@@ -304,7 +304,7 @@ body {
 	padding:10px 5px 2px 5px;
 	border-bottom:dotted grey 1px;
 	overflow:auto;
-	opacity:0.2;
+	opacity:0.2;;
 }
 
 .peak_detection_menu_item_label, .peak_detection_menu_item_info {
