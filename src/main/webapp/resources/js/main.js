@@ -25,9 +25,19 @@
 	    	$('#control_panel_col_r_header').text('Choose Collection');
 	    	getCollectionList();
 	    });
+
+	    $(document).click(function(e){	
+	    	$('#peak_detection_menu').hide();
+	    });	
+
 	    $('#average_data_menu').click(function(e){	
+	    	e.stopPropagation();
 	    	$('#peak_detection_menu').toggle();
-	    });	    
+	    });	 
+	    
+	    $('#peak_detection_menu div').click(function(e){	
+	    	e.stopPropagation();
+	    });	
 	}
 	
 	function getCollectionList() {
@@ -233,23 +243,30 @@
 			}
 		});
 				  
-	}
+	}	
+	/*
 	
-
+	-Three phases in Peak Detection Menu
+		-Original = only Discover Maximas highlighted and clickable
+		-Maximas Discovered = any time maximas are discovered - all other options highlighted and clickable except Rep Extraction
+		-ALL - when user decides to click Discover Minimas, Rep extraction is now h + c
+		
+		-if filter options or Discover Maximas are re-clicked, Rep Extraction is hidden again until Minimas are re-discovered
+	
+		Discover Maxmis and Filter options can all use the same Ajax call and Object, just change variables and use URL variable
+		It would be faster to use front-end in certain situations but its better to let back-end to do all to demonstrate it works
+	 */
 	function assignClickToDiscoverMaxiams(averages) {
 			
-		$('#discover_maximas_btn').click(function(e){			
+		$('#discover_maximas_btn').click(function(e){				
 			
-			
-			var start = 25;
-			var range = 100;
-			
+			var start = $('#discover_maximas_start').val();
+			var range = $('#discover_maximas_range').val();			
 			var averageList = {
 					"averages" : averages,
 					"start" : start,
 					"range" : range,
 			}
-			
 			
 	        $.ajax({
 	            url: 'rest/data/maximas',
@@ -281,10 +298,7 @@
 			
 			
 		});
-		
-		
-		
-		//plotGraphWithLabelPoints(averages, labelPoints);
+
 	}
 	
 	
