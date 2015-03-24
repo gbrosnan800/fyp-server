@@ -8,7 +8,7 @@ public class ExerciseWebObject {
 	private List<Integer> maximas;
 	private List<Integer> minimas;
 	private int start;
-	private int height;
+	private double height;
 	private int range;
 	
 	
@@ -36,10 +36,10 @@ public class ExerciseWebObject {
 	public void setStart(int start) {
 		this.start = start;
 	}
-	public int getHeight() {
+	public double getHeight() {
 		return height;
 	}
-	public void setHeight(int height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 	public int getRange() {

@@ -294,6 +294,7 @@ body {
 	padding:10px 0;
 	cursor:auto;
 	border:solid #fff 1px;
+	z-index:10;
 	display:none;
 }
 
@@ -348,7 +349,7 @@ body {
 
 
 
-#graph_area_raw_chart, #graph_area_average_chart {
+.graph_area_chart {
 	height:150px;
 	max-width:1500px;
 	margin:auto;

@@ -98,8 +98,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="graphs_area_section" id="graphs_area_reps"></div>
-			<div class="graphs_area_section" id="graphs_area_norm"></div>
+			<div class="graphs_area_section" id="graphs_area_reps">
+				<div class="graph_area_chart" id="graph_area_rep_chart"></div>
+				<div class="graphs_area_section_menu" id="graphs_area_section_menu_reps">
+					<div class="graph_menu_label">EXTRACTED REPS</div>
+				</div>
+			</div>
+			
+			</div>
+			<div class="graphs_area_section" id="graphs_area_norm">
+			
+				<div class="graphs_area_section_menu" id="graphs_area_section_menu_norm">
+					<div class="graph_menu_label">NORMALIZED REPS</div>
+				</div>
+			</div>
 		</div>
     </div>
 
