@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.gbrosnan.fyp.objects.AverageList;
+import com.gbrosnan.fyp.objects.ExerciseWebObject;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.persistdata.*;
 import com.gbrosnan.fyp.preprocess.PeakDetect;
 import com.gbrosnan.fyp.preprocess.PreProcessingHandler;
+import com.gbrosnan.fyp.preprocess.RepCreator;
 
 
 @RestController
@@ -44,9 +45,27 @@ public class WebAPI {
     } 
     
     @RequestMapping(value = "/maximas", method = RequestMethod.POST)
-    public List<Integer> getMaximas(@RequestBody AverageList averageList ) {	    	
-    	return PeakDetect.discoverMaximas(averageList.getAverages(), averageList.getStart(), averageList.getRange());
+    public List<Integer> getMaximas(@RequestBody ExerciseWebObject exerciseWebObject ) {	    	
+    	return PeakDetect.discoverMaximas(exerciseWebObject.getAverages(), exerciseWebObject.getStart(), exerciseWebObject.getRange());
     }    
 	
+    @RequestMapping(value = "/filterflatpeaks", method = RequestMethod.POST)
+    public List<Integer> filterFlatPeaks(@RequestBody ExerciseWebObject exerciseWebObject ) {	    	
+    	return PeakDetect.filterOutFlatPeaks(exerciseWebObject.getAverages(), exerciseWebObject.getMaximas(), exerciseWebObject.getRange(), exerciseWebObject.getHeight());
+    } 
+    
+    @RequestMapping(value = "/filterouterrange", method = RequestMethod.POST)
+    public List<Integer> filterOuterRange(@RequestBody ExerciseWebObject exerciseWebObject ) {	    	
+    	return PeakDetect.filterOuterRangePeaks(exerciseWebObject.getAverages(), exerciseWebObject.getMaximas(), exerciseWebObject.getHeight());
+    } 
+       
+    @RequestMapping(value = "/reps", method = RequestMethod.POST)
+    public ProcessedExercise getReps(@RequestBody ExerciseWebObject exerciseWebObject ) {	    	
+    	
+    	ProcessedExercise processedExercise = new ProcessedExercise();
+    	processedExercise.setExtractedReps(RepCreator.createRepList(exerciseWebObject.getAverages(), exerciseWebObject.getMaximas()));
+    	processedExercise.setNormalisedReps(RepCreator.normalizeReps(processedExercise.getExtractedReps()));
+    	return processedExercise;
+    } 
     
 }
