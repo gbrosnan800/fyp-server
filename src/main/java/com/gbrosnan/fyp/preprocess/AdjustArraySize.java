@@ -10,7 +10,6 @@ public final class AdjustArraySize {
 	public static List<Double> adjustTo(int size, List<Double> originalList) {
 		
 		List<Double> adjustedList;
-		System.out.println("oringal size === " + originalList.size());
 		if(originalList.size() > size) {
 			adjustedList = adjustDownTo(size, originalList);
 		}
@@ -20,7 +19,6 @@ public final class AdjustArraySize {
 		else {
 			return originalList;
 		}
-		System.out.println("sizeadjust size = " + adjustedList.size());
 		return adjustedList;
 	}
 	
