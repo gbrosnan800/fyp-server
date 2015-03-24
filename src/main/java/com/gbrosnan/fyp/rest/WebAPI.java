@@ -15,7 +15,9 @@ import com.google.gson.Gson;
 import com.gbrosnan.fyp.objects.ExerciseWebObject;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
+import com.gbrosnan.fyp.objects.Rep;
 import com.gbrosnan.fyp.persistdata.*;
+import com.gbrosnan.fyp.preprocess.AdjustArraySize;
 import com.gbrosnan.fyp.preprocess.PeakDetect;
 import com.gbrosnan.fyp.preprocess.PreProcessingHandler;
 import com.gbrosnan.fyp.preprocess.RepCreator;
@@ -63,9 +65,16 @@ public class WebAPI {
     public ProcessedExercise getReps(@RequestBody ExerciseWebObject exerciseWebObject ) {	    	
     	
     	ProcessedExercise processedExercise = new ProcessedExercise();
-    	processedExercise.setExtractedReps(RepCreator.createRepList(exerciseWebObject.getAverages(), exerciseWebObject.getMaximas()));
-    	processedExercise.setNormalisedReps(RepCreator.normalizeReps(processedExercise.getExtractedReps()));
+    	List<Rep> reps =  RepCreator.createRepList(exerciseWebObject.getAverages(), exerciseWebObject.getMaximas());
+    	List<Rep> normalizedReps = RepCreator.normalizeReps(reps);	
+		for(Rep rep : normalizedReps) {	
+			List<Double> adjustedSize = AdjustArraySize.adjustTo(200, rep.getSamples());
+			rep.setSamples(adjustedSize);	
+		}
+		processedExercise.setExtractedReps(reps);
+    	processedExercise.setNormalisedReps(RepCreator.normalizeReps(normalizedReps));
     	return processedExercise;
     } 
+    
     
 }

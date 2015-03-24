@@ -356,7 +356,7 @@
 			$('#extract_reps_btn').click(function(e){ 
 			
 				$('#peak_detection_menu').hide();
-				
+				$('#graphs_area_section_menu_reps').show();
 				var averageList = {
 						"averages" : averages,
 						"maximas" : maximasList,
@@ -369,7 +369,8 @@
 		            dataType : 'json',
 		            data: JSON.stringify(averageList),
 		            success: function(response) {		            	
-		            	plotReps(response);
+		            	plotReps(response, '#graph_area_rep_chart', 'repDiv');
+		            	assignClickToNorm(response);
 		            },
 		            error: function(xhr, status, error) {
 		                var err = eval("(" + xhr.responseText + ")");
@@ -435,32 +436,56 @@
 		return lowestPoint;
 	}
 	
+	function assignClickToNorm(exercise) {
+
+		$('#view_norm').unbind('click');
+		$('#view_norm').click(function(e){ 
+			
+			$('#graphs_area_section_menu_norm').show();
+			plotReps(exercise, '#graph_area_repnorm_chart', 'repDivNorm') 				
+		});
+	}
+	
 	//PLOT REPS
 	
-	function plotReps(exercise) {
+	function plotReps(exercise, chart, repDiv) {
+	
+		var reps;
+		if(repDiv == 'repDivNorm') {
+			console.log('true');
+			reps = exercise.normalisedReps;
+		}
+		else {
+			reps = exercise.extractedReps;
+		}
 		
-		var reps = exercise.extractedReps;
-		var width = $('#graph_area_rep_chart').width()
+		for(var num in reps) {			
+			console.log(reps[num].samples.length);
+		}
+		
+		
+		var width = $(chart).width()
 		var widthOfRep = width / reps.length - 10 ;
 		
 		var htmlString = '';
 		for(var num in reps) {						
-			htmlString += '<div class="repDiv" id="repDiv' + num + '"></div>';
+			htmlString += '<div class="' + repDiv + '" id="' + repDiv + num + '"></div>';
 		}
-		$('#graph_area_rep_chart').html(htmlString);
-		$('.repDiv').css('float', 'left');
-		$('.repDiv').css('height', '150px');
-		$('.repDiv').css('width', widthOfRep + 'px');
-		$('.repDiv').css('margin-right', '5px');
+		$(chart).html(htmlString);
+		var divName = '.' + repDiv
+		$(divName).css('float', 'left');
+		$(divName).css('height', '150px');
+		$(divName).css('width', widthOfRep + 'px');
+		$(divName).css('margin-right', '5px');
 
 		for(var num in reps) {			
-			plotRep(reps[num], num);
+			plotRep(repDiv, reps[num], num);
 		}
 	}
 	
-	function plotRep(rep, num) {
+	function plotRep(divName, rep, num) {
 		
-		$.jqplot('repDiv' + num,  [rep.samples], { 	
+		$.jqplot(divName + num,  [rep.samples], { 	
 			
 			title: false,
 			animate: false,
@@ -485,7 +510,8 @@
 				},
 				yaxis: {
 					pad:1.5,
-					showTicks:false
+					showTicks:true,
+					textColor:'#ffffff'
 				}
 			},
 			grid: {

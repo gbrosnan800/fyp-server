@@ -82,7 +82,7 @@
 						</div>
 						<div class="peak_detection_menu_item" id="peak_detection_menu_item_filterflat">
 							<div class="peak_detection_menu_item_label" id="filter_flat_peaks_btn">FILTER FLAT PEAKS</div>
-							<div class="peak_detection_menu_item_info">HEIGHT<input id="filter_flat_peaks_height" value="30">%</div>
+							<div class="peak_detection_menu_item_info">HEIGHT<input id="filter_flat_peaks_height" value="20">%</div>
 							<div class="peak_detection_menu_item_info">RANGE<input id="filter_flat_peaks_range" value="100"></div>
 						</div>
 						<div class="peak_detection_menu_item" id="peak_detection_menu_item_filterout">
@@ -102,16 +102,16 @@
 				<div class="graph_area_chart" id="graph_area_rep_chart"></div>
 				<div class="graphs_area_section_menu" id="graphs_area_section_menu_reps">
 					<div class="graph_menu_label">EXTRACTED REPS</div>
+					<div class="graph_menu_item" id="view_norm">VIEW NORMALIZED REPS</div>	
 				</div>
 			</div>
-			
-			</div>
 			<div class="graphs_area_section" id="graphs_area_norm">
-			
+				<div class="graph_area_chart" id="graph_area_repnorm_chart"></div>
 				<div class="graphs_area_section_menu" id="graphs_area_section_menu_norm">
 					<div class="graph_menu_label">NORMALIZED REPS</div>
 				</div>
 			</div>
+
 		</div>
     </div>
 
