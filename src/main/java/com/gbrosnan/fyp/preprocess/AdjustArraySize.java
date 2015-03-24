@@ -24,7 +24,7 @@ public final class AdjustArraySize {
 		return adjustedList;
 	}
 	
-	private static List<Double> adjustDownTo(int size, List<Double> originalList) {
+	public static List<Double> adjustDownTo(int size, List<Double> originalList) {
 		
 		int originalSize = originalList.size();
 		int adjustment = originalSize - size;
@@ -43,7 +43,7 @@ public final class AdjustArraySize {
 		return originalList;
 	}
 	
-	private static List<Double> adjustUpwardsTo(int size, List<Double> originalList) {
+	public static List<Double> adjustUpwardsTo(int size, List<Double> originalList) {
 		
 		
 		List<Double> adjustedList = new ArrayList<Double>();
