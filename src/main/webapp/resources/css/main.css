@@ -231,7 +231,8 @@ body {
 	border-bottom:solid #00a651 2px;
 	width:100%;
 	margin-bottom:15px;
-	height:185px;	
+	min-height:185px;	
+	overflow:auto;
 }
 
 .graphs_area_section_menu {
@@ -350,8 +351,8 @@ body {
 
 
 .graph_area_chart {
-	height:150px;
-	max-width:2000px;
+	height:200px;
+	max-width:1000px;
 	margin:auto;
 }
 

@@ -99,9 +99,9 @@
 				</div>
 			</div>
 			<div class="graphs_area_section" id="graphs_area_reps">
-				<div class="graph_area_chart" id="graph_area_rep_chart"></div>
+				<div class="graph_area_chart" id="graph_area_rep_chart" style="overflow:auto"></div>
 				<div class="graphs_area_section_menu" id="graphs_area_section_menu_reps">
-					<div class="graph_menu_label">EXTRACTED REPS</div>
+					<div class="graph_menu_label" style="overflow:auto">EXTRACTED REPS</div>
 					<div class="graph_menu_item" id="view_norm">VIEW NORMALIZED REPS</div>	
 				</div>
 			</div>

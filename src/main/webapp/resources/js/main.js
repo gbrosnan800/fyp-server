@@ -475,7 +475,8 @@
 		var divName = '.' + repDiv
 		$(divName).css('float', 'left');
 		$(divName).css('height', '150px');
-		$(divName).css('width', widthOfRep + 'px');
+		//$(divName).css('width', widthOfRep + 'px');
+		$(divName).css('width', '100px');
 		$(divName).css('margin-right', '5px');
 
 		for(var num in reps) {			
