@@ -24,14 +24,14 @@ public class MainMongoRepository {
 	    }
     }
 	
-	public int getCollectionSize() {
+	public int getCollectionSize(String collection) {
 		
-		return (int)mongoTemplate.getCollection("dataset").getCount();		
+		return (int)mongoTemplate.getCollection(collection).getCount();		
 	}
 	
 	public void insert(ExerciseRaw exercise, String collection) {
-		//test
-		exercise.setId(getCollectionSize() + 1);
+
+		exercise.setId(getCollectionSize(collection) + 1);
 		mongoTemplate.insert(exercise, collection);
 	}
 	
