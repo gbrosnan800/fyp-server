@@ -24,6 +24,9 @@ public class RestAPI {
 	DatasetRepository datasetRepository;
 	
 	@Autowired
+	MainMongoRepository mainMongoRepository;
+	
+	@Autowired
 	ExerciseProcessedRepository exerciseProcessedRepository;
 	
 	@Autowired
@@ -73,17 +76,17 @@ public class RestAPI {
     	return "done";
     }
     
-    @RequestMapping(value = "/datasetitem", method = RequestMethod.POST)
-    public String uploadDataSetItem(HttpEntity<byte[]> requestEntity) {
+    @RequestMapping(value = "/datasetitem/{collection}", method = RequestMethod.POST)
+    public String uploadDataSetItem(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
     		
     	ExerciseRaw exerciseRaw = null;    	
         try {
         	byte[] jsonStringBytes = requestEntity.getBody();
         	String jsonString = new String(jsonStringBytes);
         	Gson gson = new Gson();
-        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);       	
-        	datasetRepository.createCollection();
-        	datasetRepository.insert(exerciseRaw);       
+        	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);    
+        	mainMongoRepository.createCollection(collection);
+        	mainMongoRepository.insert(exerciseRaw, collection);       
         	return "Exercise received by server and added to database";
         }
         catch(Exception ex) {
