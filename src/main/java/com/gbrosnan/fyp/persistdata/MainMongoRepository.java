@@ -30,7 +30,7 @@ public class MainMongoRepository {
 	}
 	
 	public void insert(ExerciseRaw exercise, String collection) {
-		
+		//test
 		exercise.setId(getCollectionSize() + 1);
 		mongoTemplate.insert(exercise, collection);
 	}
