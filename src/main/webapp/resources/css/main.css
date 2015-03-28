@@ -13,6 +13,7 @@ body {
     background: #2f2f2f;
     position:relative;
     overflow-x:hidden;
+    min-width:300px
 }
 
 #main_page_area {
@@ -34,15 +35,17 @@ body {
     padding-left: 50px;
 }
 
+#menu_link_container {
+	float:right;
+}
+
 #menu a {
-    float:right;
+    float:left;
     color: #ffffff;
     text-decoration: none;
     font-size: 0.8em;
     padding: 20px 40px;
     position: relative;
-
-
 }
 
 #menu a img {
@@ -59,11 +62,6 @@ body {
     margin-right: 50px;
 }
 
-
-.menu_item {
-    float:right;
-    padding: 20px;
-}
 
 
 
@@ -232,14 +230,14 @@ body {
 	width:100%;
 	margin-bottom:15px;
 	min-height:185px;	
-	overflow:auto;
+	overflow:visible;
 }
 
 .graphs_area_section_menu {
 	margin-top:8px;
 	font-size:0.6em;
 	font-weight:bold;
-	text-align:center;
+	text-align:center;	
 	display:none;
 }
 
@@ -247,8 +245,6 @@ body {
 	float:left;	
 	padding:8px;
 }
-
-
 
 .graph_menu_label {
 	background:#00a651;
@@ -351,12 +347,38 @@ body {
 
 
 .graph_area_chart {
-	height:200px;
-	max-width:1000px;
+	height:150px;
+	max-width:1100px;
 	margin:auto;
 }
 
 .jqplot-point-label {
 	color:#fff;
 	font-weight:bold
+}
+
+@media only screen and (max-width : 1005px) and (min-width : 700px) {
+	
+	#control_panel_button {
+		top:140px;
+	}
+}
+
+@media only screen and (max-width : 700px) {
+	
+	#menu_link_container {
+		float:none;
+		margin:auto;
+		width:300px;
+	}
+	#menu a {
+		padding:20px;
+    	width:100%;
+    	margin:auto;
+		padding:20px 40px;
+	}
+	
+	#control_panel_button {
+		top:300px;
+	}
 }

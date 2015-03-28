@@ -12,10 +12,12 @@
 <body>
     <div id="menu">
         <div id="logo"><img src="resources/images/gbrosnan-fyp-white-logo.png" height="50"></div>
-        <a href="" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a>
-        <a href=""><img src="resources/images/ann.png" height="26">ANN</a>
-        <a href="analysis.jsp"><img src="resources/images/analysis.png" height="26">DATA ANALYSIS</a>
-        <a href="index.jsp"><img src="resources/images/home.png" height="26">HOME</a>
+        <div id="menu_link_container">
+	        <a href="index.jsp"><img src="resources/images/home.png" height="26">HOME</a>
+	        <a href="analysis.jsp"><img src="resources/images/analysis.png" height="26">DATA ANALYSIS</a>
+	        <a href=""><img src="resources/images/ann.png" height="26">ANN</a>
+	        <a href="" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
+        </div>
     </div>
     <div id="control_panel">Control panel here</div>
     <div id="graph_area">
