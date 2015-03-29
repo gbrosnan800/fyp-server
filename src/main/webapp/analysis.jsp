@@ -22,7 +22,7 @@
         <div id="menu_link_container">
 	        <a href="index.jsp"><img src="resources/images/home.png" height="26">HOME</a>
 	        <a href="analysis.jsp"><img src="resources/images/analysis.png" height="26">DATA ANALYSIS</a>
-	        <a href=""><img src="resources/images/ann.png" height="26">ANN</a>
+	        <a href="ann.jsp"><img src="resources/images/ann.png" height="26">ANN</a>
 	        <a href="" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
         </div>
     </div>
@@ -31,8 +31,7 @@
         <div id="control_panel_header">CONTROL PANEL<img src="resources/images/close.png"></div>
         <div id="control_panel_inner">
             <div id="control_panel_col_l">
-                <div class="control_panel_menu_item" id="choose_collection">COLLECTIONS</div>
-                <div class="control_panel_menu_item">CHOOSE SET</div>
+                <div class="control_panel_menu_item" id="choose_collection">RAW DATA</div>
             </div>
             <div id="control_panel_col_r">
                 <div id="control_panel_col_r_header">Choose Collection</div>
