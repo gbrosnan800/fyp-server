@@ -1,0 +1,126 @@
+/* main.css - fyp */
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    height: 100%;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    color:#ffffff;
+    background: #2f2f2f;
+    position:relative;
+    overflow-x:hidden;
+    min-width:300px
+}
+
+#main_page_area {
+    height: 100%;
+    background: #b0b0b0;
+    background-image: url('../images/DB_9998.jpg');
+    overflow:auto;
+}
+
+#menu {
+    position: absolute;
+    top:10px;left:0;
+    width:100%;
+   /* background: #00a651;*/
+}
+
+#logo {
+    float:left;
+    padding-left: 50px;
+    background: #00a651;
+}
+
+#menu_link_container {
+	float:right;
+}
+
+#menu a {
+    float:left;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 20px 40px;
+    position: relative;
+}
+
+#menu a img {
+    position: absolute;
+    left: 12px;
+    top:18px;
+}
+
+#menu a:hover {
+    background: #00a651;
+}
+
+#last_menu_item {
+    margin-right: 50px;
+}
+
+
+/***  ANN PAGE AREA  ***/
+
+#main_ann_section {
+    height: 100%;
+    background: #b0b0b0;
+    background-image: url('../images/reWalls.com-2348.jpg');
+    overflow:auto;
+}
+
+#main_ann_section_inner {
+	margin:auto;
+	margin-top:150px;
+	width:1200px;
+	border:solid grey 2px;
+	background:rgba(0,0,0,0.7);
+	min-height:500px;
+	height:75%;
+}
+
+.ann_menu_item_outer {
+	width:50%;
+	float:left;
+}
+
+.ann_menu_item {
+	width:200px;
+	border-bottom:solid 1px #00a651;
+	margin:auto;
+	text-align:center;
+	font-size:0.8em;
+	font-weight:bold;
+	padding: 20px 0 10px 0;
+	cursor:pointer;
+}
+
+.ann_menu_item:hover {
+	background: #00a651;
+}
+
+
+
+@media only screen and (max-width : 1005px) and (min-width : 700px) {
+	
+}
+
+@media only screen and (max-width : 700px) {
+	
+	#menu_link_container {
+		float:none;
+		margin:auto;
+		width:300px;
+	}
+	#menu a {
+		padding:20px;
+    	width:100%;
+    	margin:auto;
+		padding:20px 40px;
+	}
+	
+}

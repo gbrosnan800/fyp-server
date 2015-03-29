@@ -7,7 +7,7 @@
     
     <script type="text/javascript" src="resources/js/jqueryFile.js"></script> 
     <script type="text/javascript" src="resources/js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/ann.css"/>
 </head>
 <body>
     <div id="menu">
@@ -19,6 +19,22 @@
 	        <a href="" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
         </div>
     </div>
+    
+    <div id="main_ann_section">
+    	<div id="main_ann_section_inner">
+	    	<div id="ann_menu">
+	    		<div class="ann_menu_item_outer"><div class="ann_menu_item">CREATE CSV</div></div>
+	    		<div class="ann_menu_item_outer"><div class="ann_menu_item">TRAIN NETWORK</div></div>
+	    	</div>
+	    	<div id="csv_area">
+	    	</div>
+	    	<div id="ann_area">
+	    	</div>
+    	
+    
+    	</div>
+    </div>
+    
 
 </body>
 </html>
