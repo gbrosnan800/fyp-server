@@ -70,22 +70,27 @@ body {
     height: 100%;
     background: #b0b0b0;
     background-image: url('../images/reWalls.com-2348.jpg');
-    overflow:auto;
+    padding-top:150px;
 }
-/*test*/
-#main_ann_section_inner {
+
+#main_ann_section_inner {	
 	margin:auto;
-	margin-top:150px;
 	width:1200px;
 	border:solid grey 2px;
 	background:rgba(0,0,0,0.7);
 	min-height:500px;
 	height:75%;
+	font-size:0.8em;
+}
+
+#ann_menu {
+	overflow:auto;
 }
 
 .ann_menu_item_outer {
 	width:50%;
 	float:left;
+	overflow:auto;
 }
 
 .ann_menu_item {
@@ -93,7 +98,6 @@ body {
 	border-bottom:solid 1px #00a651;
 	margin:auto;
 	text-align:center;
-	font-size:0.8em;
 	font-weight:bold;
 	padding: 20px 0 10px 0;
 	cursor:pointer;
@@ -103,6 +107,65 @@ body {
 	background: #00a651;
 }
 
+#csv_area {
+	margin:30px 10px 0 10px;
+}
+
+.csv_area_col {
+	float:left;
+	width:33%;
+/*	border: dotted yellow 1px;*/
+	color:lightgrey;
+}
+
+#sets_col {
+	border-right: dotted grey 1px;
+	border-left: dotted grey 1px;
+}
+
+.csv_area_col_header {
+	width:275px;
+	text-align:center;
+	margin:auto;
+	margin-bottom:20px;
+	padding-bottom:5px;
+	font-weight:bold;
+	border-bottom:solid grey 1px;
+}
+
+#collection_list, #sets_list {
+	margin-bottom:30px;
+}
+
+
+.csv_area_collection_item, .csv_area_sets_item  {
+	text-align:center;
+	max-width:250px;
+	border: solid 1px #000;
+	color:#000;
+	background:lightgrey;
+	margin:auto;
+	padding: 7px;
+	cursor:pointer;
+	border-radius:3px;
+	overflow:auto;
+}
+.csv_area_collection_item:hover, .csv_area_sets_item:hover {
+	background:grey;
+}
+
+.csv_area_sets_item_id, .csv_area_sets_item_reps {
+	float:left;
+	width:20%
+}
+.csv_area_sets_item_name {
+	float:left;
+	width:60%;
+}
+.csv_area_sets_item_reps {
+	float:left;
+}
+	   
 
 
 @media only screen and (max-width : 1005px) and (min-width : 700px) {
