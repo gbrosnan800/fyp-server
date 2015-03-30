@@ -106,11 +106,14 @@ public class CreateCSV {
 		String result = "CSV process started ";
 		
 		try {	
-			//Path filePath = Paths.get(System.getProperty("catalina.base") + "\\webapps\\fyp-server\\csv");
-			File directoryPath = new File("C:\\development\\csv");
+			File directoryPath = new File(System.getProperty("catalina.base") + "\\webapps\\fyp-server\\csv");
+			//File directoryPath = new File(System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv");
 			if (!directoryPath.exists()) {
+				result = "doesn't exist";
 				directoryPath.mkdir();
+				result = "created";
 			}
+			
 			File newFilePath = new File(directoryPath + "\\" + filename + ".csv");
 			if(newFilePath.exists()) {
 				return "Error! Filename already exists";
