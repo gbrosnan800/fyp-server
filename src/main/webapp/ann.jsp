@@ -55,7 +55,7 @@
 						</div>
 	    			</div>
 	    			<div id="filename_area">
-	    				<div id="filename_label">Filename<input value="newfile"><span style="color:#00a651;font-weight:bold">.csv</span></div>
+	    				<div id="filename_label">Filename<input value="newfile" id="fileName"><span style="color:#00a651;font-weight:bold">.csv</span></div>
 	    			</div>
 	    			<div id="create_csv_button">CREATE CSV</div>
 	    			<div id="csv_status">STATUS:<div id="csv_status_msg">No Message</div></div>

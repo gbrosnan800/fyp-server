@@ -2,6 +2,8 @@ package com.gbrosnan.fyp.persistdata;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gbrosnan.fyp.objects.ExerciseRaw;
@@ -33,6 +35,13 @@ public class ExerciseRawRepository {
 		
 		exercise.setId(getCollectionSize() + 1);
 		mongoTemplate.insert(exercise, "exercises");
+	}
+	
+	public ExerciseRaw getExercise(String collectionName, int id) {
+		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(id));
+		return mongoTemplate.findOne(query, ExerciseRaw.class, collectionName);
 	}
 	
 	

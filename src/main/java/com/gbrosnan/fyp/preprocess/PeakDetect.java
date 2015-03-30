@@ -64,8 +64,6 @@ public class PeakDetect {
 	
 	public static List<Integer> filterOuterRangePeaks(List<Double> valuesProvided, List<Integer> maximas,  double percentageRange) {
 		
-		System.out.println("SizeOfAvr= " + valuesProvided.size() + "    highestMax: " + maximas.get(maximas.size()-1));
-		
 		List<Integer> filteredList = new ArrayList<Integer>();
 		double heightRange = getHeightRangeWithinMiddleThird(valuesProvided);		
 		int[] midRange = getMidRange(valuesProvided.size());		

@@ -19,12 +19,12 @@ $(document).ready(function() {
 	    	
 	    	$(this).unbind();
 	    	$(this).css('background', 'grey');   	
-	    	var csvRequestList = createRequestList();
-    	
+	    	var csvRequest = createRequestList();
+
 	        $.ajax({
 	            url: 'rest/csv/create',
 	            type: 'POST',
-	            data: JSON.stringify(csvRequestList),
+	            data: JSON.stringify(csvRequest),
 	            dataType: 'json',
 	            contentType : 'application/json; charset=utf-8',
 	            success: function(response) {            	
@@ -44,9 +44,6 @@ $(document).ready(function() {
 	        } 
 	    	
 	    });
-	    
-	    
-  
     }
     
     function createRequestList() {
@@ -58,7 +55,17 @@ $(document).ready(function() {
     		}
     		requestList.push(requestItem);
     	}
-    	return requestList;
+    	
+    	var csvRequest = {
+    			'csvRequestList' : requestList,
+    			'flatPeakHeight' : $('#filter_flat_peaks_height').val(),
+    			'flatPeakRange' : $('#filter_flat_peaks_range').val(),
+    			'maximaRange' : $('#discover_maximas_range').val(),
+    			'maximaStart' : $('#discover_maximas_start').val(),
+    			'outerRangeHeight' : $('#filter_outer_range_height').val(),
+    			'fileName' : $('#fileName').val()
+    	}    	
+    	return csvRequest;
     }
     
 	function getCollectionList() {
@@ -140,24 +147,24 @@ $(document).ready(function() {
 	function assignClicksToSetList() {
 		
 	    $('.csv_area_sets_item').click(function(e){	
-	    	if(!isSelected($(this))) {	    		
+	    	if(!isSelected($(this))) {	    	
+	    		
 	    		$(this).css('background','#00a651');
 	    		var setItemObj = createSetItemObject($(this));
 	    		addItemToExerciseList(setItemObj);
 	    	}
 	    	else {
-	    		$(this).css('background','#d3d3d3');
+	    		
+	    		$(this).css('background-color','#d3d3d3');
 	    		var setItemObj = createSetItemObject($(this));
 	    		removeItemToExerciseList(setItemObj);
-	    		
-	    		//else de-select it and remove from list
 	    	}	    	
 	    });
 	}
 	
 	function isSelected(setItem) {
-
-		if(setItem.css('background-color') == "rgb(128, 128, 128)") {
+	
+		if(setItem.css('background-color') == "rgb(211, 211, 211)" || setItem.css('background-color') == "rgb(128, 128, 128)") {
 			return false;
 		}
 		else {

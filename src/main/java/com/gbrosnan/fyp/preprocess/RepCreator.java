@@ -56,9 +56,7 @@ private RepCreator() {}
 	
 	
 	private static Rep createRep(List<Double> values, int[] maximas, int id) {
-		
-		System.out.println("valuesgive-size= " + values.size() + "   int[]= " + maximas[0] + " " + maximas[1] + " " + maximas[2] + "   id= " + id);
-		
+				
 		List<Double> repValues = new ArrayList<Double>();
 		int startPoint = discoverLowestPoint(values, maximas[0], maximas[1]);
 		int endPoint = discoverLowestPoint(values, maximas[1], maximas[2]);
@@ -66,7 +64,6 @@ private RepCreator() {}
 		for(int point = startPoint ; point <= endPoint ; point ++) {
 			repValues.add(values.get(point));		
 		}
-		System.out.println("repvalues--- = " + repValues.size());
 		return new Rep(id, startPoint, values.get(startPoint),endPoint,  values.get(endPoint), repValues);
 	}
 	
