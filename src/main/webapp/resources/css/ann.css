@@ -86,6 +86,8 @@ body {
 
 #ann_menu {
 	overflow:auto;
+	padding:10px 0;
+	border-bottom:dotted grey 1px;
 }
 
 .ann_menu_item_outer {
@@ -100,7 +102,7 @@ body {
 	margin:auto;
 	text-align:center;
 	font-weight:bold;
-	padding: 20px 0 10px 0;
+	padding:15px 0 10px 0;
 	cursor:pointer;
 }
 
@@ -116,6 +118,7 @@ body {
 	float:left;
 	width:33%;
 	color:#d3d3d3;
+	height:600px;
 }
 
 #sets_col {
@@ -135,7 +138,7 @@ body {
 
 #collection_list, #sets_list {
 	margin-bottom:30px;
-	max-height:570px;
+	max-height:560px;
 	overflow-y:auto;
 }
 
@@ -168,8 +171,161 @@ body {
 .csv_area_sets_item_reps {
 	float:left;
 }
-	   
 
+
+/*  TRAIN NETWORK COLUMN */
+
+.pre-process_config_item {
+	margin:5px 20px;
+	overflow:auto;
+	
+}
+
+.pre-process_config_header, .pre-process_config_label {
+	float:left;
+	font-size:0.9em;
+}
+
+.pre-process_config_header {
+	width:170px;
+	line-height:20px;
+}
+
+.pre-process_config_label {
+	font-size:0.7em;	
+	width:80px;
+}
+
+.pre-process_config_item input {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color:#fff;
+	border:0;
+	outline:0;
+	background:rgba(0, 0, 0, 0);
+	border-bottom:solid 1px #fff;
+	width:30px;
+	text-align:center;
+}
+
+#filename_area {
+	width:275px;
+	margin:auto;	
+	margin-top:40px;
+}	   
+
+#filename_area input {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color:#00a651;
+	font-size:1.3em;
+	font-weight:bold;
+	font-style:italic;
+	border:0;
+	outline:0;
+	background:rgba(0, 0, 0, 0);
+	border-bottom:solid 1px #fff;
+	width:150px;
+	text-align: center;
+	margin-left:15px;
+}	
+
+#create_csv_button {
+	width:100px;
+	background:#00a651;
+	padding:10px;
+	border-radius:2px;
+	margin:auto;
+	margin-top: 35px;
+	text-align:center;
+	font-weight:bold;
+	cursor:pointer;
+}
+#create_csv_button:hover {
+	background:green;
+}
+
+#csv_status {
+	color: red;
+	font-size:0.9em;
+	text-align: center;
+	margin: 20px 0;
+	height:50px;
+}
+#csv_status_msg {
+	margin-top:5px;
+}
+
+#csv_exercise_list {
+	margin: auto;
+	width: 90%;
+	border: solid #00a651 4px;
+	background:#d3d3d3;
+	text-align:center;
+	height: 250px;
+	position:relative;
+}
+#csv_exercise_list_title {
+	background: #00a651;
+	padding: 5px;
+	font-weight:bold;
+	font-size:1.1em;
+}
+#csv_exercise_list_header {
+	color: grey;
+	font-weight: bold;
+	padding: 6px 0;
+	font-size: 0.9em;
+	font-style: italic;
+}
+.csv_exercise_list_header_output, csv_exercise_list_header_reps  {
+	float: left;
+	width: 25%;
+}
+.csv_exercise_list_header_exercise {
+	float:left;
+	width:50%;
+}
+.csv_exercise_list_item {
+	color: grey;
+	padding: 3px 0;
+	border-bottom: dotted grey 1px;
+	overflow:auto;
+}
+.csv_exercise_list_item_output, .csv_exercise_list_item_reps {
+	float: left;
+	width: 25%;
+}
+.csv_exercise_list_item_exercise {
+	float: left;
+	width: 50%;
+}
+#current_list {
+	color:grey;
+}
+#clear_list {
+	position: absolute;
+	top:5px;right:5px;
+	font-size:0.8em;
+	cursor: pointer;	
+}
+#clear_list:hover {
+	color: green;
+}
+/*
+<div id="csv_exercise_list">
+	<div id="csv_exercise_list_title">Current List</div>
+	<div id="csv_exercise_list_header">
+		<div class="csv_exercise_list_header_output">OUTPUT</div>
+		<div class="csv_exercise_list_header_exercise">EXERCISE</div>
+		<div class="csv_exercise_list_header_reps">REPS</div>
+	</div>
+	<div id="csv_exercise_list_item">
+		<div class="csv_exercise_list_item_output">001</div>
+		<div class="csv_exercise_list_item_exercise">bicep_curl</div>
+		<div class="csv_exercise_list_item_reps">25</div>
+	</div>
+</div>
+
+*/
 
 @media only screen and (max-width : 1005px) and (min-width : 700px) {
 	

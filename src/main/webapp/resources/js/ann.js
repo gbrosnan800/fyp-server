@@ -112,8 +112,7 @@ $(document).ready(function() {
 	function addItemToExerciseList(setItemObj) {
 		
 		exerciseList.push(setItemObj);
-		
-		console.log(exerciseList);
+		updateCurrentList();
 	}
 	
 	function removeItemToExerciseList(setItemObj) {
@@ -123,9 +122,156 @@ $(document).ready(function() {
 				exerciseList.splice(item, 1);
 			}
 		}
-		
-		console.log(exerciseList);
+		updateCurrentList();
 	}
+	
+	function updateCurrentList() {
+		
+		var summarizedList = summarize(exerciseList);
+		$('#current_list').html('');
+		var htmlString = '';
+		for(var item in summarizedList) {
+			htmlString += '' +
+				'<div class="csv_exercise_list_item">' +
+					'<div class="csv_exercise_list_item_output">' + summarizedList[item].output + '</div>' +
+					'<div class="csv_exercise_list_item_exercise">' + summarizedList[item].exercise + '</div>' +
+					'<div class="csv_exercise_list_item_reps">' + summarizedList[item].reps + '</div>' +
+				'</div>';
+		}
+		$('#current_list').html(htmlString);
+		if(summarizedList.length == 0 ) {
+			$('#current_list').html('No Exercise Selected');
+		}
+	}
+	
+    $('#clear_list').click(function(e){	
+    	exerciseList = null;
+    	$('#current_list').html('No Exercise Selected');
+    });
+	
+	function summarize(exerciseList) {
+		
+		var bicep_curl=0, lat_raise=0, shoulder_shrug=0, back_fly=0, one_arm_row=0, kick_back=0, front_raise=0, seated_tricep=0, shoulder_press=0;
+
+		for(item in exerciseList) {
+			
+			if(exerciseList[item].exerciseName == 'bicep_curl') {
+				bicep_curl += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'lat_raise') {
+				lat_raise += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'shoulder_shrug') {
+				shoulder_shrug += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'back_fly') {
+				back_fly += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'one_arm_row') {
+				one_arm_row += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'kick_back') {
+				kick_back += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'front_raise') {
+				front_raise += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'seated_tricep') {
+				seated_tricep += parseInt(exerciseList[item].repSize);
+			}
+			else if(exerciseList[item].exerciseName == 'shoulder_press') {
+				shoulder_press += parseInt(exerciseList[item].repSize);
+			}			
+		}
+		var summarizedItem;
+		var summarizedList = [];
+		if( bicep_curl > 0 ) {
+			summarizedItem = {
+				'output' : 1,
+				'exercise' : 'bicep_curl',
+				'reps' : bicep_curl
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( lat_raise > 0 ) {
+			summarizedItem = {
+				'output' : 10,
+				'exercise' : 'lat_raise',
+				'reps' : lat_raise
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( shoulder_shrug > 0 ) {
+			summarizedItem = {
+				'output' : 111,
+				'exercise' : 'shoulder_shrug',
+				'reps' : shoulder_shrug
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( back_fly > 0 ) {
+			summarizedItem = {
+				'output' : 1000,
+				'exercise' : 'back_fly',
+				'reps' : back_fly
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( one_arm_row > 0 ) {
+			summarizedItem = {
+				'output' : 101,
+				'exercise' : 'one_arm_row',
+				'reps' : one_arm_row
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( kick_back > 0 ) {
+			summarizedItem = {
+				'output' : 110,
+				'exercise' : 'kick_back',
+				'reps' : kick_back
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( front_raise > 0 ) {
+			summarizedItem = {
+				'output' : 111,
+				'exercise' : 'front_raise',
+				'reps' : front_raise
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( seated_tricep > 0 ) {
+			summarizedItem = {
+				'output' : 1000,
+				'exercise' : 'seated_tricep',
+				'reps' : seated_tricep
+				}
+			summarizedList.push(summarizedItem);
+		}
+		if( shoulder_press > 0 ) {
+			summarizedItem = {
+				'output' : 1001,
+				'exercise' : 'shoulder_press',
+				'reps' : shoulder_press
+				}
+			summarizedList.push(summarizedItem);
+		}
+		
+		return summarizedList;		
+	}
+	/*
+	bicep_curl		0001
+	lat_raise		0010
+	shoulder_shrug	0011
+	back_fly		0100
+	one_arm_row		0101
+	kick_back		0110
+	front_raise		0111
+	seated_tricep	1000
+	shoulder_press	1001
+	other			1010
+	*/
 	
 	
  });
