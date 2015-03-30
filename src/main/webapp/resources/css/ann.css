@@ -81,6 +81,7 @@ body {
 	min-height:500px;
 	height:75%;
 	font-size:0.8em;
+	overflow:hidden;
 }
 
 #ann_menu {
@@ -108,14 +109,13 @@ body {
 }
 
 #csv_area {
-	margin:30px 10px 0 10px;
+	margin:30px 10px 0 10px;		
 }
 
 .csv_area_col {
 	float:left;
 	width:33%;
-/*	border: dotted yellow 1px;*/
-	color:lightgrey;
+	color:#d3d3d3;
 }
 
 #sets_col {
@@ -135,6 +135,8 @@ body {
 
 #collection_list, #sets_list {
 	margin-bottom:30px;
+	max-height:570px;
+	overflow-y:auto;
 }
 
 
@@ -143,15 +145,16 @@ body {
 	max-width:250px;
 	border: solid 1px #000;
 	color:#000;
-	background:lightgrey;
+	background: #d3d3d3;
 	margin:auto;
 	padding: 7px;
 	cursor:pointer;
 	border-radius:3px;
 	overflow:auto;
 }
+
 .csv_area_collection_item:hover, .csv_area_sets_item:hover {
-	background:grey;
+	background:grey;	
 }
 
 .csv_area_sets_item_id, .csv_area_sets_item_reps {

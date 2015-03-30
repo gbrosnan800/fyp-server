@@ -44,6 +44,17 @@ public class MainMongoRepository {
 		return new ArrayList<ExerciseRaw>(mongoTemplate.findAll(ExerciseRaw.class, collectionName));
 	}	
 	
+	public List<ExerciseInfo> getSetsInfoFromCollection(String collectionName) {	
+		
+		Query query = new Query();
+		query.fields().include("_id");
+		query.fields().include("exerciseName");
+		query.fields().include("repCount");
+		mongoTemplate.find(query, ExerciseInfo.class, collectionName);			
+		return new ArrayList<ExerciseInfo>(mongoTemplate.findAll(ExerciseInfo.class, collectionName));
+	}	
+	
+	
 	
 	
 }

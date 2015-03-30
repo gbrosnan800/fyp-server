@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.gbrosnan.fyp.objects.ExerciseInfo;
 import com.gbrosnan.fyp.objects.ExerciseWebObject;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
@@ -35,6 +36,16 @@ public class WebAPI {
     public String hello2() {
     	return "{\"test\":\"hello world 2\"}";
     }
+    
+    @RequestMapping(value = "/tempdir", method = RequestMethod.GET)
+    public String getTepDir() {	    	
+    	return System.getProperty("java.io.tmpdir");
+    }
+    
+    @RequestMapping(value = "/catalina", method = RequestMethod.GET)
+    public String getCatalina() {	    	
+    	return System.getProperty("catalina.base");
+    }
 	
     @RequestMapping(value = "/collectionnames", method = RequestMethod.GET)
     public List<String> getCollectionsNames() {
@@ -44,6 +55,11 @@ public class WebAPI {
     @RequestMapping(value = "/{collectionName}/sets", method = RequestMethod.GET)
     public List<ExerciseRaw> getSetsFromCollection(@PathVariable String collectionName) {
     	return mainMongoRepository.getSetsFromCollection(collectionName);
+    } 
+    
+    @RequestMapping(value = "/{collectionName}/setsinfo", method = RequestMethod.GET)
+    public List<ExerciseInfo> getSetsInfoFromCollection(@PathVariable String collectionName) {
+    	return mainMongoRepository.getSetsInfoFromCollection(collectionName);
     } 
     
     @RequestMapping(value = "/maximas", method = RequestMethod.POST)
@@ -75,6 +91,5 @@ public class WebAPI {
     	processedExercise.setNormalisedReps(RepCreator.normalizeReps(normalizedReps));
     	return processedExercise;
     } 
-    
-    
+       
 }

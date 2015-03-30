@@ -38,16 +38,25 @@
 	    			<div class="csv_area_col_header">Select Sets</div>
 	    			<div id="sets_list">
 	    				<div class="csv_area_sets_item">	    		
-	    					<div class="csv_area_sets_item_id">1</div>
-	    					<div class="csv_area_sets_item_name">item</div>
-	    					<div class="csv_area_sets_item_reps">10</div>	    					
-	    				</div>
-						<br><br>selected items turn green
-						<br><br>use a jquery scroll bar
 	    			</div>	    			
 	    		</div>
 	    		<div class="csv_area_col">
 	    			<div class="csv_area_col_header">Pre-Process Config</div>
+	    		
+	    		<!-- 
+	    			
+	    			Config
+	    				-Discover Maximas = start & range
+	    				-Filter Flat = height and Range
+	    				-Filter outer = height	    				
+	    				
+	    				-Will have to seend the above data plus exercise info (array of collection and id) + file name
+	    				-Server will also then discover minimas, extract reps, normalize them
+	    				-Then Server will create CSV and add normalized data plus output  - and with file name given
+	    				-Return confirmation to webpage and offer download option
+	    		
+	    		 -->
+	    		
 	    			
 	    		</div>		    	 
 	    	</div>	    	
