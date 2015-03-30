@@ -6,6 +6,61 @@ $(document).ready(function() {
 	
 	getCollectionList();
 	
+    $('#clear_list').click(function(e){	
+    	exerciseList.length = 0;
+    	$('#current_list').html('No Exercise Selected');
+    	$('.csv_area_sets_item').css('background', '#d3d3d3');
+    	
+    });
+    
+    assignClickToCreateCSVButton();
+    function assignClickToCreateCSVButton() { 
+	    $('#create_csv_button').click(function(e){	
+	    	
+	    	$(this).unbind();
+	    	$(this).css('background', 'grey');   	
+	    	var csvRequestList = createRequestList();
+    	
+	        $.ajax({
+	            url: 'rest/csv/create',
+	            type: 'POST',
+	            data: JSON.stringify(csvRequestList),
+	            dataType: 'json',
+	            contentType : 'application/json; charset=utf-8',
+	            success: function(response) {            	
+	            	$('#csv_status_msg').html(response.message);
+	            },
+	            error: function(xhr, status, error) {
+	                var err = eval("(" + xhr.responseText + ")");
+	                alert(err.Message);
+	            }
+	        });
+	        	        
+	        // ASSIGN BACK CLICK TO BUTTON WHEN CSV FILE CREATION IS COMPLETE
+		    var ev = $._data(this, 'events');
+	        if(!(ev && ev.click)) {
+	        	assignClickToCreateCSVButton();
+	        	$(this).css('background', '#00a651');
+	        } 
+	    	
+	    });
+	    
+	    
+  
+    }
+    
+    function createRequestList() {
+    	var requestList = [];
+    	for(var item in exerciseList) {
+    		requestItem = {
+    				'collectionName' : exerciseList[item].collection,
+    				'id' : exerciseList[item].id 				
+    		}
+    		requestList.push(requestItem);
+    	}
+    	return requestList;
+    }
+    
 	function getCollectionList() {
         $.ajax({
             url: 'rest/data/collectionnames',
@@ -50,8 +105,7 @@ $(document).ready(function() {
 	                var err = eval("(" + xhr.responseText + ")");
 	                alert(err.Message);
 	            }
-	        });
-	    	
+	        });	       	           
 	    });
 	}
 	
@@ -67,10 +121,22 @@ $(document).ready(function() {
 						'</div>';
 		}
 		$('#sets_list').html(htmlString);
+		setItemsInCurrentListSelected();
 		assignClicksToSetList();
 	}
- 	
 	
+	function setItemsInCurrentListSelected() {	
+		for(var item in exerciseList) {		
+			if(exerciseList[item].collection == currentSelectedCollection) {
+				$('.csv_area_sets_item').each(function(i) {
+					if ($(this).children('.csv_area_sets_item_id').text() == exerciseList[item].id) {
+						$(this).css('background', '#00a651');
+					}
+				});
+			}
+		}
+	}
+ 		
 	function assignClicksToSetList() {
 		
 	    $('.csv_area_sets_item').click(function(e){	
@@ -144,10 +210,6 @@ $(document).ready(function() {
 		}
 	}
 	
-    $('#clear_list').click(function(e){	
-    	exerciseList = null;
-    	$('#current_list').html('No Exercise Selected');
-    });
 	
 	function summarize(exerciseList) {
 		

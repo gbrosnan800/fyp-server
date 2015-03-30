@@ -58,7 +58,7 @@
 	    				<div id="filename_label">Filename<input value="newfile"><span style="color:#00a651;font-weight:bold">.csv</span></div>
 	    			</div>
 	    			<div id="create_csv_button">CREATE CSV</div>
-	    			<div id="csv_status">STATUS:<div id="csv_status_msg"></div>No message</div>
+	    			<div id="csv_status">STATUS:<div id="csv_status_msg">No Message</div></div>
 	    			<div id="csv_exercise_list">
 	    				<div id="csv_exercise_list_title">Current List<div id="clear_list">[ CLEAR ]</div></div>
 	    				<div id="csv_exercise_list_header">
