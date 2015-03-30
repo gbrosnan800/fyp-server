@@ -106,7 +106,7 @@ public class CreateCSV {
 		String result = "CSV process started ";
 		
 		try {	
-			File directoryPath = new File(System.getProperty("catalina.base") + "\\webapps\\fyp-server\\csv");
+			File directoryPath = new File(System.getProperty("catalina.base") + "/webapps/fyp-server/csv");
 			//File directoryPath = new File(System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv");
 			if (!directoryPath.exists()) {
 				result = "doesn't exist";
@@ -114,11 +114,11 @@ public class CreateCSV {
 				result = "created";
 			}
 			
-			File newFilePath = new File(directoryPath + "\\" + filename + ".csv");
+			File newFilePath = new File(directoryPath + "/" + filename + ".csv");
 			if(newFilePath.exists()) {
 				return "Error! Filename already exists";
 			}
-			FileWriter writer = new FileWriter(directoryPath + "\\" + filename + ".csv");	
+			FileWriter writer = new FileWriter(directoryPath + "/" + filename + ".csv");	
 			
 			int amountOfReps = 0;
 			String rowOfValues = "";
