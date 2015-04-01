@@ -106,8 +106,8 @@ public class CreateCSV {
 		String result = "CSV process started ";
 		
 		try {	
-			File directoryPath = new File(System.getProperty("catalina.base") + "/webapps/fyp-server/csv");
-			//File directoryPath = new File(System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv");
+			//File directoryPath = new File(System.getProperty("catalina.base") + "/webapps/fyp-server/csv");
+			File directoryPath = new File(System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv");
 			if (!directoryPath.exists()) {
 				result = "doesn't exist";
 				directoryPath.mkdir();
@@ -121,7 +121,7 @@ public class CreateCSV {
 			FileWriter writer = new FileWriter(directoryPath + "/" + filename + ".csv");	
 			
 			int amountOfReps = 0;
-			String rowOfValues = "";
+			String rowOfValues = "", output = "", digitAsString = "";
 			List<Rep> normalizedReps;
 			
 			for(ProcessedExercise processedExercise : preProcessedData) {
@@ -133,10 +133,16 @@ public class CreateCSV {
 					for(double value : rep.getSamples()) {
 						rowOfValues += value + ",";
 					}
-					rowOfValues += getOutputValue(processedExercise.getExerciseName());
+					output = getOutputValue(processedExercise.getExerciseName());
+					for(int digit = 0 ; digit < output.length() ; digit ++ ) {
+						digitAsString = Character.toString(output.charAt(digit));
+						rowOfValues += digitAsString;
+						if(digit < (output.length()-1)) {
+							rowOfValues += ",";
+						}					
+					}
 					rowOfValues += "\n";
-					writer.append(rowOfValues);
-					
+					writer.append(rowOfValues);					
 				}						
 			}
 			writer.flush();
@@ -153,25 +159,25 @@ public class CreateCSV {
 	private String getOutputValue(String exerciseName) {
 		
 		if(exerciseName.equals("bicep_curl")) {
-			return "1";
+			return "00";
 		}
 		else if(exerciseName.equals("lat_raise")) {
-			return "10";
+			return "01";
 		} 
 		else if(exerciseName.equals("shoulder_shrug")) {
-			return "11";
+			return "99";
 		} 
 		else if(exerciseName.equals("back_fly")) {
-			return "100";
+			return "99";
 		} 
 		else if(exerciseName.equals("one_arm_row")) {
-			return "101";
+			return "10";
 		} 
 		else if(exerciseName.equals("kick_back")) {
-			return "110";
+			return "11";
 		} 
 		else if(exerciseName.equals("front_raise")) {
-			return "111";
+			return "0111";
 		} 
 		else if(exerciseName.equals("seated_tricep")) {
 			return "1000";
@@ -183,6 +189,5 @@ public class CreateCSV {
 			return "1010";
 		} 
 	}
-    
 
 }

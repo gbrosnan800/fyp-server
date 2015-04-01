@@ -332,6 +332,9 @@ $(document).ready(function() {
 
 	
 	/* TRAIN NETWORK   */
+	
+	
+	
 	assignClicksToTrainNetworkArea();
 	function assignClicksToTrainNetworkArea() {
 		
@@ -359,8 +362,42 @@ $(document).ready(function() {
 	    	}    		    	
 	    });
 	    
+	    $('#train_button').click(function(e){	
+	    	trainNetwork();
+	    	
+	    });
 
 	}
+	
+    function trainNetwork() {
+        
+    	var annConfigData = {
+    			
+    			'trainingFileName' : $('#dropdown_trainfile_selected').text(),
+    			'testingFileName' : $('#dropdown_testfile_selected').text(),
+    			'inputPerceptrons' : $('#input_perceptrons').val(),
+    			'hiddenPerceptrons' : $('#hidden_perceptrons').val(), 
+    			'outputPerceptrons' : $('#output_perceptrons').val(),
+    			'learningRate' : $('#learning_rate').val(),
+    			'momentum' : $('#momentum').val(),
+    			'maxIterations' : $('#max_iterations').val()	    			
+    	}
+    	
+    	$.ajax({
+            url: 'rest/ann/train',
+            type: 'POST',
+            data: JSON.stringify(annConfigData),          
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json',
+            success: function(response) {            	
+            	console.log(response.message);
+            },
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });
+    }
 	
 	
 	
