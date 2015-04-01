@@ -329,18 +329,40 @@ $(document).ready(function() {
 		
 		return summarizedList;		
 	}
-	/*
-	bicep_curl		0001
-	lat_raise		0010
-	shoulder_shrug	0011
-	back_fly		0100
-	one_arm_row		0101
-	kick_back		0110
-	front_raise		0111
-	seated_tricep	1000
-	shoulder_press	1001
-	other			1010
-	*/
+
+	
+	/* TRAIN NETWORK   */
+	assignClicksToTrainNetworkArea();
+	function assignClicksToTrainNetworkArea() {
+		
+	    $('#dropdown_arrow_trainfile').click(function(e){	
+	    	$('#dropdown_menu_testfile').hide();
+	    	$('#dropdown_menu_trainfile').slideToggle(250);
+	    	
+	    });
+	    
+	    $('#dropdown_arrow_testfile').click(function(e){
+	    	$('#dropdown_menu_trainfile').hide();
+	    	$('#dropdown_menu_testfile').slideToggle(250);
+	    });	   
+	    
+	    $('.ann_file_menu_item').click(function(e){
+	    	var dropdown = $(this).parent().parent();
+	    	
+	    	if(dropdown.attr('id') == 'dropdown_trainfile') {
+	    		$('#dropdown_menu_trainfile').hide();
+	    		$('#dropdown_trainfile_selected').text($(this).text());
+	    	}
+	    	else {
+	    		$('#dropdown_menu_testfile').hide();
+	    		$('#dropdown_testfile_selected').text($(this).text());
+	    	}    		    	
+	    });
+	    
+
+	}
+	
+	
 	
 	
  });

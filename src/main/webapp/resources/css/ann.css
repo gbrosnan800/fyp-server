@@ -112,6 +112,10 @@ body {
 
 #csv_area {
 	margin:30px 10px 0 10px;		
+	display:none;
+}
+#ann_area {
+	margin:30px 10px 0 10px;	
 }
 
 .csv_area_col {
@@ -310,22 +314,122 @@ body {
 #clear_list:hover {
 	color: green;
 }
-/*
-<div id="csv_exercise_list">
-	<div id="csv_exercise_list_title">Current List</div>
-	<div id="csv_exercise_list_header">
-		<div class="csv_exercise_list_header_output">OUTPUT</div>
-		<div class="csv_exercise_list_header_exercise">EXERCISE</div>
-		<div class="csv_exercise_list_header_reps">REPS</div>
-	</div>
-	<div id="csv_exercise_list_item">
-		<div class="csv_exercise_list_item_output">001</div>
-		<div class="csv_exercise_list_item_exercise">bicep_curl</div>
-		<div class="csv_exercise_list_item_reps">25</div>
-	</div>
-</div>
 
-*/
+#ann_options_column {
+	float:left;
+	width:400px;
+	min-height:600px;
+	border-right: dotted 1px grey;
+}
+
+#ann_start_column {
+	margin-left:420px;
+	height:600px;
+	line-height:300px;
+	color:red;
+	font-size: 4em;
+	text-align:center;
+	font-weight:bold;
+	overflow-y:auto;
+}
+
+#dropdown_trainfile, #dropdown_testfile {
+	margin: auto;
+	margin-bottom: 50px;
+	width: 250px;
+	border: solid 2px #00a651;
+	position: relative;
+	padding: 7px 0 7px 15px;
+	font-size:1.3em;
+	font-style: italic;
+	color: #000;
+	background: #fff;	
+}
+
+#dropdown_arrow_trainfile, #dropdown_arrow_testfile {
+	position:absolute;
+	right:8px;top:8px;
+	width:35px;height:22px;
+	cursor:pointer;
+}
+
+#dropdown_menu_trainfile, #dropdown_menu_testfile {
+	position:absolute;
+	top:35px;left:-2px;
+	width:265px;
+	border: solid 2px #00a651;
+	/*padding:7px 0 15px 15px;*/
+	font-style:italic;
+	background:lightgrey;
+	color: #000;
+	z-index:99;
+	display:none;
+}
+
+.ann_file_menu_item {
+	padding:8px 0 8px 15px;
+	cursor:pointer;	
+}
+.ann_file_menu_item:hover {
+	background:grey;
+}
+
+.dropdown_label, #ann_config_header {
+	text-align:center;
+	margin-bottom:5px;
+	color:#00a651;
+	font-size:0.9em;
+	font-weight:bold;
+}
+
+#ann_config {
+	margin: 0 20px;
+	padding:20px;
+	border: dotted #00a651 1px;
+}
+
+.ann_config_item {
+	margin:auto;
+	padding: 10px 0 ;
+	width: 260px;
+}
+
+.ann_config_item_label {
+	font-size: 1.1em;
+	float:left;
+}
+
+.ann_config_item_input_container {
+	margin-left: 180px;
+}
+.ann_config_item input {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color:#fff;
+	border:0;
+	outline:0;
+	background:rgba(0, 0, 0, 0);
+	border-bottom:solid 1px #fff;
+	width:40px;
+	text-align:center;
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+#train_button {
+	width: 150px;
+	margin: auto;
+	margin-top: 20px;
+	background: #00a651;
+	padding: 20px;
+	text-align: center;
+	font-size: 1.3em;
+	font-weight: bold;
+	cursor:pointer;
+}
+#train_button:hover {
+	background: green;
+}
+
 
 @media only screen and (max-width : 1005px) and (min-width : 700px) {
 	

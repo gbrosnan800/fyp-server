@@ -75,35 +75,65 @@
 	    				</div>
 	    				-->
 	    			</div>
-	    			
-	    		<!-- 
-	    			
-	    			Config
-	    				-Discover Maximas = start & range
-	    				-Filter Flat = height and Range
-	    				-Filter outer = height	    				
-	    				
-	    				-Will have to seend the above data plus exercise info (array of collection and id) + file name
-	    				-Server will also then discover minimas, extract reps, normalize them
-	    				-Then Server will create CSV and add normalized data plus output  - and with file name given
-	    				-Return confirmation to webpage and offer download option
-	    				
-	    				
-
-	    				
-	    				
-	    				
-	    		 -->
-	    			
-	    			
 	    		</div>		    	 
 	    	</div>	    	
 	    	<div id="ann_area">
-	    	
-	    	
-	    	</div>
-    		
-    
+	    		<div id="ann_options_column">
+	    			<div class="dropdown_label">CHOOSE TRAINING DATA</div>
+	    			<div id="dropdown_trainfile"><div id="dropdown_trainfile_selected">defaulttrain.csv</div>
+	    				<div id="dropdown_arrow_trainfile"><img src="resources/images/droparrow.png"></div>
+		    			<div id="dropdown_menu_trainfile">
+		    				<div class="ann_file_menu_item">another_file1.csv</div>
+		    				<div class="ann_file_menu_item">another_file2.csv</div>
+		    				<div class="ann_file_menu_item">another_file3.csv</div>
+		    				<div class="ann_file_menu_item">another_file4.csv</div>	 
+		    				<div class="ann_file_menu_item">another_file5.csv</div>
+		    				<div class="ann_file_menu_item">another_file6.csv</div>	   				
+		    			</div>
+	    			</div>
+	    			<div class="dropdown_label">CHOOSE TESTING DATA</div>
+	    			<div id="dropdown_testfile"><div id="dropdown_testfile_selected">defaulttest.csv</div>
+	    				<div id="dropdown_arrow_testfile"><img src="resources/images/droparrow.png"></div>
+		    			<div id="dropdown_menu_testfile">
+		    				<div class="ann_file_menu_item">another_file1.csv</div>
+		    				<div class="ann_file_menu_item">another_file2.csv</div>
+		    				<div class="ann_file_menu_item">another_file3.csv</div>
+		    				<div class="ann_file_menu_item">another_file4.csv</div>
+		    				<div class="ann_file_menu_item">another_file5.csv</div>
+		    				<div class="ann_file_menu_item">another_file6.csv</div>			    				
+		    			</div>
+	    			</div>
+	    			<div id="ann_config_header">ANN CONFIG</div>
+		    		<div id="ann_config">	
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Input Perceptrons</div>
+		    				<div class="ann_config_item_input_container"><input id="input_perceptrons" value="200"></div>
+		    			</div>	    				    		
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Hidden Perceptrons</div>
+		    				<div class="ann_config_item_input_container"><input id="hidden_perceptrons" value="100"></div>
+		    			</div>
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Output Perceptrons</div>
+		    				<div class="ann_config_item_input_container"><input id="output_perceptrons" value="2"></div>
+		    			</div>
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Learning Rate</div>
+		    				<div class="ann_config_item_input_container"><input id="learning_rate" value="0.2"></div>
+		    			</div>
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Momentum</div>
+		    				<div class="ann_config_item_input_container"><input id="momentum" value="0.9"></div>
+		    			</div>
+		    			<div class="ann_config_item">
+		    				<div class="ann_config_item_label">Max Iterations</div>
+		    				<div class="ann_config_item_input_container"><input id="max_iterations" value="1000"></div>
+		    			</div>		    			
+		    		</div>
+		    		<div id="train_button">TRAIN NETWORK</div>
+	    		</div>
+	    		<div id="ann_start_column">Network not trained</div>	    	
+	    	</div>    		   
     	</div>
     </div>
     
