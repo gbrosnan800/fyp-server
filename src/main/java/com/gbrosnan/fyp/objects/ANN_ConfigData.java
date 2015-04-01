@@ -1,6 +1,6 @@
 package com.gbrosnan.fyp.objects;
 
-public class ANN_DataConfig {
+public class ANN_ConfigData {
 
 	private String trainingFileName;
 	private String testingFileName;
@@ -11,9 +11,9 @@ public class ANN_DataConfig {
 	private double momentum;
 	private int maxIterations;
 	
-	public ANN_DataConfig() {}
+	public ANN_ConfigData() {}
 	
-	public ANN_DataConfig(	String trainingFileName, String testingFileName, int inputPerceptrons, 
+	public ANN_ConfigData(	String trainingFileName, String testingFileName, int inputPerceptrons, 
 			int hiddenPerceptrons, int outputPerceptrons, double learningRate, double momentum, int maxIterations) {
 		
 		setTrainingFileName(trainingFileName);

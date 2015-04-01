@@ -333,9 +333,37 @@ $(document).ready(function() {
 	
 	/* TRAIN NETWORK   */
 	
+	getFileNameList();
+	function getFileNameList() {
+		
+    	$.ajax({
+            url: 'rest/csv/getFileNameList',
+            type: 'GET',
+            dataType : 'json',
+            success: function(response) {            	
+            	populateDropDowns(response);
+            	assignClicksToTrainNetworkArea();
+            },
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });		    
+	}
 	
-	
-	assignClicksToTrainNetworkArea();
+	function populateDropDowns(fileList) {
+		
+		var htmlString = '';
+		
+		for(var file in fileList) {			
+			htmlString += '<div class="ann_file_menu_item">' + fileList[file] + '</div>';					
+		}
+		$('#dropdown_trainfile_selected').html(fileList[0]);
+		$('#dropdown_testfile_selected').html(fileList[0]);
+		$('#dropdown_menu_trainfile').html(htmlString);
+		$('#dropdown_menu_testfile').html(htmlString);
+	}
+
 	function assignClicksToTrainNetworkArea() {
 		
 	    $('#dropdown_arrow_trainfile').click(function(e){	
@@ -364,9 +392,10 @@ $(document).ready(function() {
 	    
 	    $('#train_button').click(function(e){	
 	    	trainNetwork();
-	    	
+	    	$(this).hide();
+	    	$('#ann_status_message').text('Training network...');
+	    	$('#ann_status_message').css('color', 'orange');
 	    });
-
 	}
 	
     function trainNetwork() {
@@ -389,8 +418,11 @@ $(document).ready(function() {
             data: JSON.stringify(annConfigData),          
             contentType : 'application/json; charset=utf-8',
             dataType : 'json',
-            success: function(response) {            	
-            	console.log(response.message);
+            success: function(response) {
+    	    	$('#ann_status_message').text('Network is trained');
+    	    	$('#ann_status_message').css('color', '#00a651');
+    	    	$('#train_button').show();
+            	console.log(response);
             },
             error: function(xhr, status, error) {
                 var err = eval("(" + xhr.responseText + ")");

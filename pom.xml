@@ -79,6 +79,12 @@
 		<artifactId>jstl</artifactId>
 		<version>1.2</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>com.gbrosnan</groupId>
+		<artifactId>neuroph</artifactId>
+		<version>2.9</version>
+	</dependency>
     
     
   </dependencies>

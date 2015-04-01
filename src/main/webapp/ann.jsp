@@ -132,7 +132,14 @@
 		    		</div>
 		    		<div id="train_button">TRAIN NETWORK</div>
 	    		</div>
-	    		<div id="ann_start_column">Network not trained</div>	    	
+	    		<div id="ann_result_column">
+	    			<div id="ann_status_message">Network not trained</div>
+	    			<div id="results_button">VIEW RESULTS</div>
+	    			<div id="ann_results">
+	    			
+	    				
+	    			</div>
+	    		</div>	    	
 	    	</div>    		   
     	</div>
     </div>

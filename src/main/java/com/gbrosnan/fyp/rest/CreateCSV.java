@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import com.gbrosnan.fyp.persistdata.MainMongoRepository;
 import com.gbrosnan.fyp.preprocess.AdjustArraySize;
 import com.gbrosnan.fyp.preprocess.PeakDetect;
 import com.gbrosnan.fyp.preprocess.RepCreator;
+import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/rest/csv")
@@ -39,6 +41,28 @@ public class CreateCSV {
     	//String message = "test";
     	String message = createCSVFileHandler(csvRequestList);
     	return "{\"message\":\"" +  message + "\"}";
+    }
+    
+    @RequestMapping(value = "/getFileNameList", method = RequestMethod.GET)
+    public String createCSVFile() {
+    	
+    	List<String> fileNameList = new ArrayList<String>();
+    	File folder = new File(getFilePath());
+    	File[] listOfFiles = folder.listFiles();
+    	
+    	for(File file : listOfFiles) {
+    		if(file.isFile()){    			
+    			fileNameList.add(file.getName());
+    		}
+    	}
+    	return new Gson().toJson(fileNameList);
+    }
+    
+    private String getFilePath() {
+    	//String filepath = System.getProperty("catalina.base") + "/webapps/fyp-server/csv/";
+    	String filepath = System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv";
+    	
+    	return filepath;
     }
     
     private String createCSVFileHandler(CSVRequestList csvRequestList) {

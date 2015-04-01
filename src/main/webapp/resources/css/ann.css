@@ -322,15 +322,35 @@ body {
 	border-right: dotted 1px grey;
 }
 
-#ann_start_column {
+#ann_result_column {
 	margin-left:420px;
-	height:600px;
-	line-height:300px;
+	min-height:600px;
+	overflow-y:auto;
+}
+
+#ann_status_message {
 	color:red;
 	font-size: 4em;
 	text-align:center;
 	font-weight:bold;
-	overflow-y:auto;
+	margin-top:150px;
+}
+
+#results_button {	
+	width:200px;
+	font-size: 1.4em;
+	/*background: #00a651;*/
+	text-align: center;
+	margin:auto;
+	margin-top: 20px;
+	padding: 15px 0;
+	cursor: pointer;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#results_button:hover {
+	/*background: green;*/
 }
 
 #dropdown_trainfile, #dropdown_testfile {
