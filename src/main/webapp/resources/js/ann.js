@@ -393,6 +393,10 @@ $(document).ready(function() {
 	    $('#train_button').click(function(e){	
 	    	trainNetwork();
 	    	$(this).hide();
+	    	$('#results_button').hide();
+	    	$('#ann_status_message').show();
+	    	$('#ann_results').hide(); 
+	    	
 	    	$('#ann_status_message').text('Training network...');
 	    	$('#ann_status_message').css('color', 'orange');
 	    });
@@ -422,7 +426,9 @@ $(document).ready(function() {
     	    	$('#ann_status_message').text('Network is trained');
     	    	$('#ann_status_message').css('color', '#00a651');
     	    	$('#train_button').show();
-            	console.log(response);
+    	    	$('#results_button').show();
+    	    	renderResults(response);
+    	    	$('#results_button').show();
             },
             error: function(xhr, status, error) {
                 var err = eval("(" + xhr.responseText + ")");
@@ -430,7 +436,50 @@ $(document).ready(function() {
             }
         });
     }
+    
+    $('#results_button').click(function(evt) {
+    	
+    	$(this).hide();
+    	$('#ann_status_message').hide();
+    	$('#ann_results').show();    		
+    });
+    
+    $('#ann_results_close').click(function(evt) {
+    	
+    	$('#ann_status_message').show();
+    	$('#results_button').show();
+    	$('#ann_results').hide();
+    	
+    });
 	
+    function renderResults(results) {
+    	
+    	var htmlString = '';
+    	var color = 'red';
+    	var matches = 0;
+    	for(var result in results) {
+    		
+    		if(results[result][0] == results[result][1]) {
+    			color = '#00a651';
+    			matches ++;
+    		}
+    		else {
+    			color = "red";
+    		}
+    		
+    		htmlString += '' +  
+    				'<div class="ann_results_items_row" style="color:' + color + '">' +
+						'<div class="ann_results_num">' + (parseInt(result) + 1) + '</div>' +
+						'<div class="ann_results_expected">' + results[result][0] + '</div>' +
+						'<div class="ann_results_actual">' + results[result][1]  + '</div>' + 
+					'<div>';
+    	}   	
+    	var precentage = 100 / results.length * matches;
+    	
+    	
+    	$('#ann_results_precent').text(Math.round(precentage) + '%');
+    	$('#ann_results_render').html(htmlString);
+    }
 	
 	
 	

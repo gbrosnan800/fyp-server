@@ -23,7 +23,6 @@ public class RestANN {
     public String trainNetwork(@RequestBody ANN_ConfigData annConfigData) {
     	
     	ann = new ArtificalNeuralNetwork();
-    	System.out.println("training...");
     	ann.configNetwork(annConfigData);
     	ann.trainNetwork();
     	List<List<String>> testResult = ann.testClassificationOfExercises();

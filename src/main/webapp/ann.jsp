@@ -136,8 +136,14 @@
 	    			<div id="ann_status_message">Network not trained</div>
 	    			<div id="results_button">VIEW RESULTS</div>
 	    			<div id="ann_results">
-	    			
-	    				
+	    				<div id="ann_results_close">X</div>
+	    				<div id="ann_results_precent">-%</div>	    					    				
+		    			<div id="ann_results_items">			    					    			
+		    				<div class="ann_results_num ann_results_header">Num</div>
+		    				<div class="ann_results_expected ann_results_header">Excpected</div>
+		    				<div class="ann_results_actual ann_results_header">Actual</div>
+		    				<div id="ann_results_render"></div>
+	    				</div>
 	    			</div>
 	    		</div>	    	
 	    	</div>    		   

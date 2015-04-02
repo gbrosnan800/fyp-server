@@ -81,7 +81,7 @@ body {
 	min-height:500px;
 	height:75%;
 	font-size:0.8em;
-	overflow:hidden;
+	/*overflow:hidden;*/
 }
 
 #ann_menu {
@@ -116,6 +116,7 @@ body {
 }
 #ann_area {
 	margin:30px 10px 0 10px;	
+	overflow:auto;
 }
 
 .csv_area_col {
@@ -347,6 +348,7 @@ body {
 	cursor: pointer;
 	text-decoration: underline;
 	font-weight: bold;
+	display:none;
 }
 
 #results_button:hover {
@@ -448,6 +450,57 @@ body {
 }
 #train_button:hover {
 	background: green;
+}
+
+#ann_results {
+	position: relative;
+	display: none;
+}
+
+#ann_results_precent {
+	text-align: center;
+	font-weight: bold;
+	font-size: 4em;
+	margin-bottom: 30px;
+	
+}
+
+#ann_results_items {
+	width: 350px;
+	margin: auto;
+	text-align: center;
+	font-size: 1.1em;
+	font-weight: bold;
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.ann_results_header {
+	color: #fff;
+}
+
+.ann_results_num, .ann_results_expected, .ann_results_actual {
+	float:left;
+	width: 15%;
+	padding: 2px 0;	
+}
+
+.ann_results_expected {
+	width: 40%;
+}
+
+.ann_results_actual {
+	width: 40%;
+}
+
+#ann_results_close {
+	position:absolute;
+	top:0;right:100px;	
+	color: #00a651; 
+	font-size: 3em;
+	font-weight:bold;
+	cursor: pointer
+	
 }
 
 
