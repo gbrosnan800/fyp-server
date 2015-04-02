@@ -117,6 +117,7 @@ body {
 #ann_area {
 	margin:30px 10px 0 10px;	
 	overflow:auto;
+	display:none;
 }
 
 .csv_area_col {

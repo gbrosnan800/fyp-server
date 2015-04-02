@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/rest/csv")
-public class CreateCSV {
+public class RestCSV {
 
 	@Autowired
 	ExerciseRawRepository exerciseRawRepository;
@@ -43,7 +43,7 @@ public class CreateCSV {
     	return "{\"message\":\"" +  message + "\"}";
     }
     
-    @RequestMapping(value = "/getFileNameList", method = RequestMethod.GET)
+    @RequestMapping(value = "/filenamelist", method = RequestMethod.GET)
     public String createCSVFile() {
     	
     	List<String> fileNameList = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class CreateCSV {
     private String getFilePath() {
     	
     	if(System.getProperty("catalina.base").equals("G:\\eclipse_workspaces\\fyp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0")) {
-    		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv";
+    		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv/";
     	}
     	else {
     		return System.getProperty("catalina.base") + "/webapps/fyp-server/csv/";
@@ -130,7 +130,7 @@ public class CreateCSV {
 
 	private String processCSVFile(List<ProcessedExercise> preProcessedData, String filename) {
 		
-		String result = "CSV process started ";
+		String result = "CSV process started";
 		
 		try {	
 			File directoryPath = new File(getFilePath());

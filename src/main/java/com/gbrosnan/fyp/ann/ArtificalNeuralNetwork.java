@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.neuroph.core.NeuralNetwork;
@@ -51,7 +52,6 @@ public class ArtificalNeuralNetwork {
 		List<List<String>> outputList = new ArrayList<List<String>>(); 
 		List<String> outputItem;		
 		NeuralNetwork testNet = neuralNet;		
-		int row = 0;
 		for(DataSetRow dataSetRow : testingSet.getRows()) {
 			
 			testNet.setInput(dataSetRow.getInput());
@@ -74,10 +74,64 @@ public class ArtificalNeuralNetwork {
 		return outputList;
 	}
 	
+	public String recognizeExercise(DataSet dataset) {
+		
+		List<String> exercisesRecognized = new ArrayList<String>();
+		NeuralNetwork testNet = neuralNet;		
+		int row = 0;
+		for(DataSetRow dataSetRow : dataset.getRows()) {
+			
+			testNet.setInput(dataSetRow.getInput());
+			testNet.calculate();		
+			double[] networkOutput = testNet.getOutput();
+			
+			int actualFirst = (int) Math.round(networkOutput[0]);
+			int actualSecond = (int) Math.round(networkOutput[1]);	
+			exercisesRecognized.add(getExercise(actualFirst, actualSecond));
+		}			
+		return getMode(exercisesRecognized);
+	}
+	
+	private String getMode(List<String> exercisesRecognize) {
+		
+		int bicepCurl = 0, kickBack = 0, latRaise = 0, other = 0;
+		
+		for(String exercise : exercisesRecognize) {
+			System.out.println(exercise);
+			if(exercise.equals("bicep_curl")) {
+				bicepCurl ++;
+			} 
+			else if (exercise.equals("lat_raise")) {
+				latRaise ++;
+			} 
+			else if (exercise.equals("kick_back")) {
+				kickBack ++;
+			}  
+			else {
+				other ++;
+			}
+		}				
+		return getMax(bicepCurl, kickBack, latRaise, other);
+	}
+	
+	private String getMax(int bicepCurl, int kickBack, int latRaise, int other){
+		
+		System.out.println("BC= " + bicepCurl + "   KB= " + kickBack + "     LR= " + latRaise + "    O= " + other);
+		
+		if(bicepCurl > kickBack && bicepCurl > latRaise  && bicepCurl > other) {
+			return "bicep_curl";
+		}
+		else if(kickBack > bicepCurl && kickBack > latRaise  && kickBack > other) {
+			return "kick_back";
+		} 
+		else if(latRaise > bicepCurl && latRaise > kickBack  && latRaise > other) {
+			return "lat_raise";
+		} else {
+			return "unrecognized";
+		}
+	}
 	
 	private String getExercise(int first, int second) {
-		
-		List<String> result = new ArrayList<String>();
 		
 		if(first == 0 && second == 0) {
 			return "bicep_curl";
@@ -95,8 +149,7 @@ public class ArtificalNeuralNetwork {
 	
 	private DataSet getDataSet(String filename, int inputCount, int outputCount) {
 		
-		//String fullFilePath = System.getProperty("catalina.base") + "/webapps/fyp-server/csv/" + filename;
-		String fullFilePath = System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv\\" + filename;
+		String fullFilePath = getFilePath() + filename;
 
 		DataSet dataset = null;
 		try {
@@ -120,6 +173,16 @@ public class ArtificalNeuralNetwork {
 		return learningRule;
 	}
 	
+	
+    private String getFilePath() {
+    	
+    	if(System.getProperty("catalina.base").equals("G:\\eclipse_workspaces\\fyp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0")) {
+    		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv/";
+    	}
+    	else {
+    		return System.getProperty("catalina.base") + "/webapps/fyp-server/csv/";
+    	}
+    }
 	
 	
 	

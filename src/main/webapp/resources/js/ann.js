@@ -4,6 +4,23 @@ $(document).ready(function() {
 	var currentSelectedCollection;
 	var exerciseList = [];
 	
+	
+	$('.ann_menu_item').click(function(evt) {
+		
+		var selected = $(this).text();
+		if(selected == "CREATE CSV") {
+			$('#ann_area').hide();
+			$('#csv_area').fadeIn(1000);
+		} 
+		else {
+			$('#csv_area').hide();
+			$('#ann_area').fadeIn(1000);
+		}
+			
+	}); 
+	
+	
+	
 	getCollectionList();
 	
     $('#clear_list').click(function(e){	
@@ -336,7 +353,7 @@ $(document).ready(function() {
 	function prepareCSVfilesAndNetworkStatus() {
 		
     	$.ajax({
-            url: 'rest/csv/getFileNameList',
+            url: 'rest/csv/filenamelist',
             type: 'GET',
             dataType : 'json',
             success: function(response) {            	
