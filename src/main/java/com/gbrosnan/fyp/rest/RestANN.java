@@ -18,19 +18,39 @@ import com.google.gson.GsonBuilder;
 public class RestANN {
 
 	ArtificalNeuralNetwork ann;
+	List<List<String>> testResult;
 	
-    @RequestMapping(value = "/train", method = RequestMethod.POST)
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+    public String isTrained() {
+    	
+		String status = "untrained";
+		try {
+			String test = ann.toString();
+			status = "trained";
+		}
+		catch (NullPointerException ex) {
+			status = "untrained";
+		}
+    	    	
+    	return "{\"status\":\"" + status + "\"}";
+	}
+	
+	@RequestMapping(value = "/train", method = RequestMethod.POST)
     public String trainNetwork(@RequestBody ANN_ConfigData annConfigData) {
     	
     	ann = new ArtificalNeuralNetwork();
     	ann.configNetwork(annConfigData);
     	ann.trainNetwork();
-    	List<List<String>> testResult = ann.testClassificationOfExercises();
+    	testResult = ann.testClassificationOfExercises();
     	    	
     	return new Gson().toJson(testResult);
     }
     
+	@RequestMapping(value = "/results", method = RequestMethod.GET)
+    public String getResults() {
+    	    	    	
+    	return new Gson().toJson(testResult);
+    }
 
-	
 
 }

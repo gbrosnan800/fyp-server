@@ -331,10 +331,9 @@ $(document).ready(function() {
 	}
 
 	
-	/* TRAIN NETWORK   */
-	
-	getFileNameList();
-	function getFileNameList() {
+	/* TRAIN NETWORK   */	
+	prepareCSVfilesAndNetworkStatus();
+	function prepareCSVfilesAndNetworkStatus() {
 		
     	$.ajax({
             url: 'rest/csv/getFileNameList',
@@ -348,7 +347,42 @@ $(document).ready(function() {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message);
             }
-        });		    
+        });	
+    	
+    	$.ajax({
+            url: 'rest/ann/status',
+            type: 'GET',
+            dataType : 'json',
+            success: function(response) {            	
+            	if(response.status == 'trained') {
+        	    	$('#ann_status_message').text('Network is trained');
+        	    	$('#ann_status_message').css('color', '#00a651');
+        	    	$('#train_button').show();
+        	    	$('#results_button').show();
+        	    	$('#results_button').show();
+        	    	getResults();
+            	}
+            },
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });	
+	}
+	
+	function getResults() {
+		$.ajax({
+	        url: 'rest/ann/results',
+	        type: 'GET',
+	        dataType : 'json',
+	        success: function(response) {            	
+	        	renderResults(response);
+	        },
+	        error: function(xhr, status, error) {
+	            var err = eval("(" + xhr.responseText + ")");
+	            alert(err.Message);
+	        }
+	    });	
 	}
 	
 	function populateDropDowns(fileList) {
@@ -427,8 +461,8 @@ $(document).ready(function() {
     	    	$('#ann_status_message').css('color', '#00a651');
     	    	$('#train_button').show();
     	    	$('#results_button').show();
-    	    	renderResults(response);
     	    	$('#results_button').show();
+    	    	renderResults(response);
             },
             error: function(xhr, status, error) {
                 var err = eval("(" + xhr.responseText + ")");
