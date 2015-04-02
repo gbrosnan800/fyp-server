@@ -81,9 +81,11 @@ public class RestANN {
             	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class); 
             	
             	PreProcessingHandler handler = new PreProcessingHandler();
-            	processedExercise = handler.preprocessRawExerciseForANN(exerciseRaw);
+            	//processedExercise = handler.preprocessRawExerciseForANN(exerciseRaw);
             	
-            	DataSet dataset = new DataSet(200);
+            	processedExercise = handler.preprocessRawExerciseForANN3Axis(exerciseRaw);
+            	
+            	DataSet dataset = new DataSet(600);
             	DataSetRow row; 
             	
             	for(Rep rep : processedExercise.getNormalisedReps()) {
@@ -91,7 +93,7 @@ public class RestANN {
             		List<Double> pointsList = rep.getSamples();
             		
             		double[] points = new double[pointsList.size()];
-            		for(int i = 0 ; i < 200; i ++ ) {
+            		for(int i = 0 ; i < 600; i ++ ) {
             			points[i] = pointsList.get(i);
             		}        		
             		row = new DataSetRow(points);

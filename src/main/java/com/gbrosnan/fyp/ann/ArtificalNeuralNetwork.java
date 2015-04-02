@@ -61,12 +61,12 @@ public class ArtificalNeuralNetwork {
 							
 			int desiredFirst = (int) desiredOutput[0];
 			int desiredSecond = (int) desiredOutput[1];
-			//int desiredThird = (int) desiredOutput[2];
+			int desiredThird = (int) desiredOutput[2];
 			int actualFirst = (int) Math.round(networkOutput[0]);
 			int actualSecond = (int) Math.round(networkOutput[1]);
-			//int actualThird = (int) Math.round(networkOutput[2]);
-			String desiredExercise = getExercise(desiredFirst, desiredSecond);
-			String recognizedExercise = getExercise(actualFirst, actualSecond);
+			int actualThird = (int) Math.round(networkOutput[2]);
+			String desiredExercise = getExercise(desiredFirst, desiredSecond, desiredThird);
+			String recognizedExercise = getExercise(actualFirst, actualSecond, desiredThird);
 			
 			outputItem = new ArrayList<String>();
 			outputItem.add(desiredExercise);
@@ -85,11 +85,12 @@ public class ArtificalNeuralNetwork {
 			
 			testNet.setInput(dataSetRow.getInput());
 			testNet.calculate();		
-			double[] networkOutput = testNet.getOutput();
+			double[] networkOutput = testNet.getOutput();					
 			
 			int actualFirst = (int) Math.round(networkOutput[0]);
 			int actualSecond = (int) Math.round(networkOutput[1]);	
-			exercisesRecognized.add(getExercise(actualFirst, actualSecond));
+			int actualThird = (int) Math.round(networkOutput[2]);
+			exercisesRecognized.add(getExercise(actualFirst, actualSecond, actualThird));
 		}			
 		return getMode(exercisesRecognized);
 	}
@@ -142,6 +143,22 @@ public class ArtificalNeuralNetwork {
 			return "lat_raise";
 		}
 		else if(first == 1 && second == 1) {
+			return "kick_back";
+		}
+		else {
+			return "unkown";
+		}
+	}
+	
+	private String getExercise(int first, int second, int third) {
+		
+		if(first == 0 && second == 0 && third == 0) {
+			return "bicep_curl";
+		}
+		else if(first == 1 && second == 0 && third == 0) {
+			return "lat_raise";
+		}
+		else if(first == 1 && second == 1 && third == 1) {
 			return "kick_back";
 		}
 		else {

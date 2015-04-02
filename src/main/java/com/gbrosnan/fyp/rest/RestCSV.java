@@ -100,14 +100,14 @@ public class RestCSV {
     		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, flatPeakRange, flatPeakHeight);
     		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, outerRangeHeight);
     		
-    		/*
+    		
     		List<Rep> reps3Axis = RepCreator.createRepList3Axis(exerciseRaw.getSensorSampleList(),averages,maximas);
     		List<Rep> reps3AxisNormalized = RepCreator.normalizeReps(reps3Axis);
       		for(Rep rep : reps3AxisNormalized) {	
     			List<Double> adjustedSize = AdjustArraySize.adjustTo(600, rep.getSamples());
     			rep.setSamples(adjustedSize);	
     		}  		
-    		*/
+    		
     		List<Rep> reps = RepCreator.createRepList(averages, maximas);
     		List<Rep> normalizedReps = RepCreator.normalizeReps(reps);	
      		for(Rep rep : normalizedReps) {	
@@ -115,7 +115,7 @@ public class RestCSV {
     			rep.setSamples(adjustedSize);	
     		}
     		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
-    				averages, reps, normalizedReps, "not_sent_to_ann");
+    				averages, reps, reps3AxisNormalized, "not_sent_to_ann");
     		processedData.add(processedExercise);
     	}
     	
@@ -194,10 +194,10 @@ public class RestCSV {
 	private String getOutputValue(String exerciseName) {
 		
 		if(exerciseName.equals("bicep_curl")) {
-			return "00";
+			return "000";
 		}
 		else if(exerciseName.equals("lat_raise")) {
-			return "01";
+			return "100";
 		} 
 		else if(exerciseName.equals("shoulder_shrug")) {
 			return "99";
@@ -209,7 +209,7 @@ public class RestCSV {
 			return "10";
 		} 
 		else if(exerciseName.equals("kick_back")) {
-			return "11";
+			return "111";
 		} 
 		else if(exerciseName.equals("front_raise")) {
 			return "0111";
