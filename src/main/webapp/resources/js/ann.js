@@ -15,6 +15,8 @@ $(document).ready(function() {
 		else {
 			$('#csv_area').hide();
 			$('#ann_area').fadeIn(1000);
+			unbindANNClick();
+			prepareCSVfilesAndNetworkStatus();
 		}
 			
 	}); 
@@ -451,6 +453,14 @@ $(document).ready(function() {
 	    	$('#ann_status_message').text('Training network...');
 	    	$('#ann_status_message').css('color', 'orange');
 	    });
+	}
+	
+	function unbindANNClick() {
+		$('#dropdown_arrow_trainfile').unbind();
+		$('#dropdown_arrow_testfile').unbind();
+		$('#ann_file_menu_item').unbind();
+		$('#train_button').unbind();
+		
 	}
 	
     function trainNetwork() {
