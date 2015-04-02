@@ -29,6 +29,75 @@ private RepCreator() {}
 		return reps;
 	}
 	
+	public static List<Rep> createRepList3Axis(List<SensorSample> rawData, List<Double> averages, List<Integer> maximas) {
+		
+		List<Rep> reps = new ArrayList<Rep>();
+		
+		List<Double> xAxis = new ArrayList<Double>();
+		List<Double> yAxis = new ArrayList<Double>();
+		List<Double> zAxis = new ArrayList<Double>();
+		
+		for(SensorSample sample : rawData) {			
+			xAxis.add(sample.getX());
+			yAxis.add(sample.getY());
+			zAxis.add(sample.getZ());
+		}
+		List<Integer> minimas = getMinimas(averages, maximas);
+		
+		return reps = create3AxisRepList(rawData, maximas, minimas);
+	}
+	
+	private static List<Rep> create3AxisRepList(List<SensorSample> rawData, List<Integer> maximas, List<Integer> minimas) {
+		
+		List<Rep> reps = new ArrayList<Rep>();
+		Rep rep;
+		int start = 0, end = 0;
+		
+		for(int max = 0 ; max < maximas.size() ; max ++) {
+			start = minimas.get(max);
+			end = minimas.get(max + 1);
+			rep = create3AxisRep(rawData, start, end);	
+			reps.add(rep);
+		}
+		return reps;
+	}
+	
+	private static Rep create3AxisRep(List<SensorSample> rawData, int start, int end) {
+		
+		List<Double> points = new ArrayList<Double>();
+		
+		for(int point = start ; point < end ; point ++) {
+			points.add(rawData.get(point).getX());
+		}
+		for(int point = start ; point < end ; point ++) {
+			points.add(rawData.get(point).getY());
+		}
+		for(int point = start ; point < end ; point ++) {
+			points.add(rawData.get(point).getZ());
+		}
+		return new Rep(0, start, 0, end, 0, points);
+	}
+	
+	public static List<Integer> getMinimas(List<Double> averages, List<Integer> maximas) {
+		
+		List<Integer> minimas = new ArrayList<Integer>();
+		int nextMinima;
+		
+		for(int maxima = 0 ; maxima < maximas.size() ; maxima ++) {			
+			if(maxima == 0) {				
+				nextMinima = discoverLowestPoint(averages, 0, maximas.get(maxima));
+			}
+			else {
+				nextMinima = discoverLowestPoint(averages, maximas.get(maxima - 1), maximas.get(maxima));
+			}
+			minimas.add(nextMinima);
+		}
+		nextMinima = discoverLowestPoint(averages, maximas.get(maximas.size() - 1), averages.size());
+		minimas.add(nextMinima);
+		return minimas;
+		
+	}
+	
 	public static List<Rep> normalizeReps(List<Rep> reps) {
 		
 		List<Rep> normalizedReps = new ArrayList<Rep>();

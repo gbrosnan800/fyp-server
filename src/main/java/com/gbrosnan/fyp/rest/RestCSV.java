@@ -99,6 +99,15 @@ public class RestCSV {
     		List<Integer> maximas = PeakDetect.discoverMaximas(averages, maximaStart, maximaRange);
     		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, flatPeakRange, flatPeakHeight);
     		maximas = PeakDetect.filterOuterRangePeaks(averages, maximas, outerRangeHeight);
+    		
+    		/*
+    		List<Rep> reps3Axis = RepCreator.createRepList3Axis(exerciseRaw.getSensorSampleList(),averages,maximas);
+    		List<Rep> reps3AxisNormalized = RepCreator.normalizeReps(reps3Axis);
+      		for(Rep rep : reps3AxisNormalized) {	
+    			List<Double> adjustedSize = AdjustArraySize.adjustTo(600, rep.getSamples());
+    			rep.setSamples(adjustedSize);	
+    		}  		
+    		*/
     		List<Rep> reps = RepCreator.createRepList(averages, maximas);
     		List<Rep> normalizedReps = RepCreator.normalizeReps(reps);	
      		for(Rep rep : normalizedReps) {	

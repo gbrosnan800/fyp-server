@@ -9,7 +9,9 @@ public class Rep {
 	private int endPointIndex;
 	private double endPointValue;
 	private List<Double> samples;
-		
+	
+	public Rep() {}
+	
 	public Rep (int id, int startPointIndex, double startPointValue, int endPointIndex, double endPointValue, List<Double> samples) {
 		setId(id);
 		setStartPointIndex(startPointIndex);

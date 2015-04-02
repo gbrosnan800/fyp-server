@@ -58,11 +58,13 @@ public class ArtificalNeuralNetwork {
 			testNet.calculate();		
 			double[] desiredOutput = dataSetRow.getDesiredOutput();
 			double[] networkOutput = testNet.getOutput();
-			
+							
 			int desiredFirst = (int) desiredOutput[0];
 			int desiredSecond = (int) desiredOutput[1];
+			//int desiredThird = (int) desiredOutput[2];
 			int actualFirst = (int) Math.round(networkOutput[0]);
 			int actualSecond = (int) Math.round(networkOutput[1]);
+			//int actualThird = (int) Math.round(networkOutput[2]);
 			String desiredExercise = getExercise(desiredFirst, desiredSecond);
 			String recognizedExercise = getExercise(actualFirst, actualSecond);
 			
