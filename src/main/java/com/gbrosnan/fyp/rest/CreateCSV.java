@@ -59,10 +59,13 @@ public class CreateCSV {
     }
     
     private String getFilePath() {
-    	//String filepath = System.getProperty("catalina.base") + "/webapps/fyp-server/csv/";
-    	String filepath = System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv";
     	
-    	return filepath;
+    	if(System.getProperty("catalina.base").equals("G:\\eclipse_workspaces\\fyp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0")) {
+    		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv";
+    	}
+    	else {
+    		return System.getProperty("catalina.base") + "/webapps/fyp-server/csv/";
+    	}
     }
     
     private String createCSVFileHandler(CSVRequestList csvRequestList) {
@@ -130,8 +133,7 @@ public class CreateCSV {
 		String result = "CSV process started ";
 		
 		try {	
-			//File directoryPath = new File(System.getProperty("catalina.base") + "/webapps/fyp-server/csv");
-			File directoryPath = new File(System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv");
+			File directoryPath = new File(getFilePath());
 			if (!directoryPath.exists()) {
 				result = "doesn't exist";
 				directoryPath.mkdir();
