@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
+import com.gbrosnan.fyp.objects.StatusMessage;
 import com.gbrosnan.fyp.persistdata.*;
 import com.gbrosnan.fyp.preprocess.PreProcessingHandler;
+
+import java.net.InetAddress;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -105,10 +111,24 @@ public class RestAPI {
     }
     
     @RequestMapping(value = "/rmtest/{collection}", method = RequestMethod.POST)
-    public String rmTest(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
+    public String rmTest(HttpEntity<byte[]> requestEntity, @PathVariable String collection, HttpServletRequest request) {
 		
-		ExerciseRaw exerciseRaw = null;    	
+		ExerciseRaw exerciseRaw = null;    			
 	    try {
+	    	if(!isTrained(request)) {
+	    		return "{\"status\":\"error\",\"server_error\":\"Server Error: Network is not trained\"}";
+	    	}
+
+	    	// CHECK IF TRAINED - if not send error message 
+	    	// DETECT EXERCISE = return preprocessed exercise with name of exercise, test_user, reps etc,  NEED MAXIMA & MINIMA LIST!
+	    	// -------  DATA WILL NEED TO BE ADDED TO EXERCISE OBJECT FOR WEB PAGE ANALYSIS = MAXIMAS & MINIMA LIST
+	    	// CALC SPEED OF LAST REP
+	    	// CALC FORMULA FOR 1RM
+	    	// MARSHAL DATA TO RM-OBJECT - SEND TO MONGO, SENT TO ANDROID
+	    	
+	    	// FOR ROUTINE - MUST CHECK IF TRAINED AND ALSO IF COLLECTION EXISTS, THEN GET LATEST DATA AND COMPARE TO EXERCISE
+	    	
+	    	
 	    	byte[] jsonStringBytes = requestEntity.getBody();
 	    	String jsonString = new String(jsonStringBytes);
 	    	Gson gson = new Gson();
@@ -132,10 +152,14 @@ public class RestAPI {
     }
     
     @RequestMapping(value = "/routine/{collection}", method = RequestMethod.POST)
-    public String routineExercise(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
+    public String routineExercise(HttpEntity<byte[]> requestEntity, @PathVariable String collection, HttpServletRequest request) {
 		
 		ExerciseRaw exerciseRaw = null;    	
 	    try {
+	    	if(!isTrained(request)) {
+	    		return "{\"status\":\"error\",\"server_error\":\"Server Error: Network is not trained\"}";
+	    	}	    	
+	    	
 	    	byte[] jsonStringBytes = requestEntity.getBody();
 	    	String jsonString = new String(jsonStringBytes);
 	    	Gson gson = new Gson();
@@ -155,7 +179,16 @@ public class RestAPI {
     @RequestMapping(value = "/routine/{collection}", method = RequestMethod.GET)
     public String getRroutineInfo(@PathVariable String collection) {
    	
-	    try {   	
+	    try { 
+
+
+	    	
+	    	
+	    	
+	    	// CHECK IF REP EXISTS - IF NOT SEND BACK ERROR MESSAGE
+	    	// GET LATEST RM - DIFFERENCE = NULL SINCE ITS JUST A REQUEST
+	    	// GET THE NEXT WEIGHT TO DO
+	    	// SEND DATA	    	    	    	
 	    	/*
 	    	mainMongoRepository.createCollection(collection);
 	    	mainMongoRepository.insert(exerciseRaw, collection);
@@ -169,4 +202,17 @@ public class RestAPI {
     }
     
     
+    private boolean isTrained(HttpServletRequest request) {
+    	
+    	String hostname = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    	RestTemplate restTemplate = new RestTemplate();
+    	StatusMessage message = restTemplate.getForObject(hostname + "/rest/ann/status",StatusMessage.class);
+
+    	if(message.getStatus().equals("trained")) {
+    		return true;
+    	}
+    	else {
+        	return false;    		
+    	}  	
+    }
 }
