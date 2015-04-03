@@ -103,5 +103,70 @@ public class RestAPI {
     	
     	return "Exercise: " + exercise + "    size: " + exercises.size(); 
     }
-
+    
+    @RequestMapping(value = "/rmtest/{collection}", method = RequestMethod.POST)
+    public String rmTest(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
+		
+		ExerciseRaw exerciseRaw = null;    	
+	    try {
+	    	byte[] jsonStringBytes = requestEntity.getBody();
+	    	String jsonString = new String(jsonStringBytes);
+	    	Gson gson = new Gson();
+	    	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class); 
+	    	
+	    	// Detect and get Processed EX
+	    	// Calc Speed + 1RM + next session weigh
+	    	
+	    	// return 
+	    	
+	    	/*
+	    	mainMongoRepository.createCollection(collection);
+	    	mainMongoRepository.insert(exerciseRaw, collection);      
+	    	*/
+	    	
+	    	return "{\"status\":\"ok\",\"rm\":\"13\",\"difference\":\"+10\",\"next_weight\":\"19\"}";
+	    }
+	    catch(Exception ex) {
+	    	return "{\"status\":\"error\",\"Server Error\":\"" + ex.toString() + "\"}";
+	    }
+    }
+    
+    @RequestMapping(value = "/routine/{collection}", method = RequestMethod.POST)
+    public String routineExercise(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
+		
+		ExerciseRaw exerciseRaw = null;    	
+	    try {
+	    	byte[] jsonStringBytes = requestEntity.getBody();
+	    	String jsonString = new String(jsonStringBytes);
+	    	Gson gson = new Gson();
+	    	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);   
+	    	/*
+	    	mainMongoRepository.createCollection(collection);
+	    	mainMongoRepository.insert(exerciseRaw, collection);
+	    	*/       
+	    	return "{\"status\":\"ok\",\"rm\":\"13\",\"difference\":\"+10\",\"next_weight\":\"19\"}";
+	    }
+	    catch(Exception ex) {
+	    	return "{\"status\":\"error\",\"server_error\":\"Server Error: " + ex.toString() + "\"}";
+	    }
+    
+    }
+    
+    @RequestMapping(value = "/routine/{collection}", method = RequestMethod.GET)
+    public String getRroutineInfo(@PathVariable String collection) {
+   	
+	    try {   	
+	    	/*
+	    	mainMongoRepository.createCollection(collection);
+	    	mainMongoRepository.insert(exerciseRaw, collection);
+	    	*/       
+	    	return "{\"status\":\"ok\",\"rm\":\"13\",\"difference\":\"+10\",\"next_weight\":\"19\"}";
+	    }
+	    catch(Exception ex) {
+	    	return "{\"status\":\"error\",\"server_error\":\"Server Error: " + ex.toString() + "\"}";
+	    }
+    
+    }
+    
+    
 }
