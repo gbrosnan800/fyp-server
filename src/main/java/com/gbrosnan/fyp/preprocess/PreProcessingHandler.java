@@ -6,6 +6,7 @@ import java.util.List;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.Rep;
+import com.gbrosnan.fyp.objects.Routine;
 import com.gbrosnan.fyp.objects.SensorSample;
 
 public class PreProcessingHandler {
@@ -50,10 +51,35 @@ public class PreProcessingHandler {
   		
 		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
 				averages, maximas, reps3Axis, reps3AxisNormalized, "not_sent_to_ann");
+		processedExercise.setWeight(exerciseRaw.getWeight());
 
 		return processedExercise;
 	}
 	
+	public Routine createNewRoutine(ProcessedExercise processedExercise, String collection) {	
+		
+		int time = getTimeLengthOfLastRep(processedExercise);
+		int oneRM = get1RM(processedExercise.getExtractedReps().size(), processedExercise.getWeight());
+		int nextWeight = (int) Math.round(oneRM * 0.75);	
+		Routine routine = new Routine(processedExercise.getUsername(), time, oneRM, nextWeight, processedExercise);		
+		return routine;
+	}
+	
+	private int getTimeLengthOfLastRep(ProcessedExercise processedExercise) {
+		
+		int numOfReps = processedExercise.getExtractedReps().size();	
+		int maximaLast = processedExercise.getMaximas().get(numOfReps - 1);
+		int maximaPenultimate = processedExercise.getMaximas().get(numOfReps - 2);
+		int maximaLastTime = (int) processedExercise.getRawSensorSamples().get(maximaLast).getTimestamp();
+		int maximaPenultimateTime = (int) processedExercise.getRawSensorSamples().get(maximaPenultimate).getTimestamp();	
+		return maximaLastTime - maximaPenultimateTime;
+	}
+	
+	public int get1RM(int numOfReps, double weightLifted) {
+		
+		double oneRM =  weightLifted /(1.0278 - (0.0278 * numOfReps)); 		
+		return (int) Math.round(oneRM);
+	}
 	
 	private List<Double> setAverages(List<SensorSample> rawSensorSamples) {
 		

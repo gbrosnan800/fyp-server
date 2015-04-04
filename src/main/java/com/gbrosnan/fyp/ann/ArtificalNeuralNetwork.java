@@ -100,7 +100,6 @@ public class ArtificalNeuralNetwork {
 		int bicepCurl = 0, kickBack = 0, latRaise = 0, other = 0;
 		
 		for(String exercise : exercisesRecognize) {
-			System.out.println(exercise);
 			if(exercise.equals("bicep_curl")) {
 				bicepCurl ++;
 			} 

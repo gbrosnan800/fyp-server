@@ -84,11 +84,7 @@
 	    				<div id="dropdown_arrow_trainfile"><img src="resources/images/droparrow.png"></div>
 		    			<div id="dropdown_menu_trainfile">
 		    				<div class="ann_file_menu_item">another_file1.csv</div>
-		    				<div class="ann_file_menu_item">another_file2.csv</div>
-		    				<div class="ann_file_menu_item">another_file3.csv</div>
-		    				<div class="ann_file_menu_item">another_file4.csv</div>	 
-		    				<div class="ann_file_menu_item">another_file5.csv</div>
-		    				<div class="ann_file_menu_item">another_file6.csv</div>	   				
+		    				<div class="ann_file_menu_item">another_file2.csv</div>				
 		    			</div>
 	    			</div>
 	    			<div class="dropdown_label">CHOOSE TESTING DATA</div>
@@ -96,26 +92,22 @@
 	    				<div id="dropdown_arrow_testfile"><img src="resources/images/droparrow.png"></div>
 		    			<div id="dropdown_menu_testfile">
 		    				<div class="ann_file_menu_item">another_file1.csv</div>
-		    				<div class="ann_file_menu_item">another_file2.csv</div>
-		    				<div class="ann_file_menu_item">another_file3.csv</div>
-		    				<div class="ann_file_menu_item">another_file4.csv</div>
-		    				<div class="ann_file_menu_item">another_file5.csv</div>
-		    				<div class="ann_file_menu_item">another_file6.csv</div>			    				
+		    				<div class="ann_file_menu_item">another_file2.csv</div>			    				
 		    			</div>
 	    			</div>
 	    			<div id="ann_config_header">ANN CONFIG</div>
 		    		<div id="ann_config">	
 		    			<div class="ann_config_item">
 		    				<div class="ann_config_item_label">Input Perceptrons</div>
-		    				<div class="ann_config_item_input_container"><input id="input_perceptrons" value="200"></div>
+		    				<div class="ann_config_item_input_container"><input id="input_perceptrons" value="600"></div>
 		    			</div>	    				    		
 		    			<div class="ann_config_item">
 		    				<div class="ann_config_item_label">Hidden Perceptrons</div>
-		    				<div class="ann_config_item_input_container"><input id="hidden_perceptrons" value="100"></div>
+		    				<div class="ann_config_item_input_container"><input id="hidden_perceptrons" value="300"></div>
 		    			</div>
 		    			<div class="ann_config_item">
 		    				<div class="ann_config_item_label">Output Perceptrons</div>
-		    				<div class="ann_config_item_input_container"><input id="output_perceptrons" value="2"></div>
+		    				<div class="ann_config_item_input_container"><input id="output_perceptrons" value="3"></div>
 		    			</div>
 		    			<div class="ann_config_item">
 		    				<div class="ann_config_item_label">Learning Rate</div>

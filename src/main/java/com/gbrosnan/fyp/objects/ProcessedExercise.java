@@ -9,6 +9,7 @@ public class ProcessedExercise {
 	private String username;
 	private String exerciseName;
 	private Date date;
+	private double weight;
 	private List<SensorSample> rawSensorSamples;
 	private List<Double> averages;
 	private List<Integer> maximas;
@@ -73,6 +74,14 @@ public class ProcessedExercise {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 
 	public List<SensorSample> getRawSensorSamples() {
