@@ -29,7 +29,7 @@ public class PreProcessingHandler {
 		}			
 		
 		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
-				averages, reps, normalizedReps, "not_sent_to_ann");
+				averages, maximas, reps, normalizedReps, "not_sent_to_ann");
 
 		return processedExercise;
 	}
@@ -40,8 +40,7 @@ public class PreProcessingHandler {
 		List<Integer> maximas = PeakDetect.discoverMaximas(averages, 25, 100);
 		
 		maximas = PeakDetect.filterOutFlatPeaks(averages, maximas, 100, 0.20);
-		
-		
+				
 		List<Rep> reps3Axis = RepCreator.createRepList3Axis(exerciseRaw.getSensorSampleList(),averages,maximas);
 		List<Rep> reps3AxisNormalized = RepCreator.normalizeReps(reps3Axis);
   		for(Rep rep : reps3AxisNormalized) {	
@@ -50,12 +49,11 @@ public class PreProcessingHandler {
 		}  	
   		
 		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
-				averages, reps3Axis, reps3AxisNormalized, "not_sent_to_ann");
+				averages, maximas, reps3Axis, reps3AxisNormalized, "not_sent_to_ann");
 
 		return processedExercise;
 	}
 	
-
 	
 	private List<Double> setAverages(List<SensorSample> rawSensorSamples) {
 		

@@ -115,7 +115,7 @@ public class RestCSV {
     			rep.setSamples(adjustedSize);	
     		}
     		ProcessedExercise processedExercise = new ProcessedExercise(exerciseRaw.getUsername(), exerciseRaw.getExerciseName(), exerciseRaw.getDate(), exerciseRaw.getSensorSampleList(), 
-    				averages, reps, reps3AxisNormalized, "not_sent_to_ann");
+    				averages, maximas, reps, reps3AxisNormalized, "not_sent_to_ann");
     		processedData.add(processedExercise);
     	}
     	

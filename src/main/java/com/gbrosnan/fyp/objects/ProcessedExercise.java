@@ -11,6 +11,7 @@ public class ProcessedExercise {
 	private Date date;
 	private List<SensorSample> rawSensorSamples;
 	private List<Double> averages;
+	private List<Integer> maximas;
 	private List<Rep> extractedReps;
 	private List<Rep> normalisedReps;
 	private String exerciseDetected;
@@ -27,12 +28,14 @@ public class ProcessedExercise {
 		setRawSensorSamples(rawSensorSamples);
 	}	
 	
-	public ProcessedExercise(String username, String exerciseName, Date date, List<SensorSample> rawSensorSamples, List<Double> averages, List<Rep> extractedReps, List<Rep> normalisedReps, String exerciseDetected) {
+	public ProcessedExercise(String username, String exerciseName, Date date, List<SensorSample> rawSensorSamples, List<Double> averages, List<Integer> maximas,
+			List<Rep> extractedReps, List<Rep> normalisedReps, String exerciseDetected) {
 		
 		setUsername(username);
 		setExerciseName(exerciseName);
 		setDate(date);
 		setRawSensorSamples(rawSensorSamples);
+		setMaximas(maximas);
 		setAverages(averages);
 		setExtractedReps(extractedReps);
 		setNormalisedReps(normalisedReps);
@@ -86,6 +89,14 @@ public class ProcessedExercise {
 
 	public void setAverages(List<Double> averages) {
 		this.averages = averages;
+	}
+
+	public List<Integer> getMaximas() {
+		return maximas;
+	}
+
+	public void setMaximas(List<Integer> maximas) {
+		this.maximas = maximas;
 	}
 
 	public List<Rep> getExtractedReps() {
