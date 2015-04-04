@@ -61,10 +61,51 @@ public class PreProcessingHandler {
 		int time = getTimeLengthOfLastRep(processedExercise);
 		int oneRM = get1RM(processedExercise.getExtractedReps().size(), processedExercise.getWeight());
 		int nextWeight = (int) Math.round(oneRM * 0.75);	
-		Routine routine = new Routine(processedExercise.getUsername(), time, oneRM, nextWeight, processedExercise);		
-		return routine;
+		return new Routine(processedExercise.getUsername(), time, oneRM, nextWeight, processedExercise);		
 	}
 	
+	public Routine updateRoutine(Routine currentRoutine, ProcessedExercise processedExercise) {
+		
+		int nextWeight;
+		int oneRM = currentRoutine.getCurrent1RM();
+		int oneRMtime = currentRoutine.getTimeOfLastRep();		
+		List<Integer> repTimes = getRepTimes(processedExercise);
+		int slowerRep = findFirstSlowerRep(repTimes, oneRMtime);
+		if(slowerRep == 99) {
+			nextWeight = (int) Math.ceil(processedExercise.getWeight() * 1.1);
+			oneRM = get1RM(processedExercise.getExtractedReps().size() + 1 , processedExercise.getWeight());
+		}
+		else {			
+			oneRM = get1RM(slowerRep, processedExercise.getWeight());
+			nextWeight = (int) Math.round(oneRM * 0.75);			
+		}		
+		return new Routine(processedExercise.getUsername(), oneRMtime, oneRM, nextWeight, processedExercise);
+	}
+	
+	private List<Integer> getRepTimes(ProcessedExercise exerciseProcessed) {
+		
+		List<Integer> repTimes = new ArrayList<Integer>();
+		List<Integer> maximas = exerciseProcessed.getMaximas();
+		int previousTime, currentTime;
+		
+		for(int maxima = 1 ; maxima < maximas.size() ; maxima ++ ) {
+			currentTime = (int) exerciseProcessed.getRawSensorSamples().get(maximas.get(maxima)).getTimestamp();
+			previousTime = (int) exerciseProcessed.getRawSensorSamples().get(maximas.get(maxima - 1)).getTimestamp();
+			repTimes.add(currentTime - previousTime);
+		}
+		return repTimes;
+	}
+	
+	private int findFirstSlowerRep(List<Integer> repTimes, int oneRMtime) {
+		
+		for(int rep = 0 ; rep < repTimes.size() ; rep ++ ) {
+			if(repTimes.get(rep) > oneRMtime) {
+				return rep + 1;
+			}			
+		}	
+		return 99;
+	}
+		
 	private int getTimeLengthOfLastRep(ProcessedExercise processedExercise) {
 		
 		int numOfReps = processedExercise.getExtractedReps().size();	
@@ -76,7 +117,7 @@ public class PreProcessingHandler {
 	}
 	
 	public int get1RM(int numOfReps, double weightLifted) {
-		
+			
 		double oneRM =  weightLifted /(1.0278 - (0.0278 * numOfReps)); 		
 		return (int) Math.round(oneRM);
 	}

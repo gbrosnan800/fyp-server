@@ -108,13 +108,13 @@ public class RestANN {
 	    		return "{\"status\":\"error\",\"server_error\":\"Server Error: Network is not trained\"}";
 	    	}
 	    	if(routineRepository.isCreated(collection)) {
-	    		return "{\"status\":\"error\",\"server_error\":\"Collecion already exists!\"}";
+	    		return "{\"status\":\"error\",\"server_error\":\"Collection already exists!\"}";
 	    	}
 	    	
     		ExerciseRaw exerciseRaw = transferData(requestEntity);
     		PreProcessingHandler handler = new PreProcessingHandler();	    		
     		ProcessedExercise exerciseProcessed = handler.preprocessRawExerciseForANN3Axis(exerciseRaw);    		
-    		String detectedExercise = detectExercise(exerciseProcessed);	
+    		String detectedExercise = detectExercise(exerciseProcessed);	    		
     		exerciseProcessed.setExerciseDetected(detectedExercise);
     		
     		Routine routine = handler.createNewRoutine(exerciseProcessed, collection);
@@ -130,34 +130,25 @@ public class RestANN {
     @RequestMapping(value = "/routine/{collection}", method = RequestMethod.POST)
     public String routineExercise(HttpEntity<byte[]> requestEntity, @PathVariable String collection) {
 		
-		ExerciseRaw exerciseRaw = null;    	
 	    try {
 	    	if(!isTrained()) {
 	    		return "{\"status\":\"error\",\"server_error\":\"Server Error: Network is not trained\"}";
 	    	}	    
-	    	if(routineRepository.isCreated(collection)) {
-	    		return "{\"status\":\"error\",\"server_error\":\"Collecion already exists!\"}";
+	    	if(!routineRepository.isCreated(collection)) {
+	    		return "{\"status\":\"error\",\"server_error\":\"Collection doesn't exist - Do 1RM test first\"}";
 	    	}
-	    	
-	    	byte[] jsonStringBytes = requestEntity.getBody();
-	    	String jsonString = new String(jsonStringBytes);
-	    	Gson gson = new Gson();
-	    	exerciseRaw = gson.fromJson(jsonString, ExerciseRaw.class);   
-	    	/*
-	    	mainMongoRepository.createCollection(collection);
-	    	mainMongoRepository.insert(exerciseRaw, collection);
-	    	*/       
-	    	
-	    	
-	    	// CHECK IF TRAINED - if not send error message 
-	    	// DETECT EXERCISE = return preprocessed exercise with name of exercise, test_user, reps etc,  NEED MAXIMA & MINIMA LIST!
-	    	// -------  DATA WILL NEED TO BE ADDED TO EXERCISE OBJECT FOR WEB PAGE ANALYSIS = MAXIMAS & MINIMA LIST
-	    	// CALC SPEED OF LAST REP
-	    	// CALC FORMULA FOR 1RM
-	    	// MARSHAL DATA TO RM-OBJECT - SEND TO MONGO, SENT TO ANDROID
-	    	
-	    	// FOR ROUTINE - MUST CHECK IF TRAINED AND ALSO IF COLLECTION EXISTS, THEN GET LATEST DATA AND COMPARE TO EXERCISE
-	    	return "{\"status\":\"ok\",\"rm\":\"13\",\"difference\":\"+10\",\"next_weight\":\"19\"}";
+    		ExerciseRaw exerciseRaw = transferData(requestEntity);
+    		PreProcessingHandler handler = new PreProcessingHandler();	    		
+    		ProcessedExercise exerciseProcessed = handler.preprocessRawExerciseForANN3Axis(exerciseRaw);    		
+    		String detectedExercise = detectExercise(exerciseProcessed);	    		
+    		exerciseProcessed.setExerciseDetected(detectedExercise);       		
+
+    		Routine currentRoutine = routineRepository.getLatestData(collection);
+    		Routine updatedRoutine = handler.updateRoutine(currentRoutine, exerciseProcessed);
+    		routineRepository.insert(updatedRoutine, collection);  
+    		
+    		String differenceFromPrevious1RM = getDifferenceFromPrevious1RM(updatedRoutine.getCurrent1RM() - currentRoutine.getCurrent1RM());
+	    	return updatedRoutine.toJsonString(differenceFromPrevious1RM);
 	    }
 	    catch(Exception ex) {
 	    	return "{\"status\":\"error\",\"server_error\":\"Server Error: " + ex.toString() + "\"}";
@@ -165,15 +156,26 @@ public class RestANN {
     
     }
     
+    private String getDifferenceFromPrevious1RM(int difference) {
+		if(difference > 0) {
+			return "(+" + difference + "kg)";
+		}
+		else if(difference < 0) {
+			return "(-" + difference + "kg)";
+		} 
+		else {
+			return "(No change)";
+		}
+    }
+    
     @RequestMapping(value = "/routine/{collection}", method = RequestMethod.GET)
     public String getRroutineInfo(@PathVariable String collection) {
    	    		
 	    try { 
 	    	if(!routineRepository.isCreated(collection)) {
-	    		return "{\"status\":\"error\",\"server_error\":\"Collecion not found\"}";
+	    		return "{\"status\":\"error\",\"server_error\":\"Collection not found\"}";
 	    	}
 	    	Routine routine = routineRepository.getLatestData(collection);
-	    	System.out.println(routine.toJsonString(""));
 	    	return routine.toJsonString("");
 	    }
 	    catch(Exception ex) {
@@ -204,8 +206,8 @@ public class RestANN {
     		}        		
     		row = new DataSetRow(points);
     		dataset.addRow(row);
-    	}        	
-    	return ann.recognizeExercise(dataset);            	
+    	}       
+    	return ann.recognizeExercise(dataset);         	
     }
 
 
