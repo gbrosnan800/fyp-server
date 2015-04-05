@@ -49,5 +49,8 @@ public class RoutineRepository {
 		return new ArrayList<String>(mongoTemplate.getCollectionNames());
 	}
 	
+	public List<Routine> getRoutinesFromCollection(String collectionName) {	
+		return new ArrayList<Routine>(mongoTemplate.findAll(Routine.class, collectionName));
+	}	
 	
 }

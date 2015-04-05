@@ -1,0 +1,292 @@
+/* feedback.css - fyp */
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    height: 100%;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    color:#ffffff;
+    background: #2f2f2f;
+    position:relative;
+    overflow-x:hidden;
+    min-width:300px
+}
+
+#main_page_area {
+    height: 100%;
+    background: #b0b0b0;
+    background-image: url('../images/DB_9998.jpg');
+    overflow:auto;
+}
+
+#menu {
+    position: absolute;
+    top:10px;left:0;
+    width:100%;
+   /* background: #00a651;*/
+}
+
+#logo {
+    float:left;
+    padding-left: 50px;
+    background: #00a651;
+}
+
+#menu_link_container {
+	float:right;
+}
+
+#menu a {
+    float:left;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 20px 40px;
+    position: relative;
+}
+
+#menu a img {
+    position: absolute;
+    left: 12px;
+    top:18px;
+}
+
+#menu a:hover {
+    background: #00a651;
+}
+
+#last_menu_item {
+    margin-right: 50px;
+}
+
+/****** CONTROL PANEL  *****/
+
+#control_panel_button {
+    position: absolute;
+    top:80px;right:80px;
+    background: #fff;
+    width: 200px;
+    color:#00a651;
+    cursor: pointer;
+}
+
+#control_panel_button_img {
+    float:left;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+#control_panel_button_txt {
+    float:right;
+    margin-right: 35px;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+#control_panel {
+    position: absolute;
+    width: 500px;
+    height:800px;
+    right:-500px;top: 80px;
+    background: #2E3740;
+    font-size: 0.9em;
+    z-index:99;
+}
+
+#control_panel_header {
+    padding: 20px 0;
+    border-bottom: solid 1px lightgray;
+    text-align: center;
+    position: relative;
+}
+
+#control_panel_header img {
+    position: absolute;
+    top:10px;right:25px;
+    cursor: pointer;
+}
+
+#control_panel_inner {
+    width:100%;
+    height: 693px;
+}
+
+#control_panel_col_l {
+    float: left;
+    width: 140px;
+    height: 100%;
+    border-right: solid 1px grey;
+    padding-top: 50px;
+    margin-left:20px;
+}
+
+#control_panel_col_r {
+    float: left;
+    width: 300px;
+    height: 100%;
+    text-align:center;
+    margin:20px 15px 0 15px;
+    overflow-y:auto;
+}
+
+.control_panel_menu_item {
+    padding:20px 10px 10px 0;
+    text-align: right;
+    border-bottom: solid 1px grey;
+    cursor: pointer;
+}
+
+#control_panel_col_r_header {
+	font-size:1.2em;
+	text-decoration:underline;
+	margin-bottom:50px;
+}
+
+.control_panel_col_r_col_item {
+	padding: 15px 0 7px 0;
+	border-bottom:dotted 1px grey; 
+	cursor:pointer
+}
+
+.control_panel_col_r_col_item:hover {
+	border-bottom:solid 1px #fff;
+}
+
+#collect_set_list_header {
+	width:100%;
+	overflow:auto;
+	font-size:0.8em;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
+#collect_set_list_header div {
+	float:left;
+	text-align:center;
+}
+
+#collect_set_list_header_id {
+	width:20%;
+}
+
+#collect_set_list_header_name {
+	width:60%;
+}
+
+#collect_set_list_header_reps {
+	width:20%;	
+}
+
+#collect_set_list {
+	
+}
+
+.collect_set_list_item {
+	width:100%;
+	overflow:auto;
+	font-style:italic;
+	padding: 15px 0 7px 0;
+	border-bottom:dotted 1px grey; 
+	cursor:pointer
+}
+
+.collect_set_list_item:hover {
+	border-bottom:solid 1px #fff;
+}
+
+.collect_set_list_item div {
+	float:left;
+	text-align:center;
+}
+
+.collect_set_list_item_id { 
+	width:20%;
+}
+
+.collect_set_list_item_name {
+	width:60%;
+}
+
+.collect_set_list_item_reps {
+	width:20%;
+}
+
+
+/* MAIN PAGE AREA */
+#feedback_page_area {
+	margin: 135px 50px 0 50px;	
+	/*border:dotted white 1px;*/
+}
+
+#current_collection_name {
+	font-size:1.1em;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.routine_header {
+	border: solid 1px darkgreen;
+	background: #00a651;
+	cursor:pointer;
+	padding: 10px 0 10px 20px;	
+	overflow: auto;	
+}
+.routine_header:hover {
+	background: darkgreen;	
+}
+
+.routine_info_header_item {
+	float: left;
+	font-size: 0.9em;
+	margin-right: 30px;
+}
+
+.routine_info_header_label, .routine_info_leader_info {
+	float:left;
+}
+
+.routine_info_header_label {
+	font-weight:bold;
+	padding-right: 5px;
+}
+
+.routine_info {
+	/*display:none;*/
+	background: lightgrey;
+	overflow: auto;
+	padding: 10px 30px 30px 30px;
+}
+
+.routine_info_line {
+	color: #000;
+	font-size: 0.8em;
+	padding: 2px;
+}
+
+.routine_info_label {
+	float:left;
+	font-weight:bold;
+	padding-right: 5px;
+}
+
+.routine_info_info {
+	float: left;
+}
+
+.routine_info_chart {
+	width: auto;
+	min-width:600px;
+	height: 150px;
+	margin-top: 5px;
+	/*border: dotted grey 1px;*/
+}
+
+
+
+
+
+

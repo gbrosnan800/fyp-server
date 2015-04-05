@@ -12,9 +12,9 @@
     <script type="text/javascript" src="resources/js/jqplot.canvasAxisTickRenderer.min.js"></script>
     <script type="text/javascript" src="resources/js/jqplot.categoryAxisRenderer.min.js"></script>
     <script type="text/javascript" src="resources/js/jqplot.pointLabels.min.js"></script>
-    <script type="text/javascript" src="resources/js/main.js"></script>
+    <script type="text/javascript" src="resources/js/analysis.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/jquery.jqplot.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/analysis.css"/>
 </head>
 <body>
     <div id="menu">
@@ -23,7 +23,7 @@
 	        <a href="index.jsp"><img src="resources/images/home.png" height="26">HOME</a>
 	        <a href="analysis.jsp"><img src="resources/images/analysis.png" height="26">DATA ANALYSIS</a>
 	        <a href="ann.jsp"><img src="resources/images/ann.png" height="26">ANN</a>
-	        <a href="" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
+	        <a href="feedback.jsp" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
         </div>
     </div>
     <div id="control_panel_button"><div id="control_panel_button_img"><img src="resources/images/button-green.png"></div><div id="control_panel_button_txt">CONTROL PANEL</div></div>

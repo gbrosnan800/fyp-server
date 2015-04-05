@@ -65,12 +65,22 @@
 		$('#collect_set_list div').remove();
 		var htmlString = '';
 		for(var item in collectionList) {			
-			if(!(collectionList[item] == 'exercises' || collectionList[item] == 'system.indexes')) {
+			if(!(collectionList[item] == 'exercises' || collectionList[item] == 'system.indexes' || isRoutine(collectionList[item]))) {
 				htmlString += '<div class="control_panel_col_r_col_item">' + collectionList[item]+ '</div>';
 			}
 		}
 		$('#collection_list').html(htmlString);
 		assignClicksToCollectionList();
+	}
+	
+	function isRoutine(collectionName) {
+		
+		if(collectionName.length >= 7) {
+			if(collectionName.substring(0,7) == 'routine') {
+				return true;
+			}
+		}
+		return false;		
 	}
 	
 	function assignClicksToCollectionList() {

@@ -17,6 +17,7 @@ import com.gbrosnan.fyp.objects.ExerciseWebObject;
 import com.gbrosnan.fyp.objects.ProcessedExercise;
 import com.gbrosnan.fyp.objects.ExerciseRaw;
 import com.gbrosnan.fyp.objects.Rep;
+import com.gbrosnan.fyp.objects.Routine;
 import com.gbrosnan.fyp.persistdata.*;
 import com.gbrosnan.fyp.preprocess.AdjustArraySize;
 import com.gbrosnan.fyp.preprocess.PeakDetect;
@@ -30,6 +31,9 @@ public class WebAPI {
 
 	@Autowired
 	MainMongoRepository mainMongoRepository;
+	
+	@Autowired
+	RoutineRepository routineRepository;
 	
 	
     @RequestMapping(value = "/2", method = RequestMethod.GET)
@@ -91,5 +95,12 @@ public class WebAPI {
     	processedExercise.setNormalisedReps(RepCreator.normalizeReps(normalizedReps));
     	return processedExercise;
     } 
+    
+    @RequestMapping(value = "/routine/{collectionName}", method = RequestMethod.GET)
+    public List<Routine> getRoutine(@PathVariable String collectionName ) {	    	
+    	return routineRepository.getRoutinesFromCollection(collectionName);
+    } 
+    
+    
        
 }
