@@ -99,7 +99,7 @@
 	            success: function(response) {
 	            	console.log(response);
 	            	renderCollection(response, collectionname);
-	            	assignClicksToCollection();
+	            	assignClicksToCollection(response);
 	            },
 	            error: function(xhr, status, error) {
 	                var err = eval("(" + xhr.responseText + ")");
@@ -119,7 +119,7 @@
 			
 			htmlString += '' +
 				'<div class="routine" id="routine_' + (parseInt(routine) + 1) + '">' +
-					'<div class="routine_header" id="routine_num">' +
+					'<div class="routine_header" id="routine_num_' + (parseInt(routine) + 1) + '">' +
 						'<div class="routine_info_header_item">' +
 							'<div class="routine_info_header_label">No:</div>' +
 							'<div class="routine_info_leader_info">' + routineList[routine].id + '</div>'	+				
@@ -167,20 +167,30 @@
 				'</div>';								
 		}
 		$('#routine_render').html(htmlString);
-		
+		/*
 		for(var routine in routineList ) {
 			var element = 'routine_info_' + (parseInt(routine) + 1) + '_chart';
 			plotGraph_RawData(routineList[routine].processedExercise, element );
 		}
-		
-		
+		*/
 	}
 	
-	function assignClicksToCollection() {
+	function assignClicksToCollection(routineList) {
 	
 		$('.routine_header').unbind();
 		$('.routine_header').click(function(e) {
-			$(this).parent().children('.routine_info').slideToggle('slow');
+			var id = $(this).attr('id');
+			var idSplit = id.split('_');
+			var idNum = idSplit[2];
+
+			
+			$(this).parent().children('.routine_info').slideToggle('slow', function() {
+				var element = 'routine_info_' + idNum + '_chart';
+				plotGraph_RawData(routineList[idNum-1].processedExercise, element );
+			});
+			
+			
+			
 		});
 		
 	}
@@ -197,12 +207,12 @@
 		}
 		console.log(element);
 		$('#' + element).html('');
-		
+		$('#' + element).width('auto');
 
 		$.jqplot(element,  [x,y,z], { 	
 			
 			title: false,
-			animate: false,
+			animate: true,
 			series: [{color:'#00a651'}]	,
 			seriesDefaults: {
 				smooth:true,
@@ -229,7 +239,7 @@
 				background:'#fff'
 			}
 		});
-		$('#' + element).parent().hide();
+		//$('#' + element).parent().hide();
 	}
 	 
 	 

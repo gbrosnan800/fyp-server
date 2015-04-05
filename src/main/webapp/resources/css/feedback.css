@@ -255,7 +255,7 @@ body {
 }
 
 .routine_info {
-	/*display:none;*/
+	display:none;
 	background: lightgrey;
 	overflow: auto;
 	padding: 10px 30px 30px 30px;
