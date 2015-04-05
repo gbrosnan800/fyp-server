@@ -2,7 +2,6 @@
 
 html {
     height: 100%;
-    overflow-y: scroll;
 }
 
 body {
@@ -13,6 +12,7 @@ body {
     background: #2f2f2f;
     position:relative;
     overflow-x:hidden;
+    overflow-y:scroll;
     min-width:300px
 }
 

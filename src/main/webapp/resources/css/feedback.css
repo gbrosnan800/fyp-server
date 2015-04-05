@@ -2,7 +2,7 @@
 
 html {
     height: 100%;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
 }
 
 body {
@@ -13,6 +13,7 @@ body {
     background: #2f2f2f;
     position:relative;
     overflow-x:hidden;
+    overflow-y:scroll;
     min-width:300px
 }
 
@@ -20,7 +21,6 @@ body {
     height: 100%;
     background: #b0b0b0;
     background-image: url('../images/DB_9998.jpg');
-    overflow:auto;
 }
 
 #menu {
@@ -218,7 +218,8 @@ body {
 
 /* MAIN PAGE AREA */
 #feedback_page_area {
-	margin: 135px 50px 0 50px;	
+	margin: 0px 50px 0 50px;	
+	padding: 150px 0 350px 0;
 	/*border:dotted white 1px;*/
 }
 
