@@ -66,7 +66,7 @@ public class ArtificalNeuralNetwork {
 			int actualSecond = (int) Math.round(networkOutput[1]);
 			int actualThird = (int) Math.round(networkOutput[2]);
 			String desiredExercise = getExercise(desiredFirst, desiredSecond, desiredThird);
-			String recognizedExercise = getExercise(actualFirst, actualSecond, desiredThird);
+			String recognizedExercise = getExercise(actualFirst, actualSecond, actualThird);
 			
 			outputItem = new ArrayList<String>();
 			outputItem.add(desiredExercise);
