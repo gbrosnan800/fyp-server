@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import junit.framework.TestCase;
 import com.gbrosnan.fyp.preprocess.AdjustArraySize;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-/*@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/rest-servlet.xml" })*/
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/rest-servlet.xml" })
 public class AdjustArraySizeTest extends TestCase {
 
 	List<Double> testList;
