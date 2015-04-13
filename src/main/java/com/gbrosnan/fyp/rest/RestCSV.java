@@ -202,29 +202,11 @@ public class RestCSV {
 		else if(exerciseName.equals("lat_raise")) {
 			return "100";
 		} 
-		else if(exerciseName.equals("shoulder_shrug")) {
-			return "99";
-		} 
-		else if(exerciseName.equals("back_fly")) {
-			return "99";
-		} 
-		else if(exerciseName.equals("one_arm_row")) {
-			return "10";
-		} 
 		else if(exerciseName.equals("kick_back")) {
 			return "111";
 		} 
-		else if(exerciseName.equals("front_raise")) {
-			return "0111";
-		} 
-		else if(exerciseName.equals("seated_tricep")) {
-			return "1000";
-		} 
-		else if(exerciseName.equals("shoulder_press")) {
-			return "1001";
-		} 
 		else {
-			return "1010";
+			return "101";
 		} 
 	}
 
