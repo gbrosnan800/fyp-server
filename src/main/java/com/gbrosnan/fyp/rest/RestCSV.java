@@ -61,7 +61,7 @@ public class RestCSV {
     private String getFilePath() {
     	
     	if(System.getProperty("catalina.base").equals("G:\\eclipse_workspaces\\fyp\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0")) {
-    		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv/";
+    		return System.getProperty("catalina.base") + "\\wtpwebapps\\fyp-server\\csv\\";
     	}
     	else if(System.getProperty("catalina.base").equals("/home/gerry/development/fyp-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0")) {
     		return System.getProperty("catalina.base") + "/wtpwebapps/fyp-server/csv/";
