@@ -275,7 +275,7 @@ $(document).ready(function() {
 		var summarizedList = [];
 		if( bicep_curl > 0 ) {
 			summarizedItem = {
-				'output' : 1,
+				'output' : '000',
 				'exercise' : 'bicep_curl',
 				'reps' : bicep_curl
 				}
@@ -283,7 +283,7 @@ $(document).ready(function() {
 		}
 		if( lat_raise > 0 ) {
 			summarizedItem = {
-				'output' : 10,
+				'output' : '100',
 				'exercise' : 'lat_raise',
 				'reps' : lat_raise
 				}
@@ -299,7 +299,7 @@ $(document).ready(function() {
 		}
 		if( back_fly > 0 ) {
 			summarizedItem = {
-				'output' : 1000,
+				'output' : 11111,
 				'exercise' : 'back_fly',
 				'reps' : back_fly
 				}
@@ -307,7 +307,7 @@ $(document).ready(function() {
 		}
 		if( one_arm_row > 0 ) {
 			summarizedItem = {
-				'output' : 101,
+				'output' : 11111,
 				'exercise' : 'one_arm_row',
 				'reps' : one_arm_row
 				}
@@ -315,7 +315,7 @@ $(document).ready(function() {
 		}
 		if( kick_back > 0 ) {
 			summarizedItem = {
-				'output' : 110,
+				'output' : 11111,
 				'exercise' : 'kick_back',
 				'reps' : kick_back
 				}
@@ -331,7 +331,7 @@ $(document).ready(function() {
 		}
 		if( seated_tricep > 0 ) {
 			summarizedItem = {
-				'output' : 1000,
+				'output' : 11111,
 				'exercise' : 'seated_tricep',
 				'reps' : seated_tricep
 				}
@@ -339,7 +339,7 @@ $(document).ready(function() {
 		}
 		if( shoulder_press > 0 ) {
 			summarizedItem = {
-				'output' : 1001,
+				'output' : 11111,
 				'exercise' : 'shoulder_press',
 				'reps' : shoulder_press
 				}
