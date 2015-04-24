@@ -96,6 +96,7 @@
   </dependencies>
   <build>
     <finalName>fyp-server</finalName>
+    <!-- 
     <plugins>
     	<plugin>
   		<groupId>org.codehaus.mojo</groupId>
@@ -116,5 +117,6 @@
         </executions>  	
     	</plugin>
     </plugins>
+    -->
   </build>
 </project>
