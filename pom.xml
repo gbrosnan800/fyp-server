@@ -11,10 +11,10 @@
   <dependencies>
   	
   	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>javax.servlet-api</artifactId>
-		<version>3.1.0</version>
-		<scope>test</scope>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>javax.servlet-api</artifactId>
+	  <version>3.1.0</version>
+	  <scope>test</scope>
 	</dependency>
 	
     <dependency>
@@ -96,27 +96,5 @@
   </dependencies>
   <build>
     <finalName>fyp-server</finalName>
-    <!-- 
-    <plugins>
-    	<plugin>
-  		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>cobertura-maven-plugin</artifactId>
-		<version>2.7</version>
-		<configuration>
-	        <formats>
-	            <format>xml</format>
-	        </formats>
-        </configuration>
-        <executions>
-            <execution>
-                <phase>package</phase>
-                <goals>
-                    <goal>cobertura</goal>
-                </goals>
-            </execution>
-        </executions>  	
-    	</plugin>
-    </plugins>
-    -->
   </build>
 </project>
