@@ -106,7 +106,7 @@ $(document).ready(function() {
 		$('#collection_list').html('');
 		var htmlString = '';
 		for(var item in collectionList) {			
-			if(!(collectionList[item] == 'exercises' || collectionList[item] == 'system.indexes')) {
+			if(!(collectionList[item] == 'exercises' || collectionList[item] == 'system.indexes' || collectionList[item].indexOf('routine') > -1)) {
 				htmlString += '<div class="csv_area_collection_item">' + collectionList[item]+ '</div>';
 			}
 		}
@@ -291,7 +291,7 @@ $(document).ready(function() {
 		}
 		if( shoulder_shrug > 0 ) {
 			summarizedItem = {
-				'output' : 111,
+				'output' : 11111,
 				'exercise' : 'shoulder_shrug',
 				'reps' : shoulder_shrug
 				}
@@ -315,7 +315,7 @@ $(document).ready(function() {
 		}
 		if( kick_back > 0 ) {
 			summarizedItem = {
-				'output' : 11111,
+				'output' : 111,
 				'exercise' : 'kick_back',
 				'reps' : kick_back
 				}
