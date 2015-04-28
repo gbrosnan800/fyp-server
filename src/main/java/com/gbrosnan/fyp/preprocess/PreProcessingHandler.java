@@ -71,7 +71,7 @@ public class PreProcessingHandler {
 		int oneRMtime = currentRoutine.getTimeOfLastRep();		
 		List<Integer> repTimes = getRepTimes(processedExercise);
 		int slowerRep = findFirstSlowerRep(repTimes, oneRMtime);
-		if(slowerRep == 99) {
+		if(slowerRep < 0) {
 			nextWeight = (int) Math.ceil(processedExercise.getWeight() * 1.1);
 			oneRM = get1RM(processedExercise.getExtractedReps().size() + 1 , processedExercise.getWeight());
 		}
@@ -100,10 +100,10 @@ public class PreProcessingHandler {
 		
 		for(int rep = 0 ; rep < repTimes.size() ; rep ++ ) {
 			if(repTimes.get(rep) > oneRMtime) {
-				return rep + 1;
+				return rep;
 			}			
 		}	
-		return 99;
+		return -1;
 	}
 		
 	private int getTimeLengthOfLastRep(ProcessedExercise processedExercise) {
