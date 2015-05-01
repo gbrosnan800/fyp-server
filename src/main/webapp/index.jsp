@@ -19,9 +19,9 @@
 	        <a href="feedback.jsp" id="last_menu_item"><img src="resources/images/decision.png" height="26">DECISION MAKING</a> 
         </div>
     </div>
-    <div id="control_panel">Control panel here</div>
-    <div id="graph_area">
-
+    <div id="control_panel"></div>
+    <div id="graph_area" style="padding-top:200px;text-align:center;font-size:3em;">
+			Server Home Page
     </div>
 
 
