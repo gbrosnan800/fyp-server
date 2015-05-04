@@ -39,15 +39,15 @@
 			</div>	
 			<div class="project_info_row">
 				<div class="project_info_label">SCM (Server)</div>
-				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-server.git">github.com/gbrosnan800/fyp-server.git</a></div>
+				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-server">github.com/gbrosnan800/fyp-server</a></div>
 			</div>
 			<div class="project_info_row">
 				<div class="project_info_label">SCM (Client)</div>
-				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-client.git">github.com/gbrosnan800/fyp-client.git</a></div>
+				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-client" target="_blank">github.com/gbrosnan800/fyp-client</a></div>
 			</div>	
 			<div class="project_info_row">
 				<div class="project_info_label">Thesis</div>
-				<div class="project_info_detail"><a href="resources/documentation/FYP_GBrosnan_T00161582.pdf">Thesis.pdf</a></div>
+				<div class="project_info_detail"><a href="resources/documentation/FYP_GBrosnan_T00161582.pdf" target="_blank">Thesis.pdf</a></div>
 			</div>	
 		</div>
 		<div id="youtube_container">
