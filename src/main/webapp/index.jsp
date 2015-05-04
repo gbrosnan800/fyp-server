@@ -102,7 +102,6 @@
 				<p><b>With more complex data, more advanced analysis and user feedback is possible</b><br>
 				Cardio apps can provide information on heart rate, calories burned, steps taken, etc. </p>
 			</div>
-
 		</div>
 	</div>
 	<div class="home_item" style="background: #fff">
@@ -120,11 +119,34 @@
 				<p>Based on 1RM and speed of last Rep, suggestions can guide the user to what weights to use week by week</p>
 				<p>Uses the Brzycki Formula to make calculations</p>
 			</div>
+			<div class="home_item_inner home_item_middle">
+				<p><b>Research Question</b><p>
+				<div id="question">Can an Android smart phone be independently used&#44; to detect&#44; track and analyse a user&#39;s strength&#8211;training activities&#44;
+			 and also provide live and accurate feedback&#63;</div>	
+			</div>
+				
+		</div>
+	</div>
+	<div class="home_item">
+		<div class="home_item_center" >
+			<h1 class="home_item_h1">Challenges</h1>
+			<div class="home_item_inner two_l">
+				<p><b>Challenges</b><br>
+				<p>Sensor accurracy and noise issues</p>
+				<p>How to recognise patterns in data</p>
+				<p>How to implement intelligent feedback</p>					
+			</div>
+			<div class="home_item_inner two_l">
+				<p><b>Solutions found</b><br>
+				<p>Research filtering - Kalman Filter (firmware)</p>
+				<p>Nueral Network - Suprivised Rule using Neuroph</p>
+				<p>Velocity-based training using the Brzycki Forumla</p>
+			</div>
 		</div>
 	</div>
 	<div class="home_item" style="background:#00a651;color:#fff">
 		<div class="home_item_center" >
-			<h1 class="home_item_h1">Methodology</h1>
+			<h1 class="home_item_h1">Neural Network</h1>
 			<div class="home_item_inner two_l" style="color:#fff;font-size:1.5em">
 				<p><b>Neural Network</b><br>
 				<p>Using Neuroph Framework</p>
@@ -211,7 +233,7 @@
 	<div class="home_item" style="background: #00a651">
 		<div class="home_item_center" id="ann_item">
 			<div class="home_item_inner home_item_middle">
-				<h2>Demonstrations and datasets in other Web Pages</h2>
+				<h2>Demonstrations and datasets included in other Web Pages</h2>
 			</div>
 		</div>
 	</div>	

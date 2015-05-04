@@ -161,6 +161,7 @@ body {
 	border: 0;
 	font-size: 1.4em;
 	color: #000;	
+	overflow:auto;
 }
 
 .home_item_middle {
@@ -176,6 +177,14 @@ body {
 	color:#000;
 	text-align:center;
 	font-size: 2.2em;
+}
+
+#question {
+	color:#000;
+	font-style:italic;
+	width: 100%;
+	text-align: center;
+	font-size: 1.4em;
 }
 
 .compare_adjust {
