@@ -47,7 +47,7 @@
 			</div>	
 			<div class="project_info_row">
 				<div class="project_info_label">Thesis</div>
-				<div class="project_info_detail"><a href="resources/documentation/FYP_GBrosnan_T00161582.pdf" target="_blank">Thesis.pdf</a></div>
+				<div class="project_info_detail"><a href="resources/documentation/FYP_GBrosnan_Thesis.pdf" target="_blank">Thesis.pdf</a></div>
 			</div>	
 		</div>
 		<div id="youtube_container">
