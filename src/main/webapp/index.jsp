@@ -39,7 +39,7 @@
 			</div>	
 			<div class="project_info_row">
 				<div class="project_info_label">SCM (Server)</div>
-				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-server">github.com/gbrosnan800/fyp-server</a></div>
+				<div class="project_info_detail"><a href="http://github.com/gbrosnan800/fyp-server" target="_blank">github.com/gbrosnan800/fyp-server</a></div>
 			</div>
 			<div class="project_info_row">
 				<div class="project_info_label">SCM (Client)</div>
