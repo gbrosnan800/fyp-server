@@ -125,17 +125,17 @@
 	<div class="home_item" style="background:#00a651;color:#fff">
 		<div class="home_item_center" >
 			<h1 class="home_item_h1">Methodology</h1>
-			<div class="home_item_inner two_l" style="color:#fff">
-				<p><b>Data Preprocessing</b><br>
-				<p>Peak Detection</p>
-				<p>Exctracting reps</p>
-				<p>Transforming and Normalizing Data</p>
-			</div>
-			<div class="home_item_inner two_l" style="color:#fff">
+			<div class="home_item_inner two_l" style="color:#fff;font-size:1.5em">
 				<p><b>Neural Network</b><br>
 				<p>Using Neuroph Framework</p>
 				<p>Implementation of a Supervised Network</p>
 				<p>Back Propagation with Momentum</p>					
+			</div>
+			<div class="home_item_inner two_l" style="color:#fff;font-size:1.5em">
+				<p><b>Data Preprocessing</b><br>
+				<p>Peak Detection</p>
+				<p>Exctracting reps</p>
+				<p>Transforming and Normalizing Data</p>
 			</div>
 		</div>
 	</div>
@@ -164,16 +164,60 @@
 		</div>
 	</div>
 	<div class="home_item" style="background: #fff">
-		<div class="home_item_center" id="ann_item">	
-			
+		<div class="home_item_center">
+			<div class="home_item_inner" id="one_r"><img src="resources/images/adjust_down.png"></div>
 			<div class="home_item_inner two_l">
-				<p><b>Peak Detection Code Example</b></p>
-				<p>A Loop to iterate each point in the raw data</p>
-				<p>Helper methods to check if point is max value amoung neighbours</p>
-								
+				<p><b>Adjusting Arrays</b></p>				
+				<p>If the array was 250 but needed to be 200 for the ANN</p>
+				<p>A difference of 50. Dived 250 by 50 = 5</p>
+				<p>Remove every 5th item in the Array List</p>
+				<p>Removed from end to start (to avoid the loop going out of bounds)</p>
+				<p>The form of the Rep pattern remained after this action</p>					
 			</div>
-			<div class="home_item_inner" id="one_r"><img src="resources/images/peaks-code.png"></div>
+		</div>
+	</div>	
+	<div class="home_item">
+		<div class="home_item_center">
+			<h1 class="home_item_h1">Extracted Rep vs Extracted Normalized Rep</h1>		
+			<div class="compare_adjust"><img src="resources/images/compare_adjust_orig.PNG"></div>
+			<div class="compare_adjust"><img src="resources/images/compare_adjust.PNG"></div>
 		</div>
 	</div>
+	<div class="home_item">
+		<div class="home_item_center">
+			<h1 class="home_item_h1">Appending Three Axes</h1>		
+			<div class="threeaxischart"><img src="resources/images/extracted_3axis_bicep.PNG" class="threeaxischart"></div>		
+			<div class="threeaxischart"><img src="resources/images/extracted_3axis_latraise.PNG" class="threeaxischart"></div>	
+			<div class="threeaxischart"><img src="resources/images/extracted_3axis_kickback.PNG" class="threeaxischart"></div>
+		</div>
+	</div>
+	<div class="home_item" style="background: #fff">
+		<div class="home_item_center" id="ann_item">		
+			<div class="home_item_inner home_item_middle">
+				<h2>Implementing the Neural Network</h2>
+				<img src="resources/images/createann.PNG" style="max-width:1250px;">
+			</div>
+		</div>
+	</div>
+	<div class="home_item" style="background: #000">
+		<div class="home_item_center" id="ann_item">
+			<h1 class="home_item_h1" style="color:#fff">Android Screenshots</h1>
+			<div id="android_cont">			
+				<div class="android_image"><img src="resources/images/android_dataset.png"></div>
+				<div class="android_image"><img src="resources/images/android_routine.png"></div>
+			</div>
+		</div>
+	</div>	 
+	<div class="home_item" style="background: #00a651">
+		<div class="home_item_center" id="ann_item">
+			<div class="home_item_inner home_item_middle">
+				<h2>Demonstrations and datasets in other Web Pages</h2>
+			</div>
+		</div>
+	</div>	
+
+	
+	
+	
 </body>
 </html>

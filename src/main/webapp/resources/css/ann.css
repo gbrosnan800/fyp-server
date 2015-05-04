@@ -505,8 +505,11 @@ body {
 	color: #00a651; 
 	font-size: 3em;
 	font-weight:bold;
-	cursor: pointer
-	
+	cursor: pointer	
+}
+
+#createann {
+	max-width:500px;
 }
 
 
